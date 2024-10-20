@@ -28,25 +28,27 @@ export class MenuScene extends Scene {
         ).setAlpha(.8).setOrigin(0, 0.5);
 
         // Logo
-        const logo_game = this.add.bitmapText(
-            this.scale.width / 2,
-            this.scale.height / 2,
-            "knighthawks",
-            "PHASER'S\nREVENGE",
-            52,
-            1
-        )
-        logo_game.setOrigin(0.5, 0.5);
+        // const logo_game = this.add.bitmapText(
+        //     this.scale.width / 2,
+        //     this.scale.height / 2,
+        //     "knighthawks",
+        //     "Chrono Vortex",
+        //     52,
+        //     1
+        // )
+      const logo_game = this.add.text(this.scale.width / 2, this.scale.height / 2, 'Chrono Vortex', { fontFamily: 'Arial', fontSize: 64, color: '#880E4F' });
+
+      logo_game.setOrigin(0.5, 0.5);
         logo_game.postFX.addShine();
 
         const start_msg = this.add.bitmapText(
             this.scale.width / 2,
             this.scale.height / 2 + 85,
             "pixelfont",
-            "CLICK TO START",
+            "Click to ready ....",
             24
         ).setOrigin(0.5, 0.5);
-        
+
 
         // Tween to blink the text
         this.tweens.add({
