@@ -13,7 +13,10 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 
+import {store} from './store/store'
+
 const app = createApp(App)
+app.use(store)
 
 registerPlugins(app)
 

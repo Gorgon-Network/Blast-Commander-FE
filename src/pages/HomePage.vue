@@ -13,7 +13,7 @@ const onStartGame = () => {
         <v-avatar color="info">
           <v-icon icon="mdi-account-circle"></v-icon>
         </v-avatar>
-        <span class="px-4">{{store.address}}</span>
+        <span class="px-4">{{store.state.address}}</span>
       </v-card>
       <div class="title">ChronoVortex: Space Conquest</div>
       <div class="d-flex justify-center">

@@ -9,7 +9,7 @@ export class GameOverScene extends Scene {
     init(data) {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.end_points = data.points || 0;
-        store.logGameEvent({action: 'END_GAME', point: this.end_points})
+        store.commit( 'setEventData', {action: 'END_GAME', point: this.end_points});
     }
 
     create() {
@@ -71,7 +71,6 @@ export class GameOverScene extends Scene {
                     this.scene.start("MainScene");
                 });
             }
-
         })
     }
 }

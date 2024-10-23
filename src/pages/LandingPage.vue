@@ -5,7 +5,8 @@ import HomePage from "./HomePage.vue";
 import Info from "@/pages/Info.vue";
 import Mint from "@/pages/Mint.vue";
 import Bag from "@/pages/Bag.vue";
-import { store } from '../store/store.js'
+import {store} from "@/store/store";
+// import { store } from '../store/store.js'
 
 const isConnected = ref(false);
 const page = ref('HOME')
@@ -18,12 +19,11 @@ const connectMetaMask = async () => {
       .request({method: "eth_requestAccounts"})
       .then((accounts) => {
         const account = accounts[0]
-        store.address = account;
+        store.commit('setWallet', account)
         console.log(`Wallet connected: ${account}`)
         isConnected.value = true;
       })
       .catch((error) => {
-
         console.log(error, error.code);
       })
   } else {
