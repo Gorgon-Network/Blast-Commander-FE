@@ -1,23 +1,46 @@
 <script setup>
-import { defineEmits } from 'vue';
-import { store } from '../store/store.js'
+import {defineEmits, onMounted, ref} from 'vue';
+import {_getOwnedAircrafts} from "@/store/ultil";
+import {useStore} from 'vuex';
+
+const loading = ref(false);
+const listNFT = ref([]);
+const store = useStore();
+
 const emit = defineEmits(['startGame']);
 const onStartGame = () => {
   emit('startGame', true);
 }
+
+async function getNftList() {
+  loading.value = true;
+  listNFT.value = await _getOwnedAircrafts();
+  loading.value = false;
+  store.commit('setListNFT', listNFT.value);
+}
+
+onMounted( () => {
+  getNftList();
+});
+
 </script>
 <template>
   <div class="wrapper">
     <div class="home-page bg-grey-darken-4">
-      <v-card class="account-info bg-blue-lighten-2"  hover>
+      <v-card class="account-info bg-blue-lighten-2" hover>
         <v-avatar color="info">
           <v-icon icon="mdi-account-circle"></v-icon>
         </v-avatar>
-        <span class="px-4">{{store.state.address}}</span>
+        <span class="px-4">{{ store.state.address }}</span>
       </v-card>
       <div class="title">ChronoVortex: Space Conquest</div>
       <div class="d-flex justify-center pb-12">
-        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame">Start game</v-btn>
+        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
+          Start game
+        </v-btn>
+        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
+          Mint Now
+        </v-btn>
       </div>
 
       <div class="background-objects">
@@ -44,12 +67,14 @@ const onStartGame = () => {
   justify-content: center;
   align-items: center;
 }
+
 .account-info {
   position: absolute !important;
   top: 4px;
   padding: 4px !important;
   left: 16px;
 }
+
 .title {
   padding: 64px 48px;
   font-size: 44px;
@@ -61,14 +86,24 @@ const onStartGame = () => {
 }
 
 @keyframes pulseEffect {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.3); }
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
 }
 
 @keyframes glowEffect {
-  0% { text-shadow: 0 0 4px #C5CAE9; }
-  50% { text-shadow: 0 0 16px #9FA8DA; }
-  100% { text-shadow: 0 0 4px #C5CAE9; }
+  0% {
+    text-shadow: 0 0 4px #C5CAE9;
+  }
+  50% {
+    text-shadow: 0 0 16px #9FA8DA;
+  }
+  100% {
+    text-shadow: 0 0 4px #C5CAE9;
+  }
 }
 
 .home-page {
@@ -121,9 +156,15 @@ const onStartGame = () => {
   }
 
   @keyframes pulseBackground {
-    0% { background-color: #ffeb3b; }
-    50% { background-color: #ffcc80; }
-    100% { background-color: #f3e5f5; }
+    0% {
+      background-color: #ffeb3b;
+    }
+    50% {
+      background-color: #ffcc80;
+    }
+    100% {
+      background-color: #f3e5f5;
+    }
   }
 
 }
@@ -156,9 +197,18 @@ const onStartGame = () => {
 }
 
 @keyframes float {
-  0% { transform: translate3d(0, 0, 0); opacity: 0.8; }
-  50% { transform: translate3d(50px, -100px, 0); opacity: 1; }
-  100% { transform: translate3d(-20px, -200px, 0); opacity: 0.4; }
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(50px, -100px, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-20px, -200px, 0);
+    opacity: 0.4;
+  }
 }
 
 </style>

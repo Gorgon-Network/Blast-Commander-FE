@@ -29,7 +29,6 @@ async function getNftList () {
   loading.value = true;
   nftList.value = await _getOwnedAircrafts();
   loading.value = false;
-  console.log(111, nftList.value)
 }
 
 async function mintNft() {
