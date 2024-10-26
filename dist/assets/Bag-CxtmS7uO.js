@@ -1,1 +1,0 @@
-import{a1 as r,o as a}from"./index-BIG7jVuq.js";const s=(t,e)=>{const c=t.__vccOpts||t;for(const[o,n]of e)c[o]=n;return c},_={};function f(t,e){return a(),r("div",null,"Bag")}const p=s(_,[["render",f]]);export{p as default};
