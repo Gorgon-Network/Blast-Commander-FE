@@ -8,7 +8,7 @@ const onStartGame = () => {
 </script>
 <template>
   <div class="wrapper">
-    <div class="home-page bg-amber-accent-1">
+    <div class="home-page bg-grey-darken-4">
       <v-card class="account-info bg-blue-lighten-2"  hover>
         <v-avatar color="info">
           <v-icon icon="mdi-account-circle"></v-icon>
@@ -16,7 +16,7 @@ const onStartGame = () => {
         <span class="px-4">{{store.state.address}}</span>
       </v-card>
       <div class="title">ChronoVortex: Space Conquest</div>
-      <div class="d-flex justify-center">
+      <div class="d-flex justify-center pb-12">
         <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame">Start game</v-btn>
       </div>
 
@@ -51,13 +51,12 @@ const onStartGame = () => {
   left: 16px;
 }
 .title {
-  padding: 32px;
+  padding: 64px 48px;
   font-size: 44px;
   text-align: center;
-  font-family: "Londrina Sketch", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #C5CAE9;
+  color: #BA68C8;
   animation: pulseEffect 2.5s infinite, glowEffect 3s ease-in-out infinite;
 }
 
@@ -78,8 +77,10 @@ const onStartGame = () => {
   height: calc(100vh - 134px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-image: url("public/assets/landing/background.webp");
+  justify-content: space-between;
+  background-image: url("@/assets/item/info.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
 
   .btn {
     font-size: 20px;

@@ -1,52 +1,79 @@
 <template>
-  <div>info</div>
-  <v-btn @click="connectWallet">connect</v-btn>
-  <v-btn @click="mintAircraft">mint</v-btn>
-  <v-btn @click="getOwnedAircrafts">info</v-btn>
+  <v-container class="game-tutorial">
+    <!-- Game Instructions -->
+    <v-row>
+      <v-col class="text-center">
+        <v-card elevation="4" class="pa-4">
+          <v-card-title class="headline">How to Play the Spaceship Shooter Game</v-card-title>
+          <v-card-text>
+            <v-list dense>
+              <!-- Move Controls -->
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    Move Your Spaceship:
+                  </v-list-item-title>
+                  <v-list-item-subtitle>
+                    Use the <kbd>Up</kbd> and <kbd>Down</kbd> arrow keys to navigate your spaceship vertically.
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              <!-- Shooting Controls -->
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    Shoot Your Lasers:
+                  </v-list-item-title>
+                  <v-card-text>
+                    Click anywhere on the screen or press the <kbd>Space</kbd> key to fire at the enemies.
+                  </v-card-text>
+                </v-list-item-content>
+              </v-list-item>
+
+              <!-- Points Information -->
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    Earn Points:
+                  </v-list-item-title>
+                  <v-card-text>
+                    After completing levels, you earn points. These points can be used in the in-game store to purchase items such as spaceship parts, gift boxes, and other rewards. In the future, you will also be able to exchange points for tokens.
+                  </v-card-text>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-img src="@/assets/item/info.webp"></v-img>
+            </v-list>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+  </v-container>
 </template>
-<script setup>
-import {ethers} from 'ethers';
-import {store} from "@/store/store";
-import {aircraftNFTAbi} from "../assets/abi";
-import {airCraftContractAddress} from "../assets/config"
-import {_getOwnedAircrafts, _mintAircraft} from "@/store/ultil";
 
-
-async function connectWallet() {
-  // Kiểm tra xem người dùng có MetaMask không
-  if (typeof window.ethereum !== 'undefined') {
-    // Yêu cầu MetaMask cấp quyền truy cập vào tài khoản
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-    // Khởi tạo provider từ MetaMask
-    const provider = new ethers.BrowserProvider(window.ethereum);
-
-    // Lấy signer để thực hiện các giao dịch
-    const signer = await provider.getSigner();
-
-    console.log("Connected wallet:", await signer.getAddress());
-
-    return { provider, signer };
-  } else {
-    console.error("MetaMask chưa được cài đặt!");
+<script>
+export default {
+  methods: {
+    connectWallet() {
+      // Implement wallet connection logic here
+      alert("Connecting wallet to manage and use your earned points!");
+      // This could involve calling a smart contract using ethers.js or web3.js
+    }
   }
-}
-
-const contractAddress = airCraftContractAddress
-
-async function getContract(signer) {
-  const contract = new ethers.Contract(contractAddress, aircraftNFTAbi, signer);
-  return contract;
-}
-
-async function mintAircraft() {
-  await _mintAircraft();
-}
-
-
-async function getOwnedAircrafts() {
-  const a= await _getOwnedAircrafts();
-  console.log('nft', a)
-}
-
+};
 </script>
+
+<style scoped>
+.game-tutorial {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.kbd {
+  background-color: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+</style>

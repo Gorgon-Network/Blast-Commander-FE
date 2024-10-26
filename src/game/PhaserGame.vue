@@ -46,7 +46,7 @@ defineExpose({ scene, game });
 </script>
 
 <template>
-  <div id="phaser-container">
+  <div class="pt-4" id="phaser-container">
   </div>
 
   <v-dialog
