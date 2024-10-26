@@ -34,11 +34,11 @@ onMounted( () => {
         <span class="px-4">{{ store.state.address }}</span>
       </v-card>
       <div class="title">ChronoVortex: Space Conquest</div>
-      <div class="d-flex justify-center pb-12">
+      <div class="d-flex justify-center pb-12 ga-4">
         <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
           Start game
         </v-btn>
-        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
+        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="page" :disabled="loading">
           Mint Now
         </v-btn>
       </div>

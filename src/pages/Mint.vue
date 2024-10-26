@@ -5,7 +5,7 @@
         <v-skeleton-loader type="card"></v-skeleton-loader>
       </v-container>
       <v-container v-if="!loading">
-        <div class="d-flex justify-lg-space-between align-center pa-4" v-for="item in nftList">
+        <div class="d-flex justify-lg-space-between align-center pa-4 border-b-sm" v-for="item in nftList">
           <v-img :max-width="100" cover src="@/assets/item/player.png"></v-img>
           <div>AirCraft#{{item?.tokenId}}</div>
           <div>{{item?.points}}</div>

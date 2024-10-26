@@ -9,7 +9,7 @@ const eventData = computed(() => store.state.eventData);
 
 const scene = ref();
 const game = ref();
-const dialog = ref(false);
+const dialog = ref(true);
 const rewardPoint = ref(0);
 const nftOptions = store.state.listNFT.map(item => {
   return {name: 'AirCraft#' + item.tokenId, value: item.tokenId}
@@ -40,7 +40,7 @@ watch(eventData, (newV, oldV) => {
 
 async function claimPoints() {
   const tokenId = selectedNFT.value;
-  await _updateAircraft(tokenId.tokenId, rewardPoint.value);
+  await _updateAircraft(tokenId.value, rewardPoint.value);
   dialog.value = false;
   rewardPoint.value = 0;
 }
