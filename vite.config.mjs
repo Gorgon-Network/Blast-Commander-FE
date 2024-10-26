@@ -51,4 +51,8 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  build: {
+    assetsDir: 'assets', // Đảm bảo tài nguyên được build vào đúng thư mục
+  },
+  publicDir: 'public', // Đảm bảo thư mục public được định nghĩa chính xác
 })

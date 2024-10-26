@@ -55,6 +55,12 @@ To build your project for production, use:
 
 ```bash
 yarn build
+
+cd <tên-repo>
+git pull origin master
+npm run build
+sudo cp -r dist/* /var/www/html/
+sudo systemctl restart nginx
 ```
 
 (Repeat for npm, pnpm, and bun with respective commands.)
