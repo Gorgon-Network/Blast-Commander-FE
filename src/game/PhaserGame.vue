@@ -9,7 +9,7 @@ const eventData = computed(() => store.state.eventData);
 
 const scene = ref();
 const game = ref();
-const dialog = ref(true);
+const dialog = ref(false);
 const rewardPoint = ref(0);
 const nftOptions = store.state.listNFT.map(item => {
   return {name: 'AirCraft#' + item.tokenId, value: item.tokenId}
