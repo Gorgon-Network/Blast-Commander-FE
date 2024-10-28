@@ -1,1 +1,0 @@
-import{_ as o}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{V as s}from"./VImg-CdkJsyQl.js";import{aq as t,a as e,o as c}from"./index-CKMHsOzc.js";const r="/assets/comming-soon-BU5l0qvZ.jpg",a={},n={class:"d-flex justify-center pt-12"};function m(_,i){return c(),t("div",n,[e(s,{"max-width":500,src:r})])}const l=o(a,[["render",m]]);export{l as default};
