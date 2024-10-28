@@ -90,3 +90,20 @@ export async function _updateAircraft(tokenId, pointsGained) {
     console.error("Updating aircraft failed:", error);
   }
 }
+
+export async function _recordAchievement(points, description) {
+  try {
+    const { signer } = await connectWallet();
+    const contract = await getContract(signer);
+
+    // Gọi hàm updateAircraft từ contract
+    const tx = await contract.recordAchievement(points, description);
+
+    // Chờ giao dịch được xác nhận
+    await tx.wait();
+
+    console.log("Achievement recorded successfully:", tx);
+  } catch (error) {
+    console.error("Updating aircraft failed:", error);
+  }
+}

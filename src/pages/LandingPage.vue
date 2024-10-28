@@ -57,7 +57,10 @@ onMounted(() => {
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
     </template>
 
-    <v-app-bar-title>ChronoVortex: Space Conquest</v-app-bar-title>
+    <v-img :max-width="50" src="@/assets/icon-home.webp"></v-img>
+    <v-app-bar-title>
+      ChronoVortex: Space Conquest
+    </v-app-bar-title>
 
     <v-spacer></v-spacer>
 
