@@ -40,6 +40,10 @@ onMounted(() => {
   connectMetaMask();
 });
 
+function openTwt() {
+  window.open('https://x.com/lineanftSword','_blank');
+}
+
 </script>
 
 <template>
@@ -64,8 +68,8 @@ onMounted(() => {
 
     <v-spacer></v-spacer>
 
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
+    <v-btn icon @click="openTwt">
+      <v-icon>mdi-twitter</v-icon>
     </v-btn>
   </v-app-bar>
   <div>
@@ -78,7 +82,7 @@ onMounted(() => {
     <!-- Hiển thị game khi đã kết nối thành công -->
     <div v-if="isConnected">
 
-      <HomePage v-if="page === 'HOME'" @startGame="onStartGame">Home Page</HomePage>
+      <HomePage v-if="page === 'HOME'" @startGame="onStartGame" @mint="page = 'MINT'">Home Page</HomePage>
       <PhaserGame v-if="page === 'GAME'" ref="phaserRef"/>
 
       <Info v-if="page === 'INFO'">INFO</Info>
@@ -105,9 +109,9 @@ onMounted(() => {
         </v-btn>
 
         <v-btn value="rhombus-split" @click="page = 'COLLECTION'">
-          <v-icon>mdi-rhombus-split</v-icon>
+          <v-icon>mdi-chart-box</v-icon>
 
-          <span>Collection</span>
+          <span>Score</span>
         </v-btn>
       </v-bottom-navigation>
     </div>

@@ -39,9 +39,9 @@ watch(eventData, (newV, oldV) => {
 });
 
 async function claimPoints() {
+  dialog.value = false;
   const tokenId = selectedNFT.value;
   await _updateAircraft(tokenId.value, rewardPoint.value);
-  dialog.value = false;
   rewardPoint.value = 0;
 }
 
@@ -63,7 +63,8 @@ defineExpose({scene, game});
       title="Claim Your points"
     >
       <v-card-text class="pt-4">
-        Congratulations! Your reward points are {{ rewardPoint }}. Claim them now!
+        <div>Congratulations! Your reward points are {{ rewardPoint }}. Claim them now!</div>
+        <v-img src="@/assets/item/points.webp"></v-img>
       </v-card-text>
       <v-select
         v-model="selectedNFT"

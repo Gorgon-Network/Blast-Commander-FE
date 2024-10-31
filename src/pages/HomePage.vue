@@ -7,11 +7,15 @@ const loading = ref(false);
 const listNFT = ref([]);
 const store = useStore();
 
-const emit = defineEmits(['startGame']);
+const emit = defineEmits(['startGame' , 'mint']);
+
 const onStartGame = () => {
   emit('startGame', true);
 }
 
+const onMint = () => {
+  emit('mint', true);
+}
 async function getNftList() {
   loading.value = true;
   listNFT.value = await _getOwnedAircrafts();
@@ -34,15 +38,17 @@ onMounted( () => {
         <span class="px-4">{{ store.state.address }}</span>
       </v-card>
       <div class="title">ChronoVortex: Space Conquest</div>
-      <div class="d-flex justify-center pb-12 ga-4">
-        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
-          Start game
-        </v-btn>
-        <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="page" :disabled="loading">
-          Mint Now
-        </v-btn>
+      <div class="pb-12">
+        <div class="d-flex justify-center ga-4 pb-2">
+          <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
+            Start game
+          </v-btn>
+          <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onMint" :disabled="loading">
+            Mint Now
+          </v-btn>
+        </div>
+        <div v-if="listNFT.length < 1" class="pa-2">Note: "Players need to mint NFTs to receive reward points."</div>
       </div>
-
       <div class="background-objects">
         <div
           v-for="(object, index) in 20"
