@@ -47,7 +47,7 @@ onMounted( () => {
             Mint Now
           </v-btn>
         </div>
-        <div v-if="listNFT.length < 1" class="pa-2">Note: "Players need to mint NFTs to receive reward points."</div>
+        <div v-if="listNFT?.length < 1" class="pa-2">Note: "Players need to mint NFTs to receive reward points."</div>
       </div>
       <div class="background-objects">
         <div
