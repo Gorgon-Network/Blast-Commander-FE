@@ -6,7 +6,9 @@ import Info from "@/pages/Info.vue";
 import Mint from "@/pages/Mint.vue";
 import Bag from "@/pages/Bag.vue";
 import {store} from "@/store/store";
-// import { store } from '../store/store.js'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const isConnected = ref(false);
 const page = ref('HOME')
@@ -44,6 +46,10 @@ function openTwt() {
   window.open('https://x.com/lineanftSword','_blank');
 }
 
+const toHomePage = () => {
+  router.push('/home');
+}
+
 </script>
 
 <template>
@@ -58,10 +64,10 @@ function openTwt() {
     </template>
 
     <template v-slot:prepend>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="toHomePage"></v-app-bar-nav-icon>
     </template>
 
-    <v-img :max-width="50" src="@/assets/icon-home.webp"></v-img>
+    <v-img :max-width="50" @click="toHomePage" src="@/assets/icon-home.webp"></v-img>
     <v-app-bar-title>
       ChronoVortex: Space Conquest
     </v-app-bar-title>

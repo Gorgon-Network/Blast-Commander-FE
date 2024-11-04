@@ -34,7 +34,7 @@ export class MainScene extends Scene {
         // Enemy
         this.enemy_blue = new BlueEnemy(this);
 
-        // Cursor keys 
+        // Cursor keys
         this.cursors = this.input.keyboard.createCursorKeys();
         this.cursors.space.on("down", () => {
             this.player.fire();

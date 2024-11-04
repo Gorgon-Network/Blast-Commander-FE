@@ -6,7 +6,7 @@
  */
 
 // Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from "@/pages/LandingPage.vue";
 import Introduce from "@/pages/Introduce.vue";
 
