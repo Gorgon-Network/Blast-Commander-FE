@@ -217,4 +217,9 @@ onMounted( () => {
   }
 }
 
+@media (max-width: 600px) {
+  .title {
+    animation: none;
+  }
+}
 </style>

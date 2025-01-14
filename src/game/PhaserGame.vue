@@ -11,9 +11,12 @@ const scene = ref();
 const game = ref();
 const dialog = ref(false);
 const rewardPoint = ref(0);
-const nftOptions = store.state.listNFT.map(item => {
-  return {name: 'AirCraft#' + item.tokenId, value: item.tokenId}
-})
+const nftOptions = Array.isArray(store.state.listNFT) 
+  ? store.state.listNFT.map(item => ({
+      name: 'AirCraft#' + item.tokenId,
+      value: item.tokenId
+    }))
+  : [];
 const listNFT = ref(nftOptions);
 const selectedNFT = ref(listNFT.value[0]);
 

@@ -2,112 +2,146 @@
   <v-app>
     <!-- Header Section with Start Game Button -->
     <v-parallax height="600" class="header-parallax">
-      <v-container class="text-center d-flex flex-column align-center justify-center">
-        <h1 class="display-2 white--text animate-title">ChronoVortex: Space Conquest</h1>
+      <v-container class="text-center d-flex flex-column align-center justify-center mt-10">
+        <h1 class="display-2 white--text animate-title title-big">ChronoVortex: Space Conquest</h1>
         <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" color="primary" x-large>Start Game</v-btn>
-        <p class="white--text mt-4">Conquer the Cosmos, Earn Rewards.</p>
+        <h2 class="white--text mt-4">Conquer the Cosmos, Earn Rewards.</h2>
       </v-container>
     </v-parallax>
 
-    <!-- About Section -->
     <v-container>
-      <v-row>
-        <v-col cols="12" md="6">
-          <h2>About ChronoVortex</h2>
-          <p>Discover an epic space battle game on the Linea blockchain, combining action, exploration, and NFT-based rewards.</p>
-        </v-col>
-        <v-col cols="12" md="6">
-          <!-- Add image or interactive graphic here -->
-        </v-col>
-      </v-row>
-    </v-container>
+      <div class="night">
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+      </div>
+      <!-- About Section -->
+      <v-container>
+        <v-row>
+          <v-col cols="12">
+            <h2>About ChronoVortex</h2>
+            <p>Embark on an epic space battle adventure on the Linea blockchain, where thrilling action, captivating
+              exploration, and unique NFT-based rewards come together to create an unforgettable gaming experience.</p>
+          </v-col>
+          <v-col cols="12" md="6">
+            <!-- Add image or interactive graphic here -->
+          </v-col>
+        </v-row>
+      </v-container>
 
-  <!--    High light-->
-    <v-container class="stats-section text-center my-12">
-      <v-row align="center" justify="center">
-        <v-col cols="12" md="8">
-          <v-card class="stats-card pa-6">
-            <h2 class="mb-6">Project Statistics</h2>
-            <v-row dense>
-              <!-- Number of Users -->
-              <v-col cols="12" sm="4">
-                <v-card class="stat-box pa-4" outlined>
-                  <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
-                  <h3 class="stat-value">{{ usersCount }}</h3>
-                  <p class="stat-label">Total Users</p>
-                </v-card>
-              </v-col>
+      <!--    High light-->
+      <v-container class="stats-section text-center my-12">
+        <v-row align="center" justify="center">
+          <v-col cols="12">
+            <v-card class="stats-card pa-6">
+              <h2 class="mb-6">Project Statistics</h2>
+              <v-row dense>
+                <!-- Number of Users -->
+                <v-col cols="12" sm="4">
+                  <v-card class="stat-box pa-4" outlined>
+                    <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
+                    <h3 class="stat-value">{{ usersCount }}</h3>
+                    <p class="stat-label">Total Users</p>
+                  </v-card>
+                </v-col>
 
-              <!-- NFTs Minted -->
-              <v-col cols="12" sm="4">
-                <v-card class="stat-box pa-4" outlined>
-                  <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
-                  <h3 class="stat-value">{{ nftsMinted }}</h3>
-                  <p class="stat-label">NFTs Minted</p>
-                </v-card>
-              </v-col>
+                <!-- NFTs Minted -->
+                <v-col cols="12" sm="4">
+                  <v-card class="stat-box pa-4" outlined>
+                    <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
+                    <h3 class="stat-value">{{ nftsMinted }}</h3>
+                    <p class="stat-label">NFTs Minted</p>
+                  </v-card>
+                </v-col>
 
-              <!-- Transactions -->
-              <v-col cols="12" sm="4">
-                <v-card class="stat-box pa-4" outlined>
-                  <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
-                  <h3 class="stat-value">{{ transactionsCount }}</h3>
-                  <p class="stat-label">Transactions</p>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+                <!-- Transactions -->
+                <v-col cols="12" sm="4">
+                  <v-card class="stat-box pa-4" outlined>
+                    <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
+                    <h3 class="stat-value">{{ transactionsCount }}</h3>
+                    <p class="stat-label">Transactions</p>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
 
-    <!-- Features Section -->
-    <v-container>
-      <v-row>
-        <v-col v-for="feature in features" :key="feature.title" cols="12" md="4">
-          <v-card outlined class="feature-card">
-            <v-card-title>{{ feature.title }}</v-card-title>
-            <v-card-text>{{ feature.description }}</v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+
+      <!-- Features Section -->
+      <v-container>
+        <v-row>
+          <v-col v-for="feature in features" :key="feature.title" cols="12" md="4">
+            <v-card outlined class="feature-card min-h-full">
+              <v-card-title>{{ feature.title }}</v-card-title>
+              <v-card-text>{{ feature.description }}</v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
 
     <!-- Roadmap Section -->
-    <v-container class="roadmap-section my-12">
+    <v-container class="roadmap-section">
       <h2 class="text-center mb-8">Project Roadmap</h2>
-      <v-timeline align-top dense>
-        <!-- Phase 1 -->
-        <v-timeline-item color="indigo" icon="mdi-rocket" fill-dot>
-          <v-card class="pa-4">
-            <v-card-title class="text-h5">Phase 1: Gameplay Enhancements</v-card-title>
-            <v-card-subtitle>Boss Battles and Exploration</v-card-subtitle>
-            <v-card-text>
-              Upgrade the gameplay experience by introducing boss battle modes and exploration elements, allowing players to dive deeper into the universe of ChronoVortex.
-            </v-card-text>
-          </v-card>
+      <v-timeline align="start">
+        <v-timeline-item>
+          <template v-slot:opposite>
+          </template>
+          <div>
+            <div class="roadmap-text-1">Phase 1: Gameplay Enhancements</div>
+            <div class="roadmap-text-2">Boss Battles and Exploration</div>
+            <p>
+              Upgrade the gameplay experience by introducing boss battle modes and exploration elements, allowing
+              players to dive
+              deeper into the universe of ChronoVortex. </p>
+          </div>
         </v-timeline-item>
 
-        <!-- Phase 2 -->
-        <v-timeline-item color="purple" icon="mdi-gift-outline" fill-dot>
-          <v-card class="pa-4">
-            <v-card-title class="text-h5">Phase 2: NFT Box Opening</v-card-title>
-            <v-card-subtitle>New Items and Combo Creation</v-card-subtitle>
-            <v-card-text>
-              Open NFT boxes to discover unique items. Combine items to create powerful combos and enhance your in-game capabilities.
-            </v-card-text>
-          </v-card>
+        <v-timeline-item>
+          <template v-slot:opposite>
+          </template>
+          <div>
+            <div class="roadmap-text-1">Phase 2: NFT Box Opening</div>
+            <div class="roadmap-text-2">New Items and Combo Creation</div>
+            <p>
+              Open NFT boxes to discover unique items. Combine items to create powerful combos and enhance your
+              in-game
+              capabilities.
+            </p>
+          </div>
         </v-timeline-item>
 
-        <!-- Phase 3 -->
-        <v-timeline-item color="green" icon="mdi-account-group-outline" fill-dot>
-          <v-card class="pa-4">
-            <v-card-title class="text-h5">Phase 3: Community Building</v-card-title>
-            <v-card-subtitle>Long-Term Ecosystem Development</v-card-subtitle>
-            <v-card-text>
-              Focus on community growth and establish a sustainable ecosystem, ensuring the longevity and engagement of ChronoVortex’s player base.
-            </v-card-text>
-          </v-card>
+        <v-timeline-item>
+          <template v-slot:opposite>
+          </template>
+          <div>
+            <div class="roadmap-text-1">Phase 3: Community Building</div>
+            <div class="roadmap-text-2">Long-Term Ecosystem Development</div>
+            <p>
+              Focus on community growth and establish a sustainable ecosystem, ensuring the longevity and engagement
+              of
+              ChronoVortex’s player base.
+            </p>
+          </div>
         </v-timeline-item>
       </v-timeline>
     </v-container>
@@ -116,7 +150,7 @@
     <v-footer color="grey darken-3" app>
       <v-container>
         <v-row>
-          <v-col>© ChronoVortex 2024</v-col>
+          <v-col>© ChronoVortex {{ year }}</v-col>
           <v-col>
             <v-icon @click="openTwt">mdi-twitter</v-icon>
             <v-icon>mdi-discord</v-icon>
@@ -129,88 +163,114 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-
+const year = new Date().getFullYear();
 const usersCount = ref(1250);
 const nftsMinted = ref(3400);
 const transactionsCount = ref(12000);
 const features = ref([
-  { title: 'Blockchain-Based', description: 'Built on the foundational network of Linea zkEVM, with the strength of web3 dapps, fast processing speeds, and low transaction fees, this is an ideal choice.'},
-  { title: 'NFT Gaming', description: 'With familiar space combat gameplay, we bring users an experience on the blockchain platform, featuring exciting rewards and challenging difficulty levels' },
-  // Add more features as needed
+  { title: 'Blockchain-Based', description: 'Built on the robust foundation of the Linea zkEVM network, this platform leverages the power of web3 dApps, delivering rapid processing speeds and minimal transaction fees. It’s a seamless blend of efficiency and innovation, making it the perfect choice for blockchain gaming.' },
+  { title: 'NFT Gaming', description: 'Experience immersive space combat gameplay brought to life on the blockchain platform. Engage in thrilling battles, unlock exclusive NFT rewards, and conquer challenging levels designed to test your skills and strategy.' },
+  { title: 'Community and Ecosystem', description: 'Join a vibrant community of gamers and blockchain enthusiasts, where collaboration and competition drive innovation. With regular updates, exclusive events, and opportunities to trade or showcase NFTs, the ecosystem ensures an engaging and ever-evolving experience.' },
 ],);
-const startGame = ()=> {
+const startGame = () => {
   router.push('/');
 }
 
 function openTwt() {
-  window.open('https://x.com/lineanftSword','_blank');
+  window.open('https://x.com/lineanftSword', '_blank');
 }
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.min-h-full {
+  min-height: 100%;
+}
+
+.v-container {
+  position: relative;
+}
+
 .header-parallax {
   position: relative;
   overflow: hidden;
   animation: fadeIn 2s ease-in-out;
 }
 
-/* Fade-in effect */
 @keyframes fadeIn {
-  0% { opacity: 0; transform: scale(1.1); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Galaxy Vortex and Stars */
 .header-parallax::before,
 .header-parallax::after {
   content: "";
   position: absolute;
   top: 0%;
   left: 0%;
-  width: 100%; /* Larger size for a prominent galaxy swirl */
+  width: 100%;
   height: 100%;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%),
-  radial-gradient(circle at 50% 50%, rgba(173, 216, 230, 0.4), rgba(25, 25, 112, 0.1) 80%);
+    radial-gradient(circle at 50% 50%, rgba(173, 216, 230, 0.4), rgba(25, 25, 112, 0.1) 80%);
   opacity: 0.4;
   mix-blend-mode: screen;
   animation: rotateVortex 30s linear infinite;
   transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* Moving Stars Layer */
 .header-parallax::after {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 2px, transparent 4px),
-  radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 4px);
-  background-size: 100px 100px; /* Larger stars */
+    radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 4px);
+  background-size: 100px 100px;
   opacity: 0.6;
   animation: moveStars 20s linear infinite;
 }
 
-/* Galaxy Swirl Animation */
 @keyframes rotateVortex {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.5); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.5);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.5);
+  }
 }
 
-/* Stars Movement */
 @keyframes moveStars {
-  0% { transform: translate(0px, 0px); }
-  100% { transform: translate(80px, 80px); }
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  100% {
+    transform: translate(80px, 80px);
+  }
 }
 
-/* Animate Title */
 .animate-title {
   animation: slideIn 1.5s ease-out;
 }
 
 @keyframes slideIn {
-  0% { opacity: 0; transform: translateY(-30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Start Game Button Styling */
@@ -218,36 +278,195 @@ function openTwt() {
   z-index: 999;
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: clamp(24px, 3vw, 48px);
   font-weight: bold;
-  padding: 0.75rem 2rem;
+  padding: 8px 16px;
   border-radius: 50px;
+  height: fit-content;
+  width: fit-content;
   animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
 }
 
 .roadmap-section {
-  background-color: #1a1a2e; /* Dark background for contrast */
-  color: #fff; /* White text */
-  padding: 2rem;
+  background-color: #1a1a2e;
+  color: #fff;
+  padding: 32px 32px 70px 32px;
   border-radius: 8px;
+  margin-top: 48px;
+  margin-bottom: 96px;
 }
 
 h2 {
-  color: #ffcc00; /* Highlight color for the title */
+  color: #ffcc00;
 }
 
-/* Card Styling */
-.v-card-title, .v-card-subtitle {
+.v-card-title,
+.v-card-subtitle {
   color: #fff;
 }
 
-/* Timeline Dot Styling */
 .v-timeline-item__dot {
   border: 2px solid #fff;
+}
+
+.title-big {
+  font-size: clamp(32px, 5vw, 72px);
+  margin-top: 48px;
+}
+
+.stats-card {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.stat-box,
+.feature-card {
+  background-color: rgba(33, 33, 33, 0.5);
+}
+
+$shooting-time: 3000ms;
+
+.night {
+  position: absolute;
+  width: 130%;
+  height: 100%;
+  left: -15%;
+  transform: rotateZ(25deg);
+}
+
+.shooting_star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(38, 42, 44, 1), rgba(0, 0, 255, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+  animation:
+    tail $shooting-time ease-in-out infinite,
+    shooting $shooting-time ease-in-out infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+    transform: translateX(50%) rotateZ(45deg);
+    border-radius: 100%;
+    animation: shining $shooting-time ease-in-out infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+    transform: translateX(50%) rotateZ(45deg);
+    border-radius: 100%;
+    animation: shining $shooting-time ease-in-out infinite;
+    transform: translateX(50%) rotateZ(-45deg);
+  }
+
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      $delay: random(9999) + 0ms;
+      top: calc(40% - #{random(400) - 200px});
+      left: calc(10% - #{random(800) - 800px});
+      animation-delay: $delay;
+      // opacity: random(50) / 100 + 0.5;
+
+      &::before,
+      &::after {
+        animation-delay: $delay;
+      }
+    }
+  }
+}
+
+@keyframes tail {
+  0% {
+    width: 0;
+  }
+
+  30% {
+    width: 100px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes shining {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    width: 60px;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(400px);
+  }
+}
+
+@keyframes sky {
+  0% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(45 + 360deg);
+  }
+}
+
+.roadmap-text-1 {
+  font-size: 48px;
+}
+
+.roadmap-text-1 {
+  font-size: 32px;
+}
+
+@media (max-width: 600px) {
+  .roadmap-text-1 {
+    font-size: 32px;
+  }
+
+  .roadmap-text-1 {
+    font-size: 24px;
+  }
+
+  .night {
+    display: none;
+  }
 }
 </style>
