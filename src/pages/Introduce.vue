@@ -99,6 +99,21 @@
       </v-container>
     </v-container>
 
+    <v-container>
+      <div class="container-plane">
+        <div class="view-plane">
+          <div class="plane main">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </v-container>
+
     <!-- Roadmap Section -->
     <v-container class="roadmap-section">
       <h2 class="text-center mb-8">Project Roadmap</h2>
@@ -108,11 +123,11 @@
           </template>
           <div>
             <div class="roadmap-text-1">Phase 1: Gameplay Enhancements</div>
-            <div class="roadmap-text-2">Boss Battles and Exploration</div>
-            <p>
-              Upgrade the gameplay experience by introducing boss battle modes and exploration elements, allowing
-              players to dive
-              deeper into the universe of ChronoVortex. </p>
+            <div class="roadmap-text-2">Boss Battles and World Exploration</div>
+            <ul>
+              <li>Elevate the gameplay experience with the introduction of boss battle modes and immersive exploration mechanics.</li>
+              <li>Allow players to delve deeper into the ChronoVortex universe, uncovering challenges and rewards along the way.</li>
+            </ul>
           </div>
         </v-timeline-item>
 
@@ -121,12 +136,11 @@
           </template>
           <div>
             <div class="roadmap-text-1">Phase 2: NFT Box Opening</div>
-            <div class="roadmap-text-2">New Items and Combo Creation</div>
-            <p>
-              Open NFT boxes to discover unique items. Combine items to create powerful combos and enhance your
-              in-game
-              capabilities.
-            </p>
+            <div class="roadmap-text-2">Discover Unique Items and Build Powerful Combos</div>
+            <ul>
+              <li>Open NFT boxes to acquire rare and unique items.</li>
+              <li>Combine these items strategically to create powerful combos, enhancing your in-game abilities and overall strategy.</li>
+            </ul>
           </div>
         </v-timeline-item>
 
@@ -135,12 +149,11 @@
           </template>
           <div>
             <div class="roadmap-text-1">Phase 3: Community Building</div>
-            <div class="roadmap-text-2">Long-Term Ecosystem Development</div>
-            <p>
-              Focus on community growth and establish a sustainable ecosystem, ensuring the longevity and engagement
-              of
-              ChronoVortex’s player base.
-            </p>
+            <div class="roadmap-text-2">Fostering a Sustainable Ecosystem</div>
+            <ul>
+              <li>Focus on growing the community and establishing a long-term, sustainable ecosystem.</li>
+              <li>Ensure player engagement and the longevity of ChronoVortex by nurturing a vibrant and active player base.</li>
+            </ul>
           </div>
         </v-timeline-item>
       </v-timeline>
@@ -302,7 +315,7 @@ function openTwt() {
 }
 
 .roadmap-section {
-  background-color: #1a1a2e;
+  background-color: rgba(33, 33, 33, 0.5);
   color: #fff;
   padding: 32px 32px 70px 32px;
   border-radius: 8px;
@@ -337,6 +350,7 @@ h2 {
   background-color: rgba(33, 33, 33, 0.5);
 }
 
+// night ======================================================================
 $shooting-time: 3000ms;
 
 .night {
@@ -448,11 +462,13 @@ $shooting-time: 3000ms;
   }
 }
 
+// night ======================================================================
+
 .roadmap-text-1 {
   font-size: 48px;
 }
 
-.roadmap-text-1 {
+.roadmap-text-2 {
   font-size: 32px;
 }
 
@@ -461,12 +477,125 @@ $shooting-time: 3000ms;
     font-size: 32px;
   }
 
-  .roadmap-text-1 {
+  .roadmap-text-2 {
     font-size: 24px;
   }
 
   .night {
     display: none;
+  }
+}
+
+// view-plane ======================================================================
+.container-plane {
+  position: relative;
+  width: 100%;
+  height: 700px;
+}
+
+$l: 90px;
+$num: 10;
+$dur: 10s;
+
+@mixin center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.view-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  perspective: 400px;
+}
+
+.plane {
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d;
+
+  &.main {
+    @include center;
+    transform: rotateX(60deg) rotateZ(-30deg);
+    animation: rotate 20s infinite linear;
+
+    .circle {
+      width: 500px;
+      height: 500px;
+      position: absolute;
+      transform-style: preserve-3d;
+      border-radius: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 0 60px rgba(95, 145, 255, 1), inset 0 0 60px rgba(95, 145, 255, 1);
+
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+        @include center;
+        width: 2%;
+        height: 2%;
+        border-radius: 100%;
+        background: rgba(95, 145, 255, 1);
+        box-sizing: border-box;
+        box-shadow: 0 0 60px 2px rgba(95, 145, 255, 1);
+      }
+
+      &::before {
+        transform: translateZ(-$l);
+      }
+
+      &::after {
+        transform: translateZ($l);
+      }
+
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          transform: rotateZ(calc(#{$i} / 5 * 360deg)) rotateX(63.435deg);
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .container-plane {
+    position: relative;
+    width: 100%;
+    height: 250px;
+  }
+
+  .box {
+    width: 200px;
+    height: 200px;
+  }
+
+  .plane {
+    width: 200px;
+    height: 200px;
+
+    &.main {
+      .circle {
+        width: 200px;
+        height: 200px;
+      }
+    }
   }
 }
 </style>
