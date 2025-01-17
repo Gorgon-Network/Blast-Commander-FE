@@ -2,7 +2,9 @@ import {store} from "@/store/store";
 import {ethers} from 'ethers';
 import {airCraftContractAddress} from "@/assets/config";
 import {aircraftNFTAbi} from "@/assets/abi";
+import { useNotificationService } from "./api";
 
+const { addNotification } = useNotificationService();
 async function connectWallet() {
   // Kiểm tra xem người dùng có MetaMask không
   if (typeof window.ethereum !== 'undefined') {
@@ -65,6 +67,7 @@ export async function _mintAircraft() {
     // Gọi hàm mintAircraft từ contract
     const tx = await contract.mintAircraft(playerAddress);
     console.log("Minting transaction: ", tx);
+    addNotification(`Minting transaction: ${tx?.hash}`);
 
     // Đợi giao dịch hoàn thành
     const receipt = await tx.wait();

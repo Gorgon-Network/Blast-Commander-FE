@@ -1,11 +1,11 @@
 <script setup>
-import {ref, onMounted} from 'vue';
+import { ref, onMounted } from 'vue';
 import PhaserGame from '../game/PhaserGame.vue';
 import HomePage from "./HomePage.vue";
 import Info from "@/pages/Info.vue";
 import Mint from "@/pages/Mint.vue";
 import Bag from "@/pages/Bag.vue";
-import {store} from "@/store/store";
+import { store } from "@/store/store";
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -18,7 +18,7 @@ const errorMessage = ref('');
 const connectMetaMask = async () => {
   if (typeof window.ethereum !== "undefined") {
     window.ethereum
-      .request({method: "eth_requestAccounts"})
+      .request({ method: "eth_requestAccounts" })
       .then((accounts) => {
         const account = accounts[0]
         store.commit('setWallet', account)
@@ -43,7 +43,7 @@ onMounted(() => {
 });
 
 function openTwt() {
-  window.open('https://x.com/lineanftSword','_blank');
+  window.open('https://x.com/lineanftSword', '_blank');
 }
 
 const toHomePage = () => {
@@ -53,14 +53,9 @@ const toHomePage = () => {
 </script>
 
 <template>
-  <v-app-bar
-    color="teal-darken-4"
-    image="https://picsum.photos/1920/1080?random"
-  >
+  <v-app-bar color="teal-darken-4" image="https://picsum.photos/1920/1080?random">
     <template v-slot:image>
-      <v-img
-        gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
-      ></v-img>
+      <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
     </template>
 
     <template v-slot:prepend>
@@ -80,22 +75,25 @@ const toHomePage = () => {
   </v-app-bar>
   <div>
     <!-- Kiểm tra trạng thái kết nối -->
-    <div v-if="!isConnected">
+    <div v-if="!isConnected" class="btn-container">
       <p>{{ errorMessage }}</p>
-      <button @click="connectMetaMask">Connect to MetaMask</button>
+      <v-btn size="x-large" class="btn btn-primary btn-connect bg-yellow-lighten-4 text-purple-darken-4"
+        @click="connectMetaMask">
+        Connect to MetaMask
+      </v-btn>
     </div>
 
     <!-- Hiển thị game khi đã kết nối thành công -->
     <div v-if="isConnected">
 
       <HomePage v-if="page === 'HOME'" @startGame="onStartGame" @mint="page = 'MINT'">Home Page</HomePage>
-      <PhaserGame v-if="page === 'GAME'" ref="phaserRef"/>
+      <PhaserGame v-if="page === 'GAME'" ref="phaserRef" />
 
       <Info v-if="page === 'INFO'">INFO</Info>
       <Mint v-if="page === 'MINT'"></Mint>
-      <Bag v-if="page === 'COLLECTION'"/>
+      <Bag v-if="page === 'COLLECTION'" />
 
-      <v-bottom-navigation class="bg-deep-purple-accent-2">
+      <v-bottom-navigation class="bg-deep-purple-accent-2 bottom-nav">
         <v-btn value="home" @click="page = 'HOME'">
           <v-icon>mdi-home</v-icon>
 
@@ -125,3 +123,19 @@ const toHomePage = () => {
   </div>
 </template>
 
+<style>
+.bottom-nav {
+  height: 72px !important;
+}
+
+.btn-connect {
+  margin: auto;
+}
+
+.btn-container {
+  width: fit-content;
+  height: 500px;
+  margin: auto;
+  display: flex;
+}
+</style>

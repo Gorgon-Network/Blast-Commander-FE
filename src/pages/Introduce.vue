@@ -123,10 +123,12 @@
           </template>
           <div>
             <div class="roadmap-text-1">Phase 1: Gameplay Enhancements</div>
-            <div class="roadmap-text-2">Boss Battles and World Exploration</div>
+            <div class="roadmap-text-2 cl-ffcc00">Boss Battles and World Exploration</div>
             <ul>
-              <li>Elevate the gameplay experience with the introduction of boss battle modes and immersive exploration mechanics.</li>
-              <li>Allow players to delve deeper into the ChronoVortex universe, uncovering challenges and rewards along the way.</li>
+              <li>Elevate the gameplay experience with the introduction of boss battle modes and immersive exploration
+                mechanics.</li>
+              <li>Allow players to delve deeper into the ChronoVortex universe, uncovering challenges and rewards along
+                the way.</li>
             </ul>
           </div>
         </v-timeline-item>
@@ -136,10 +138,11 @@
           </template>
           <div>
             <div class="roadmap-text-1">Phase 2: NFT Box Opening</div>
-            <div class="roadmap-text-2">Discover Unique Items and Build Powerful Combos</div>
+            <div class="roadmap-text-2 cl-ffcc00">Discover Unique Items and Build Powerful Combos</div>
             <ul>
               <li>Open NFT boxes to acquire rare and unique items.</li>
-              <li>Combine these items strategically to create powerful combos, enhancing your in-game abilities and overall strategy.</li>
+              <li>Combine these items strategically to create powerful combos, enhancing your in-game abilities and
+                overall strategy.</li>
             </ul>
           </div>
         </v-timeline-item>
@@ -149,10 +152,11 @@
           </template>
           <div>
             <div class="roadmap-text-1">Phase 3: Community Building</div>
-            <div class="roadmap-text-2">Fostering a Sustainable Ecosystem</div>
+            <div class="roadmap-text-2 cl-ffcc00">Fostering a Sustainable Ecosystem</div>
             <ul>
               <li>Focus on growing the community and establishing a long-term, sustainable ecosystem.</li>
-              <li>Ensure player engagement and the longevity of ChronoVortex by nurturing a vibrant and active player base.</li>
+              <li>Ensure player engagement and the longevity of ChronoVortex by nurturing a vibrant and active player
+                base.</li>
             </ul>
           </div>
         </v-timeline-item>
@@ -160,7 +164,7 @@
     </v-container>
 
     <!-- Footer -->
-    <v-footer color="grey darken-3" app>
+    <v-footer class="stats-card" app>
       <v-container>
         <v-row>
           <v-col>© ChronoVortex {{ year }}</v-col>
@@ -189,6 +193,19 @@ const features = ref([
   { title: 'NFT Gaming', description: 'Experience immersive space combat gameplay brought to life on the blockchain platform. Engage in thrilling battles, unlock exclusive NFT rewards, and conquer challenging levels designed to test your skills and strategy.' },
   { title: 'Community and Ecosystem', description: 'Join a vibrant community of gamers and blockchain enthusiasts, where collaboration and competition drive innovation. With regular updates, exclusive events, and opportunities to trade or showcase NFTs, the ecosystem ensures an engaging and ever-evolving experience.' },
 ],);
+
+const resources = import.meta.glob('@/assets/item/**/*.{png,jpg,jpeg,gif,svg,mp4}', { eager: true });
+const getFileUrl = (filename) => {
+  const filePath = Object.keys(resources).find((path) => path.includes(filename));
+  if (filePath) {
+    return new URL(filePath, import.meta.url).href;
+  } else {
+    console.error(`File not found: ${filename}`);
+    return null;
+  }
+};
+const ship = getFileUrl('5_all.png');
+
 const startGame = () => {
   router.push('/');
 }
@@ -324,6 +341,10 @@ function openTwt() {
 }
 
 h2 {
+  color: #ffcc00;
+}
+
+.cl-ffcc00 {
   color: #ffcc00;
 }
 
@@ -491,6 +512,7 @@ $shooting-time: 3000ms;
   position: relative;
   width: 100%;
   height: 700px;
+  margin: 48px 0px;
 }
 
 $l: 90px;
@@ -579,6 +601,7 @@ $dur: 10s;
     position: relative;
     width: 100%;
     height: 250px;
+    margin: 24px 0px;
   }
 
   .box {

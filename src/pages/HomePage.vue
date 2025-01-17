@@ -1,13 +1,13 @@
 <script setup>
-import {defineEmits, onMounted, ref} from 'vue';
-import {_getOwnedAircrafts} from "@/store/ultil";
-import {useStore} from 'vuex';
+import { defineEmits, onMounted, ref } from 'vue';
+import { _getOwnedAircrafts } from "@/store/ultil";
+import { useStore } from 'vuex';
 
 const loading = ref(false);
 const listNFT = ref([]);
 const store = useStore();
 
-const emit = defineEmits(['startGame' , 'mint']);
+const emit = defineEmits(['startGame', 'mint']);
 
 const onStartGame = () => {
   emit('startGame', true);
@@ -23,7 +23,7 @@ async function getNftList() {
   store.commit('setListNFT', listNFT.value);
 }
 
-onMounted( () => {
+onMounted(() => {
   getNftList();
 });
 
@@ -35,30 +35,30 @@ onMounted( () => {
         <v-avatar color="info">
           <v-icon icon="mdi-account-circle"></v-icon>
         </v-avatar>
-        <span class="px-4">{{ store.state.address }}</span>
+        <span class="px-5">{{ store.state.address }}</span>
       </v-card>
       <div class="title">ChronoVortex: Space Conquest</div>
-      <div class="pb-12">
-        <div class="d-flex justify-center ga-4 pb-2">
-          <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame" :disabled="loading">
+      <div class="pb-16">
+        <div class="w-full d-flex justify-center mb-4" v-if="listNFT?.length > 0">
+          <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame"
+            :disabled="loading">
             Start game
           </v-btn>
-          <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onMint" :disabled="loading">
+        </div>
+        <div class="w-full d-flex justify-center mb-4">
+          <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onMint"
+            :disabled="loading">
             Mint Now
           </v-btn>
         </div>
-        <div v-if="!listNFT || listNFT?.length < 1" class="pa-2">Note: "Players need to mint NFTs to receive reward points."</div>
+        <div v-if="!listNFT || listNFT?.length < 1" class="pa-2 text-center">Note: "Players need to mint NFTs to receive
+          reward points."</div>
       </div>
       <div class="background-objects">
-        <div
-          v-for="(object, index) in 20"
-          :key="index"
-          class="floating-object"
-          :style="{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`
-          }"
-        ></div>
+        <div v-for="(object, index) in 20" :key="index" class="floating-object" :style="{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`
+        }"></div>
       </div>
     </div>
 
@@ -78,7 +78,7 @@ onMounted( () => {
   position: absolute !important;
   top: 4px;
   padding: 4px !important;
-  left: 16px;
+  width: 100%;
 }
 
 .title {
@@ -92,9 +92,12 @@ onMounted( () => {
 }
 
 @keyframes pulseEffect {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.3);
   }
@@ -104,9 +107,11 @@ onMounted( () => {
   0% {
     text-shadow: 0 0 4px #C5CAE9;
   }
+
   50% {
     text-shadow: 0 0 16px #9FA8DA;
   }
+
   100% {
     text-shadow: 0 0 4px #C5CAE9;
   }
@@ -132,9 +137,11 @@ onMounted( () => {
     transition: transform 0.3s, box-shadow 0.3s;
     animation: pulseBackground 3s infinite alternate;
     border: 2px solid transparent;
-    background-clip: padding-box; /* Ensure the border doesn't interfere with background */
+    background-clip: padding-box;
+    /* Ensure the border doesn't interfere with background */
     position: relative;
     z-index: 1;
+    width: 200px;
   }
 
   .btn::before {
@@ -165,9 +172,11 @@ onMounted( () => {
     0% {
       background-color: #ffeb3b;
     }
+
     50% {
       background-color: #ffcc80;
     }
+
     100% {
       background-color: #f3e5f5;
     }
@@ -182,7 +191,8 @@ onMounted( () => {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  pointer-events: none; /* Ensure the objects do not block interactions */
+  pointer-events: none;
+  /* Ensure the objects do not block interactions */
 }
 
 .floating-object {
@@ -207,10 +217,12 @@ onMounted( () => {
     transform: translate3d(0, 0, 0);
     opacity: 0.8;
   }
+
   50% {
     transform: translate3d(50px, -100px, 0);
     opacity: 1;
   }
+
   100% {
     transform: translate3d(-20px, -200px, 0);
     opacity: 0.4;
