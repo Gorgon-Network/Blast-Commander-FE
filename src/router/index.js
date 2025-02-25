@@ -9,6 +9,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from "@/pages/LandingPage.vue";
 import Introduce from "@/pages/Introduce.vue";
+import TestGame from "@/pages/TestGame.vue";
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/home',
     name: 'home',
     component: Introduce,
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: TestGame,
   },
   // Add more routes as needed
 ]
