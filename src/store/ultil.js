@@ -2,7 +2,7 @@ import {store} from "@/store/store";
 import {ethers} from 'ethers';
 import {airCraftContractAddress} from "@/assets/config";
 import {aircraftNFTAbi} from "@/assets/abi";
-import { useNotificationService } from "./api";
+import {useNotificationService} from "./api";
 
 const { addNotification } = useNotificationService();
 async function connectWallet() {
@@ -109,4 +109,8 @@ export async function _recordAchievement(points, description) {
   } catch (error) {
     console.error("Updating aircraft failed:", error);
   }
+}
+
+export async function _connectWallet() {
+  return await connectWallet();
 }
