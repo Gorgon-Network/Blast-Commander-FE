@@ -49,7 +49,7 @@ export default defineConfig({
     ],
   },
   server: {
-    port: 3000,
+    port: 8080,
   },
   build: {
     assetsDir: 'assets', // Đảm bảo tài nguyên được build vào đúng thư mục
