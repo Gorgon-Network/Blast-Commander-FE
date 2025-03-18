@@ -48,7 +48,9 @@ const handleGameMessage = async (event) => {
   switch (event.data.type) {
     case "connectWallet":
       console.log("🔗 Đang gửi sự kiện connectWallet đến Unity...");
-      unityInstance.SendMessage("WebGLEvents", "SetConnectedWallet", "0xA03a73B343799814013524A0857f3805Bc372F39");
+      const {signer} = await _connectWallet();
+      console.log(111, signer);
+      unityInstance.SendMessage("WebGLEvents", "SetConnectedWallet", signer.address);
       break;
 
     case "mintNFTSuccess":
