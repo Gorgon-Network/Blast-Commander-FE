@@ -10,6 +10,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from "@/pages/LandingPage.vue";
 import Introduce from "@/pages/Introduce.vue";
 import TestGame from "@/pages/TestGame.vue";
+import Box from "@/pages/Box.vue";
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     path: '/test',
     name: 'test',
     component: TestGame,
+  },
+  {
+    path: '/box',
+    name: 'box',
+    component: Box,
   },
   // Add more routes as needed
 ]
