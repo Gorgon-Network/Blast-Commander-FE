@@ -340,6 +340,42 @@
         "internalType": "address",
         "name": "owner",
         "type": "address"
+      }
+    ],
+    "name": "getNFTsByAddress",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "tokenIds",
+        "type": "uint256[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum RandomBoxNFT.ItemType",
+            "name": "itemType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum RandomBoxNFT.Rarity",
+            "name": "rarity",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct RandomBoxNFT.Item[]",
+        "name": "ownedItems",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       },
       {
         "internalType": "address",

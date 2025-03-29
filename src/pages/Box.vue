@@ -51,14 +51,21 @@
         </div>
       </v-col>
     </v-row>
+
+    <WalletItems v-if="connected"
+    :connected-account="account"
+    :contract="contract" />
   </v-container>
+
 </template>
 
 <script>
 import Web3 from 'web3'
 import contractABI from '@/assets/abi/RandomBoxNFT.json'
+import WalletItems from "@/components/WalletItems.vue";
 
 export default {
+  components: {WalletItems},
   data() {
     return {
       web3: null,
@@ -68,7 +75,7 @@ export default {
       connecting: false,
       opening: false,
       lastResult: null,
-      contractAddress: '0x6830797e6Ee711CEAa83970Fad3f164A417BAe9f',
+      contractAddress: '0x679D0424363fd9c3831b11Ef206e30aB6236fD16',
       // Images
       closedBox: 'https://as2.ftcdn.net/jpg/10/59/31/07/1000_F_1059310793_vzlepkAxaODyOzQ1XWVY91ec00Ub17B3.webp', // Thay bằng URL ảnh hộp đóng
       openingBox: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExanAzZTBwbm41Z2ZxdnI2MHp1ZmlkNnF4bnM2ZnliaWM5aDRpd20zYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vRebb6HyeIgvmQ8/giphy.gif', // Thay bằng URL ảnh động khi mở
