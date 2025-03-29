@@ -47,14 +47,15 @@ import WingGunImg from "@/assets/bag/WingGun.webp";
 import MainGunImg from "@/assets/bag/MainGun.webp"
 import SideGunImg from "@/assets/bag/SideGun.webp";
 import HPImg from "@/assets/bag/HP.webp"
-import ArmorImg from "@/assets/bag/Armor.webp"
+import ArmorImg from "@/assets/bag/Armor.webp";
+import { store } from "@/store/store";
 export default {
   data() {
     return {
       account: null,
       nfts: [],
       loading: false,
-      contractAddress: "0x679D0424363fd9c3831b11Ef206e30aB6236fD16",
+      contractAddress: store.state.contractAddress,
       itemImages: {
         0: MainGunImg, // MainGun
         1: WingGunImg, // WingGun
@@ -74,9 +75,11 @@ export default {
       required: true,
     },
   },
+  created() {
+    this.fetchNFTs();
+  },
   methods: {
     async fetchNFTs() {
-      console.log(this.connectedAccount);
       if (!this.connectedAccount) {
         this.$toast.error("Vui lòng nhập địa chỉ ví!");
         return;

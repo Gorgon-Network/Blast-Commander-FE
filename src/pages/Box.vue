@@ -1,5 +1,15 @@
 <template>
   <v-container>
+    <v-row class="pa-4 d-flex justify-center ga-4" justify="center">
+      <v-btn color="green-accent-3" @click="$router.push('/equipment')">
+        <v-icon>mdi-bag-personal</v-icon>
+        Equipment
+      </v-btn>
+      <v-btn color="primary" @click="$router.push('/test')">
+        <v-icon>mdi-play</v-icon>
+        Play Game
+      </v-btn>
+    </v-row>
     <v-row justify="center">
       <v-col cols="12" md="6">
         <h1 class="text-center">Random Box NFT</h1>
@@ -63,6 +73,7 @@
 import Web3 from 'web3'
 import contractABI from '@/assets/abi/RandomBoxNFT.json'
 import WalletItems from "@/components/WalletItems.vue";
+import { store } from "@/store/store";
 
 export default {
   components: {WalletItems},
@@ -75,13 +86,14 @@ export default {
       connecting: false,
       opening: false,
       lastResult: null,
-      contractAddress: '0x679D0424363fd9c3831b11Ef206e30aB6236fD16',
+      contractAddress: store.state.contractAddress,
       // Images
       closedBox: 'https://as2.ftcdn.net/jpg/10/59/31/07/1000_F_1059310793_vzlepkAxaODyOzQ1XWVY91ec00Ub17B3.webp', // Thay bằng URL ảnh hộp đóng
       openingBox: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExanAzZTBwbm41Z2ZxdnI2MHp1ZmlkNnF4bnM2ZnliaWM5aDRpd20zYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vRebb6HyeIgvmQ8/giphy.gif', // Thay bằng URL ảnh động khi mở
       currentImage: ''
     }
   },
+
 
   computed: {
     // Chọn ảnh hiển thị dựa trên trạng thái

@@ -11,6 +11,7 @@ import LandingPage from "@/pages/LandingPage.vue";
 import Introduce from "@/pages/Introduce.vue";
 import TestGame from "@/pages/TestGame.vue";
 import Box from "@/pages/Box.vue";
+import Equiment from "@/pages/Equiment.vue";
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/box',
     name: 'box',
     component: Box,
+  },
+  {
+    path: '/equipment',
+    name: 'equipment',
+    component: Equiment,
   },
   // Add more routes as needed
 ]
