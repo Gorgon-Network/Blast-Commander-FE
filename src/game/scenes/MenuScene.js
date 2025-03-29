@@ -36,7 +36,7 @@ export class MenuScene extends Scene {
         //     52,
         //     1
         // )
-      const logo_game = this.add.text(this.scale.width / 2, this.scale.height / 2, 'Chrono Vortex', { fontFamily: 'Arial', fontSize: 64, color: '#880E4F' });
+      const logo_game = this.add.text(this.scale.width / 2, this.scale.height / 2, 'Blast', { fontFamily: 'Arial', fontSize: 64, color: '#880E4F' });
 
       logo_game.setOrigin(0.5, 0.5);
         logo_game.postFX.addShine();

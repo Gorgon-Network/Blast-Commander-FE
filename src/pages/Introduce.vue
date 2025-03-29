@@ -3,7 +3,7 @@
     <!-- Header Section with Start Game Button -->
     <v-parallax height="600" class="header-parallax">
       <v-container class="text-center d-flex flex-column align-center justify-center mt-10">
-        <h1 class="display-2 white--text animate-title title-big">ChronoVortex: Space Conquest</h1>
+        <h1 class="display-2 white--text animate-title title-big">Blast</h1>
         <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" color="primary" x-large>Start Game</v-btn>
         <h2 class="white--text mt-4">Conquer the Cosmos, Earn Rewards.</h2>
       </v-container>
@@ -36,7 +36,7 @@
       <v-container>
         <v-row>
           <v-col cols="12">
-            <h2>About ChronoVortex</h2>
+            <h2>About Blast</h2>
             <p>Embark on an epic space battle adventure on the Linea blockchain, where thrilling action, captivating
               exploration, and unique NFT-based rewards come together to create an unforgettable gaming experience.</p>
           </v-col>
@@ -127,7 +127,7 @@
             <ul>
               <li>Elevate the gameplay experience with the introduction of boss battle modes and immersive exploration
                 mechanics.</li>
-              <li>Allow players to delve deeper into the ChronoVortex universe, uncovering challenges and rewards along
+              <li>Allow players to delve deeper into the Blast universe, uncovering challenges and rewards along
                 the way.</li>
             </ul>
           </div>
@@ -155,7 +155,7 @@
             <div class="roadmap-text-2 cl-ffcc00">Fostering a Sustainable Ecosystem</div>
             <ul>
               <li>Focus on growing the community and establishing a long-term, sustainable ecosystem.</li>
-              <li>Ensure player engagement and the longevity of ChronoVortex by nurturing a vibrant and active player
+              <li>Ensure player engagement and the longevity of Blast by nurturing a vibrant and active player
                 base.</li>
             </ul>
           </div>
@@ -167,7 +167,7 @@
     <v-footer class="stats-card" app>
       <v-container>
         <v-row>
-          <v-col>© ChronoVortex {{ year }}</v-col>
+          <v-col>© Blast {{ year }}</v-col>
           <v-col>
             <v-icon @click="openTwt">mdi-twitter</v-icon>
             <v-icon>mdi-discord</v-icon>
