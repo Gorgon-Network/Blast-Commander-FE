@@ -11,7 +11,7 @@
 </template>
 <script setup>
 import { onMounted, onUnmounted } from "vue";
-import { _connectWallet } from "@/store/ultil";
+import { _connectWallet, _disconnectWallet } from "@/store/ultil";
 import * as _ from "lodash";
 
 let unityInstance = null; // Biến toàn cục lưu instance của Unity
@@ -48,9 +48,14 @@ const handleGameMessage = async (event) => {
   switch (event.data.type) {
     case "connectWallet":
       console.log("🔗 Đang gửi sự kiện connectWallet đến Unity...");
-      const {signer} = await _connectWallet();
+      const { signer } = await _connectWallet();
       console.log(111, signer);
       unityInstance.SendMessage("WebGLEvents", "SetConnectedWallet", signer.address);
+      break;
+
+    case "disconnectWallet":
+      await _disconnectWallet();
+      unityInstance.SendMessage("WebGLEvents", "OnWalletDisconnected", "Ví đã được ngắt kết nối");
       break;
 
     case "mintNFTSuccess":
@@ -83,6 +88,7 @@ onUnmounted(() => {
   max-width: 360px;
   margin: auto;
 }
+
 #unity-canvas {
   display: block;
 }

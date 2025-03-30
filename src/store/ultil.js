@@ -114,3 +114,21 @@ export async function _recordAchievement(points, description) {
 export async function _connectWallet() {
   return await connectWallet();
 }
+
+export async function _disconnectWallet() {
+  try {
+    if (typeof window.ethereum !== 'undefined' && store.state.address) {
+      // Reset địa chỉ ví trong store
+      store.commit('setWallet', null);
+      addNotification("Đã ngắt kết nối ví trong ứng dụng!");
+      return true;
+    } else {
+      addNotification("Không có ví nào đang được kết nối!");
+      return false;
+    }
+  } catch (error) {
+    console.error("Ngắt kết nối ví thất bại:", error);
+    addNotification("Ngắt kết nối ví thất bại!");
+    throw error;
+  }
+}
