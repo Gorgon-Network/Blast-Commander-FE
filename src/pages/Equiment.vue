@@ -29,7 +29,7 @@
       <v-col>
         <h3>Item is equipped</h3>
         <div>
-          <ItemEquipped :equipped-items="equippedItems" />
+          <ItemEquipped :equipped-items="equippedItems"  @unequip="unequipItem" />
         </div>
       </v-col>
     </v-row>

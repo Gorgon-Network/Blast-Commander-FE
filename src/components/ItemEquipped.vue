@@ -1,7 +1,7 @@
 <template>
   <div class="equipment-container">
     <!-- Top Left (MainGun) -->
-    <div class="item-slot top-left" @mouseover="showTooltip(mainGun)" @mouseleave="hideTooltip">
+    <div class="item-slot top-left" @mouseover="showTooltip(mainGun)" @mouseleave="hideTooltip" @click="openDialog(mainGun)">
       <div class="item" :class="getRarityClass(mainGun?.rarity)" v-if="mainGun">
         <img :src="getItemImage(mainGun.itemType)" alt="MainGun" />
       </div>
@@ -9,13 +9,13 @@
       <div class="tooltip" v-if="hoveredItem === mainGun && mainGun">
         <h3>{{ mainGun.itemTypeName }}</h3>
         <p>Rarity: {{ mainGun.rarityName }}</p>
-        <p>Stats: {{ mainGun.stats }}</p>
+        <p>Stats: <span class="text-green-accent-3">+ {{ mainGun.stats }}</span></p>
         <p>Token ID: {{ mainGun.tokenId }}</p>
       </div>
     </div>
 
     <!-- Top Right (WingGun) -->
-    <div class="item-slot top-right" @mouseover="showTooltip(wingGun)" @mouseleave="hideTooltip">
+    <div class="item-slot top-right" @mouseover="showTooltip(wingGun)" @mouseleave="hideTooltip" @click="openDialog(wingGun)">
       <div class="item" :class="getRarityClass(wingGun?.rarity)" v-if="wingGun">
         <img :src="getItemImage(wingGun.itemType)" alt="WingGun" />
       </div>
@@ -23,13 +23,13 @@
       <div class="tooltip" v-if="hoveredItem === wingGun && wingGun">
         <h3>{{ wingGun.itemTypeName }}</h3>
         <p>Rarity: {{ wingGun.rarityName }}</p>
-        <p>Stats: {{ wingGun.stats }}</p>
+        <p>Stats: <span class="text-green-accent-3">+ {{ wingGun.stats }}</span></p>
         <p>Token ID: {{ wingGun.tokenId }}</p>
       </div>
     </div>
 
     <!-- Center (HP) -->
-    <div class="item-slot center" @mouseover="showTooltip(hp)" @mouseleave="hideTooltip">
+    <div class="item-slot center" @mouseover="showTooltip(hp)" @mouseleave="hideTooltip" @click="openDialog(hp)">
       <div class="item" :class="getRarityClass(hp?.rarity)" v-if="hp">
         <img :src="getItemImage(hp.itemType)" alt="HP" />
       </div>
@@ -37,13 +37,13 @@
       <div class="tooltip" v-if="hoveredItem === hp && hp">
         <h3>{{ hp.itemTypeName }}</h3>
         <p>Rarity: {{ hp.rarityName }}</p>
-        <p>Stats: {{ hp.stats }}</p>
+        <p>Stats: <span class="text-green-accent-3">{{ hp.stats }}</span></p>
         <p>Token ID: {{ hp.tokenId }}</p>
       </div>
     </div>
 
     <!-- Bottom Left (SideGun) -->
-    <div class="item-slot bottom-left" @mouseover="showTooltip(sideGun)" @mouseleave="hideTooltip">
+    <div class="item-slot bottom-left" @mouseover="showTooltip(sideGun)" @mouseleave="hideTooltip" @click="openDialog(sideGun)">
       <div class="item" :class="getRarityClass(sideGun?.rarity)" v-if="sideGun">
         <img :src="getItemImage(sideGun.itemType)" alt="SideGun" />
       </div>
@@ -51,13 +51,13 @@
       <div class="tooltip" v-if="hoveredItem === sideGun && sideGun">
         <h3>{{ sideGun.itemTypeName }}</h3>
         <p>Rarity: {{ sideGun.rarityName }}</p>
-        <p>Stats: {{ sideGun.stats }}</p>
+        <p>Stats: <span class="text-green-accent-3">{{ sideGun.stats }}</span></p>
         <p>Token ID: {{ sideGun.tokenId }}</p>
       </div>
     </div>
 
     <!-- Bottom Right (Armor) -->
-    <div class="item-slot bottom-right" @mouseover="showTooltip(armor)" @mouseleave="hideTooltip">
+    <div class="item-slot bottom-right" @mouseover="showTooltip(armor)" @mouseleave="hideTooltip" @click="openDialog(armor)">
       <div class="item" :class="getRarityClass(armor?.rarity)" v-if="armor">
         <img :src="getItemImage(armor.itemType)" alt="Armor" />
       </div>
@@ -65,8 +65,24 @@
       <div class="tooltip" v-if="hoveredItem === armor && armor">
         <h3>{{ armor.itemTypeName }}</h3>
         <p>Rarity: {{ armor.rarityName }}</p>
-        <p>Stats: {{ armor.stats }}</p>
+        <p>Stats: <span class="text-green-accent-3">{{ armor.stats }}</span></p>
         <p>Token ID: {{ armor.tokenId }}</p>
+      </div>
+    </div>
+
+    <!-- Dialog -->
+    <div class="dialog-overlay" v-if="showDialog" @click.self="closeDialog">
+      <div class="dialog">
+        <h2>{{ selectedItem.itemTypeName }}</h2>
+        <img :src="getItemImage(selectedItem.itemType)" :alt="selectedItem.itemTypeName" class="dialog-image" />
+        <p><strong>Rarity:</strong> {{ selectedItem.rarityName }}</p>
+        <p><strong>Stats:</strong> <span class="font-weight-bold text-green-accent-3">{{ selectedItem.stats }}</span></p>
+        <p><strong>Token ID:</strong> {{ selectedItem.tokenId }}</p>
+        <p><strong>Stats:</strong> {{ selectedItem.tokenId }}</p>
+        <div class="d-flex ga-4 justify-center">
+          <v-btn color="red-lighten-1" @click="unequipItem">Unequip</v-btn>
+          <v-btn @click="closeDialog">Close</v-btn>
+        </div>
       </div>
     </div>
   </div>
@@ -88,7 +104,9 @@ export default {
   },
   data() {
     return {
-      hoveredItem: null
+      hoveredItem: null,
+      showDialog: false,
+      selectedItem: null
     }
   },
   computed: {
@@ -131,6 +149,21 @@ export default {
         4: ArmorImg, // Armor
       }
       return images[itemType] || '/images/default.png'
+    },
+    openDialog(item) {
+      if (item) {
+        this.selectedItem = item
+        this.showDialog = true
+      }
+    },
+    closeDialog() {
+      this.showDialog = false
+      this.selectedItem = null
+    },
+
+    unequipItem() {
+      this.$emit('unequip', this.selectedItem.itemType)
+      this.closeDialog()
     }
   }
 }
@@ -166,8 +199,8 @@ export default {
 }
 
 .empty {
-  background-color: #e0e0e0;
-  border: 2px dashed #999;
+  background-color: #2a2a2a; /* Dark theme empty slot */
+  border: 2px dashed #555;
 }
 
 .top-left {
@@ -224,5 +257,64 @@ export default {
 
 .tooltip p {
   margin: 2px 0;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.dialog {
+  background: #1e1e1e; /* Dark theme background */
+  color: #e0e0e0; /* Light text */
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+}
+
+.dialog-image {
+  width: 100px;
+  height: 100px;
+  margin: 10px 0;
+  object-fit: cover;
+  border: 1px solid #444;
+}
+
+.dialog h2 {
+  margin: 0 0 10px 0;
+  color: #fff;
+}
+
+.dialog p {
+  margin: 5px 0;
+}
+
+.dialog p strong {
+  color: #bbb;
+}
+
+.dialog button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #3a5fc6; /* Dark theme button */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dialog button:hover {
+  background-color: #2a4a9e; /* Darker hover */
 }
 </style>
