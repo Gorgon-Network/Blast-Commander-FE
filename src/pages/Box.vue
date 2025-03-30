@@ -11,8 +11,8 @@
       </v-btn>
     </v-row>
     <v-row justify="center">
-      <v-col cols="12" md="6">
-        <h1 class="text-center">Random Box NFT</h1>
+      <v-col cols="12" md="6" class=" bg-mint text-yellow-darken-3">
+        <h1 class="text-center">OPEN BOX NFT EQUIPMENT</h1>
 
         <!-- Connect Wallet Button -->
         <div class="text-center" v-if="!connected">
@@ -34,20 +34,21 @@
             <!-- Box Container -->
             <div class="box-container">
               <v-img
-                :src="currentImage"
+                src="@/assets/image/nft-demo.webp"
                 max-width="300"
                 class="mx-auto mb-4"
                 :class="{ 'shake-animation': opening }"
               />
 
               <v-btn
-                color="primary"
+                class="mint-button"
+                color="yellow-lighten-1"
                 @click="openBox"
                 :loading="opening"
                 large
                 :disabled="opening"
               >
-                Open Random Box
+                OPEN BOX
               </v-btn>
             </div>
 
@@ -62,9 +63,9 @@
       </v-col>
     </v-row>
 
-    <WalletItems v-if="connected"
-    :connected-account="account"
-    :contract="contract" />
+<!--    <WalletItems v-if="connected"-->
+<!--    :connected-account="account"-->
+<!--    :contract="contract" />-->
   </v-container>
 
 </template>
@@ -87,19 +88,13 @@ export default {
       opening: false,
       lastResult: null,
       contractAddress: store.state.contractAddress,
-      // Images
-      closedBox: 'https://as2.ftcdn.net/jpg/10/59/31/07/1000_F_1059310793_vzlepkAxaODyOzQ1XWVY91ec00Ub17B3.webp', // Thay bằng URL ảnh hộp đóng
-      openingBox: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExanAzZTBwbm41Z2ZxdnI2MHp1ZmlkNnF4bnM2ZnliaWM5aDRpd20zYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vRebb6HyeIgvmQ8/giphy.gif', // Thay bằng URL ảnh động khi mở
-      currentImage: ''
     }
   },
 
 
   computed: {
     // Chọn ảnh hiển thị dựa trên trạng thái
-    currentImage() {
-      return this.opening ? this.openingBox : this.closedBox
-    }
+
   },
 
   methods: {
@@ -162,11 +157,27 @@ export default {
 </script>
 
 <style scoped>
+.bg-mint {
+  background: url("@/assets/image/bg-nft.webp");
+  background-size: cover;
+  font-family: "Comic Sans MS", sans-serif;
+}
 .box-container {
   margin: 20px 0;
   padding: 20px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
+  position: relative;
+
+  .mint-button {
+    position: absolute;
+    top: 251px;
+    left: calc(50% - 50px);
+    border: solid 4px #827717;
+    border-radius: 16px;
+    font-size: 16px;
+    font-family: fantasy;
+  }
 }
 
 .shake-animation {

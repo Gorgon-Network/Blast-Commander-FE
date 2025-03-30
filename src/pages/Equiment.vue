@@ -26,9 +26,8 @@
 
     <!-- Danh sách item đang trang bị -->
     <v-row v-else>
-      <v-col>
-        <h3>Item is equipped</h3>
-        <div>
+      <v-col class="d-flex justify-center">
+        <div class="bg-item-equipped">
           <ItemEquipped :equipped-items="equippedItems"  @unequip="unequipItem" />
         </div>
       </v-col>
@@ -219,6 +218,13 @@ export default {
 </script>
 
 <style scoped>
+.bg-item-equipped {
+  background: url("@/assets/image/bg-nft.webp");
+  background-size: cover;
+  font-family: "Comic Sans MS", sans-serif;
+  padding: 16px;
+  max-width: 500px;
+}
 .nft-card {
   margin-bottom: 16px;
   transition: transform 0.2s;

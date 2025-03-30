@@ -55,6 +55,7 @@ const handleGameMessage = async (event) => {
 
     case "mintNFTSuccess":
       console.log("🎨 Gửi sự kiện mintNFTSuccess đến Unity:", event.data.txHash);
+      this.$router.push('/box')
       unityInstance.SendMessage("WebGLBridge", "OnNFTMinted", event.data.txHash);
       break;
 
