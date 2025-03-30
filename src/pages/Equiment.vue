@@ -223,7 +223,10 @@ export default {
   background-size: cover;
   font-family: "Comic Sans MS", sans-serif;
   padding: 16px;
-  max-width: 500px;
+  width: 600px;
+  @media (max-width: 1023px) {
+    width: unset;
+  }
 }
 .nft-card {
   margin-bottom: 16px;
