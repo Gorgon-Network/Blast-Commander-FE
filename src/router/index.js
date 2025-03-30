@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/',
     name: 'Game',
-    component: LandingPage,
+    component: TestGame,
   },
   {
     path: '/home',

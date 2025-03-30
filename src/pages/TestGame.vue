@@ -1,16 +1,20 @@
 <template>
-  <v-container fluid>
-    <v-row justify="center">
-      <v-col cols="12">
+  <v-container fluid class="pa-0 ma-0 pa-md-4">
+    <v-row justify="center" class="pa-0 ma-0">
+      <v-col cols="12" class="pa-0 ma-0 fisrt-container">
+        <!-- Game nền mờ (bản sao) -->
         <div id="unity-container" style="width: 360px; height: 640px;">
           <canvas id="unity-canvas" style="width: 360px; height: 640px;"></canvas>
         </div>
       </v-col>
+      <div id="unity-container-blurred" class="blurred">
+        <canvas id="unity-canvas-blurred"></canvas>
+      </div>
     </v-row>
   </v-container>
 </template>
 <script setup>
-import { onMounted, onUnmounted } from "vue";
+import { nextTick, onMounted, onUnmounted } from "vue";
 import { _connectWallet, _disconnectWallet } from "@/store/ultil";
 import * as _ from "lodash";
 
@@ -30,6 +34,7 @@ function setUpGame() {
       .then((instance) => {
         unityInstance = instance; // Lưu lại để dùng sau
         console.log("✅ Unity WebGL đã tải thành công!");
+        nextTick(() => cloneCanvas());
       })
       .catch((error) => {
         console.error("❌ Lỗi tải Unity:", error);
@@ -70,6 +75,25 @@ const handleGameMessage = async (event) => {
   }
 };
 
+function cloneCanvas() {
+  const originalCanvas = document.querySelector("#unity-canvas");
+  const blurredCanvas = document.querySelector("#unity-canvas-blurred");
+
+  if (originalCanvas && blurredCanvas) {
+    const ctx = blurredCanvas.getContext("2d");
+    blurredCanvas.width = originalCanvas.width;
+    blurredCanvas.height = originalCanvas.height;
+
+    function updateBlurredCanvas() {
+      ctx.clearRect(0, 0, blurredCanvas.width, blurredCanvas.height);
+      ctx.drawImage(originalCanvas, 0, 0, blurredCanvas.width, blurredCanvas.height);
+      requestAnimationFrame(updateBlurredCanvas);
+    }
+
+    updateBlurredCanvas(); // Chạy vòng lặp cập nhật nền mờ
+  }
+}
+
 // 🔹 Gắn và gỡ bỏ sự kiện khi component mount/unmount
 onMounted(() => {
   setUpGame();
@@ -83,13 +107,39 @@ onUnmounted(() => {
 
 
 <style scoped>
+#unity-container-blurred {
+  position: absolute;
+  width: 70%;
+  height: calc(100% - 32px);
+  filter: blur(10px);
+  opacity: 0.2;
+  z-index: 0;
+  margin: auto;
+  left: 15%;
+}
+
+#unity-canvas-blurred {
+  width: 100%;
+  height: 100%;
+}
+
 #unity-container {
   width: 360px;
   max-width: 360px;
   margin: auto;
 }
 
+.fisrt-container {
+  z-index: 10;
+}
+
 #unity-canvas {
   display: block;
+}
+
+@media (max-width: 660px) {
+  .v-container {
+    padding: 8px 0px !important; /* 16px đều các cạnh cho desktop */
+  }
 }
 </style>
