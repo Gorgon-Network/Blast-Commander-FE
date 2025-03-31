@@ -11,7 +11,7 @@ import LandingPage from "@/pages/LandingPage.vue";
 import Introduce from "@/pages/Introduce.vue";
 import TestGame from "@/pages/TestGame.vue";
 import Box from "@/pages/Box.vue";
-import Equiment from "@/pages/Equiment.vue";
+import Equipment from "@/pages/Equipment.vue";
 
 const routes = [
   {
@@ -37,7 +37,7 @@ const routes = [
   {
     path: '/equipment',
     name: 'equipment',
-    component: Equiment,
+    component: Equipment,
   },
   // Add more routes as needed
 ]

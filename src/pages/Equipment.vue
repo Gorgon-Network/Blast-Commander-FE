@@ -1,20 +1,14 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="bg-item-equipped">
     <v-row class="pa-4 d-flex justify-center ga-4" justify="center">
       <v-btn color="amber-lighten-2" @click="$router.push('/box')">
-        <v-icon>mdi-gift-open</v-icon>
-        Open Box
+        <v-icon class="mr-2" color="red-darken-4">mdi-gift-open</v-icon>
+        <span class="text-red-darken-4">Open Box</span>
       </v-btn>
       <v-btn color="primary" @click="$router.push('/test')">
-        <v-icon>mdi-play</v-icon>
+        <v-icon class="mr-2" color="yellow-darken-2">mdi-play</v-icon>
         Play Game
       </v-btn>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <h2>Item Management</h2>
-      </v-col>
     </v-row>
 
     <!-- Loading -->
@@ -27,7 +21,7 @@
     <!-- Danh sách item đang trang bị -->
     <v-row v-else>
       <v-col class="d-flex justify-center">
-        <div class="bg-item-equipped">
+        <div>
           <ItemEquipped :equipped-items="equippedItems"  @unequip="unequipItem" />
         </div>
       </v-col>
@@ -222,8 +216,6 @@ export default {
   background: url("@/assets/image/bg-nft.webp");
   background-size: cover;
   font-family: "Comic Sans MS", sans-serif;
-  padding: 16px;
-  width: 600px;
   @media (max-width: 1023px) {
     width: unset;
   }
