@@ -17,9 +17,9 @@
 import { nextTick, onMounted, onUnmounted } from "vue";
 import { _connectWallet, _disconnectWallet } from "@/store/ultil";
 import * as _ from "lodash";
-
+import { useRouter } from "vue-router";
 let unityInstance = null; // Biến toàn cục lưu instance của Unity
-
+const router = useRouter();
 // 🔹 Khởi tạo Unity WebGL
 function setUpGame() {
   const script = document.createElement("script");
@@ -63,10 +63,8 @@ const handleGameMessage = async (event) => {
       unityInstance.SendMessage("WebGLEvents", "OnWalletDisconnected", "Ví đã được ngắt kết nối");
       break;
 
-    case "mintNFTSuccess":
-      console.log("🎨 Gửi sự kiện mintNFTSuccess đến Unity:", event.data.txHash);
-      this.$router.push('/box')
-      unityInstance.SendMessage("WebGLBridge", "OnNFTMinted", event.data.txHash);
+    case "mintNFT":
+      router.push('/box');
       break;
 
     default:
@@ -94,6 +92,32 @@ function cloneCanvas() {
   }
 }
 
+// 🔹 Dọn dẹp Unity khi rời trang
+function cleanupUnity() {
+  if (unityInstance) {
+    unityInstance.Quit() // Tắt instance Unity nếu được hỗ trợ
+      .then(() => {
+        console.log("✅ Unity instance đã được tắt.");
+      })
+      .catch((error) => {
+        console.error("❌ Lỗi khi tắt Unity instance:", error);
+      });
+    unityInstance = null; // Đặt lại biến toàn cục
+  }
+
+  // Xóa canvas gốc và canvas mờ khỏi DOM
+  const originalCanvas = document.querySelector("#unity-canvas");
+  const blurredCanvas = document.querySelector("#unity-canvas-blurred");
+  if (originalCanvas) originalCanvas.remove();
+  if (blurredCanvas) blurredCanvas.remove();
+
+  // Xóa script Unity loader nếu cần
+  const unityScript = document.querySelector('script[src="/my-unity-game/Build/mygame.loader.js"]');
+  if (unityScript) unityScript.remove();
+
+  console.log("🧹 Đã dọn dẹp Unity canvas và tài nguyên.");
+}
+
 // 🔹 Gắn và gỡ bỏ sự kiện khi component mount/unmount
 onMounted(() => {
   setUpGame();
@@ -102,6 +126,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener("message", handleGameMessage);
+  cleanupUnity(); // Gọi hàm dọn dẹp khi component bị unmounted
 });
 </script>
 

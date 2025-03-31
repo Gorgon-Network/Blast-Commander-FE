@@ -288,14 +288,14 @@ export default {
 }
 
 .dialog {
+  border: solid 5px #F57F17;
+  border-radius: 16px;
   background: #1e1e1e; /* Dark theme background */
   color: #e0e0e0; /* Light text */
   padding: 20px;
-  border-radius: 8px;
   width: 300px;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  border: 1px solid #333;
 }
 
 .dialog-image {
