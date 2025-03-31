@@ -5,12 +5,12 @@
         <v-row class="d-flex justify-center" justify="center">
           <v-col cols="12" md="6" lg="6" class="text-center d-flex ga-4 justify-center">
             <v-btn color="green-accent-3" @click="$router.push('/equipment')">
-              <v-icon>mdi-bag-personal</v-icon>
-              Equipment
+              <v-icon class="mr-2" color="indigo-darken-4">mdi-bag-personal</v-icon>
+              Inventory
             </v-btn>
             <v-btn color="primary" @click="$router.push('/test')">
-              <v-icon>mdi-play</v-icon>
-              Play Game
+              <v-icon class="mr-2" color="yellow-darken-2">mdi-play</v-icon>
+              Start Game
             </v-btn>
           </v-col>
           <v-col cols="12" md="6" lg="6" @click="getBalance" class="text-center d-flex ga-4 justify-center">
