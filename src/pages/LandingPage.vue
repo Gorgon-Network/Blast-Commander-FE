@@ -64,7 +64,7 @@ const toHomePage = () => {
 
     <v-img :max-width="50" @click="toHomePage" src="@/assets/icon-home.webp"></v-img>
     <v-app-bar-title>
-      Blast
+      Blast Commander
     </v-app-bar-title>
 
     <v-spacer></v-spacer>

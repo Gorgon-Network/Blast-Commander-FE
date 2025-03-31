@@ -12,17 +12,18 @@ import Introduce from "@/pages/Introduce.vue";
 import TestGame from "@/pages/TestGame.vue";
 import Box from "@/pages/Box.vue";
 import Equiment from "@/pages/Equiment.vue";
+import Home from '@/pages/Home.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/game',
     name: 'Game',
     component: TestGame,
   },
   {
-    path: '/home',
+    path: '/',
     name: 'home',
-    component: Introduce,
+    component: Home,
   },
   {
     path: '/test',

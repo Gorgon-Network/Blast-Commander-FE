@@ -37,7 +37,7 @@ onMounted(() => {
         </v-avatar>
         <span class="px-5">{{ store.state.address }}</span>
       </v-card>
-      <div class="title">Blast</div>
+      <div class="title">Blast Commander</div>
       <div class="pb-16">
         <div class="w-full d-flex justify-center mb-4" v-if="listNFT?.length > 0">
           <v-btn size="x-large" class="btn btn-primary bg-yellow-lighten-4 text-purple-darken-4" @click="onStartGame"
