@@ -1,39 +1,81 @@
 <template>
-    <v-app>
+    <!-- font-luckiest font-baloo font-fredoka font-lilita -->
+    <div class="parallax">
+        <v-parallax class="header-parallax">
+
+        </v-parallax>
+    </div>
+    <v-app class="font-fredoka z-2">
         <!-- Header Section with Start Game Button -->
-        <div class="parallax">
-            <v-parallax class="header-parallax">
 
-            </v-parallax>
-        </div>
+        <v-container>
+            <v-row class="px-4 py-4">
+                <v-col cols="2">
+                    <v-img src="/src/assets/logo.png"></v-img>
+                </v-col>
+                <v-col cols="10" class="d-flex justify-end align-center">
+                    <v-icon class="icon-twitter px-2 cursor-pointer" @click="openTwitter" icon="mdi-twitter"></v-icon>
+                    <v-btn class="glow-button" @click="navigateTo('box')">Mint Box</v-btn>
+                    <v-btn class="glow-button" @click="navigateTo('equipment')">Inventory</v-btn>
+                </v-col>
+            </v-row>
 
-        <v-row class="px-15 py-4 z-2">
-            <v-col cols="2">
-                <v-img src="/src/assets/logo.png"></v-img>
-            </v-col>
-            <v-col cols="10" class="d-flex justify-end align-center">
-                <v-icon class="icon-twitter px-2 cursor-pointer" @click="openTwitter" icon="mdi-twitter"></v-icon>
-                <v-btn class="header-btn" @click="navigateTo('box')">Mint Box</v-btn>
-                <v-btn class="header-btn" @click="navigateTo('equipment')">Inventory</v-btn>
-            </v-col>
-        </v-row>
-
-        <v-row class="pa-15 z-2">
-            <v-col cols="6">
-                <div class="parallax-text">BLAST TO THE RESCUE: LET'S SAVE THE WORLD!</div>
-                <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" x-large>Start
-                    Game</v-btn>
-            </v-col>
-            <v-col cols="6">
-                <v-img src="/src/assets/image-1.png" class="h-100 w-100"></v-img>
-            </v-col>
-        </v-row>
-
+            <v-row class="pa-15 px-4">
+                <v-col cols="6">
+                    <div class="parallax-text">BLAST: LET'S SAVE THE WORLD!</div>
+                    <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" x-large>Start
+                        Game</v-btn>
+                </v-col>
+                <v-col cols="6">
+                    <v-img src="/src/assets/image-1.png" class="h-100 w-100 waves"></v-img>
+                </v-col>
+            </v-row>
+        </v-container>
         <!-- <h1 class="display-2 white--text animate-title title-big">Blast Commander</h1>
                 <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" color="primary" x-large>Start
                     Game</v-btn>
                 <h2 class="white--text mt-4">BLAST TO THE RESCUE: LET'S SAVE THE WORLD!</h2> -->
-        <v-container>
+
+        <!--    High light-->
+        <v-container class="stats-section text-center my-12 text-xl">
+            <v-row align="center" justify="center">
+                <v-col cols="12">
+                    <v-card class="stats-card pa-6">
+                        <h1 class="mb-6">Project Statistics</h1>
+                        <v-row dense>
+                            <v-col cols="12" sm="4">
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="300"
+                                    data-aos-easing="ease-in-sine">
+                                    <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
+                                    <h2 class="stat-value">{{ usersCount }}</h2>
+                                    <h3 class="stat-label">Total Users</h3>
+                                </v-card>
+                            </v-col>
+
+                            <v-col cols="12" sm="4">
+                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="300"
+                                    data-aos-easing="ease-in-sine">
+                                    <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
+                                    <h2 class="stat-value">{{ nftsMinted }}</h2>
+                                    <h3 class="stat-label">NFTs Minted</h3>
+                                </v-card>
+                            </v-col>
+
+                            <v-col cols="12" sm="4">
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="300"
+                                    data-aos-easing="ease-in-sine">
+                                    <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
+                                    <h2 class="stat-value">{{ transactionsCount }}</h2>
+                                    <h3 class="stat-label">Transactions</h3>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+
+        <v-container class="my-12">
             <div class="night">
                 <div class="shooting_star"></div>
                 <div class="shooting_star"></div>
@@ -58,62 +100,22 @@
             </div>
             <!-- About Section -->
             <v-container>
-                <v-row>
-                    <v-col cols="12">
-                        <h2>About Blast Commander</h2>
-                        <p>Embark on an epic space battle adventure on the Linea blockchain, where thrilling action,
-                            captivating
-                            exploration, and unique NFT-based rewards come together to create an unforgettable gaming
-                            experience.</p>
+                <v-row class="d-flex justify-end align-center">
+                    <v-col cols="6" data-aos="fade-left" data-aos-offset="500" data-aos-easing="ease-in-sine">
+                        <v-img src="/src/assets/item/Plane.png" class="h-100 w-100 night-image"></v-img>
                     </v-col>
-                    <v-col cols="12" md="6">
-                        <!-- Add image or interactive graphic here -->
-                    </v-col>
-                </v-row>
-            </v-container>
-
-            <!--    High light-->
-            <v-container class="stats-section text-center my-12">
-                <v-row align="center" justify="center">
-                    <v-col cols="12">
-                        <v-card class="stats-card pa-6">
-                            <h2 class="mb-6">Project Statistics</h2>
-                            <v-row dense>
-                                <!-- Number of Users -->
-                                <v-col cols="12" sm="4">
-                                    <v-card class="stat-box pa-4" outlined>
-                                        <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
-                                        <h3 class="stat-value">{{ usersCount }}</h3>
-                                        <p class="stat-label">Total Users</p>
-                                    </v-card>
-                                </v-col>
-
-                                <!-- NFTs Minted -->
-                                <v-col cols="12" sm="4">
-                                    <v-card class="stat-box pa-4" outlined>
-                                        <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
-                                        <h3 class="stat-value">{{ nftsMinted }}</h3>
-                                        <p class="stat-label">NFTs Minted</p>
-                                    </v-card>
-                                </v-col>
-
-                                <!-- Transactions -->
-                                <v-col cols="12" sm="4">
-                                    <v-card class="stat-box pa-4" outlined>
-                                        <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
-                                        <h3 class="stat-value">{{ transactionsCount }}</h3>
-                                        <p class="stat-label">Transactions</p>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
-                        </v-card>
+                    <v-col cols="6">
+                        <h1>About Blast Commander</h1>
+                        <div :style="{ fontSize: '24px' }">Dive into an exhilarating battle adventure where intense
+                            action, immersive exploration, and exclusive NFT-based rewards converge to deliver a gaming
+                            experience like no other. Prepare for an unforgettable journey filled with excitement,
+                            strategy, and endless possibilities!</div>
                     </v-col>
                 </v-row>
             </v-container>
-
 
             <!-- Features Section -->
-            <v-container>
+            <!-- <v-container>
                 <v-row>
                     <v-col v-for="feature in features" :key="feature.title" cols="12" md="4">
                         <v-card outlined class="feature-card min-h-full">
@@ -122,10 +124,11 @@
                         </v-card>
                     </v-col>
                 </v-row>
-            </v-container>
+            </v-container> -->
         </v-container>
 
-        <v-container>
+        <!-- Roadmap Section -->
+        <v-container class="roadmap-section">
             <div class="container-plane">
                 <div class="view-plane">
                     <div class="plane main">
@@ -138,16 +141,13 @@
                     </div>
                 </div>
             </div>
-        </v-container>
 
-        <!-- Roadmap Section -->
-        <v-container class="roadmap-section">
             <h2 class="text-center mb-8">Project Roadmap</h2>
             <v-timeline align="start">
                 <v-timeline-item>
                     <template v-slot:opposite>
                     </template>
-                    <div>
+                    <div data-aos="flip-right">
                         <div class="roadmap-text-1">Phase 1: Gameplay Enhancements</div>
                         <div class="roadmap-text-2 cl-ffcc00">Boss Battles and World Exploration</div>
                         <ul>
@@ -164,7 +164,7 @@
                 <v-timeline-item>
                     <template v-slot:opposite>
                     </template>
-                    <div>
+                    <div data-aos="flip-left">
                         <div class="roadmap-text-1">Phase 2: NFT Box Opening</div>
                         <div class="roadmap-text-2 cl-ffcc00">Discover Unique Items and Build Powerful Combos</div>
                         <ul>
@@ -179,7 +179,7 @@
                 <v-timeline-item>
                     <template v-slot:opposite>
                     </template>
-                    <div>
+                    <div data-aos="flip-right">
                         <div class="roadmap-text-1">Phase 3: Community Building</div>
                         <div class="roadmap-text-2 cl-ffcc00">Fostering a Sustainable Ecosystem</div>
                         <ul>
@@ -243,10 +243,34 @@ const startGame = () => {
 function openTwt() {
     window.open('https://x.com/lineanftSword', '_blank');
 }
-
+const navigateTo = (section) => {
+    router.push(`/${section}`);
+};
 </script>
 
 <style scoped lang="scss">
+.stat-icon {
+    font-size: 48px;
+}
+
+@keyframes waveAnimation {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-50px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.waves {
+    animation: waveAnimation 4s infinite linear;
+}
+
 .header-btn {
     z-index: 999;
     display: flex;
@@ -263,6 +287,25 @@ function openTwt() {
     cursor: pointer;
 }
 
+.glow-button {
+    position: relative;
+    padding: 8px 16px;
+    margin: 0px 8px;
+    font-size: clamp(12px, 1vw, 24px);
+    color: white;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+}
+
+.glow-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 65, 108, 0.6);
+}
+
 .start-game-btn {
     z-index: 999;
     display: flex;
@@ -277,13 +320,18 @@ function openTwt() {
     background-color: #FB7939;
 }
 
-.icon-twitter{
+.icon-twitter {
     color: #ffffff;
-    font-size: 32px; 
+    font-size: 32px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     border: 1px solid #ffffff;
     margin: 0px 8px;
+}
+
+.icon-twitter:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 65, 108, 0.6);
 }
 
 .min-h-full {
@@ -321,6 +369,7 @@ function openTwt() {
     margin-bottom: 96px;
 }
 
+h1,
 h2 {
     color: #ffcc00;
 }
@@ -443,14 +492,19 @@ h2 {
 }
 
 // night ======================================================================
+
+.night-image {
+    transform: rotate(-90deg);
+}
+
 $shooting-time: 3000ms;
 
 .night {
     position: absolute;
-    width: 130%;
+    width: calc(100% - 120px);
     height: 100%;
-    left: -15%;
-    transform: rotateZ(25deg);
+    left: 120px;
+    top: 60px;
 }
 
 .shooting_star {
@@ -580,10 +634,9 @@ $shooting-time: 3000ms;
 
 // view-plane ======================================================================
 .container-plane {
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 700px;
-    margin: 48px 0px;
+    height: 100%;
 }
 
 $l: 90px;

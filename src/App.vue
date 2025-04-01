@@ -16,12 +16,18 @@ const { notifications } = useNotificationService();
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Baloo+Bhai+2:wght@400;700&family=Fredoka+One&family=Lilita+One&display=swap');
 
-body {
-  font-family: 'Nunito', sans-serif;
-
-  .main-bgr {
-    background-color: #50BEF9;
-  }
+.font-luckiest {
+  font-family: 'Luckiest Guy', sans-serif;
 }
+.font-baloo {
+  font-family: 'Baloo Bhai 2', sans-serif;
+}
+.font-fredoka {
+  font-family: 'Fredoka One', sans-serif;
+}
+.font-lilita {
+  font-family: 'Lilita One', sans-serif;
+} */
 </style>

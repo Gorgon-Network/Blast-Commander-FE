@@ -14,6 +14,8 @@ import App from './App.vue'
 import { createApp } from 'vue'
 
 import {store} from './store/store'
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const app = createApp(App)
 app.use(store)
@@ -21,3 +23,5 @@ app.use(store)
 registerPlugins(app)
 
 app.mount('#app')
+
+AOS.init();

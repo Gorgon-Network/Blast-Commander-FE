@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
+    "aos": "^2.3.4",
     "core-js": "^3.37.1",
     "ethers": "^6.13.4",
     "phaser": "^3.86.0",
