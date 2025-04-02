@@ -3,8 +3,8 @@
     <v-row justify="center" class="pa-0 ma-0">
       <v-col cols="12" class="pa-0 ma-0 fisrt-container">
         <!-- Game nền mờ (bản sao) -->
-        <div id="unity-container" style="width: 360px; height: 640px;">
-          <canvas id="unity-canvas" style="width: 360px; height: 640px;"></canvas>
+        <div id="unity-container" style="width: 360px; height: 523px;">
+          <canvas id="unity-canvas" style="width: 360px; height: 523px;"></canvas>
         </div>
       </v-col>
       <div id="unity-container-blurred" class="blurred">
