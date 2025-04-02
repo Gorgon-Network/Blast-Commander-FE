@@ -1,13 +1,11 @@
 <template>
     <!-- font-luckiest font-baloo font-fredoka font-lilita -->
-    <div class="parallax">
+    <!-- <div class="parallax">
         <v-parallax class="header-parallax">
 
         </v-parallax>
-    </div>
-    <v-app class="font-fredoka z-2 sky">
-        <!-- Header Section with Start Game Button -->
-
+    </div> -->
+    <v-app class="font-fredoka z-2 sky-bgr">
         <v-container class="un-max-width pa-15 py-4">
             <div class="cloud-container z-1">
                 <img src="/src/assets/cloud-1.png" class="cloud cloud-1 z-1" />
@@ -32,55 +30,12 @@
 
             <v-row class="pa-15 px-4">
                 <v-col cols="6">
-                    <div class="parallax-text z-100">BLAST: LET'S SAVE THE WORLD!</div>
-                    <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4 z-100" x-large>Start
+                    <div class="parallax-text z-100">LET'S SAVE THE WORLD!</div>
+                    <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-12 z-100" x-large>Start
                         Game</v-btn>
                 </v-col>
                 <v-col cols="6">
                     <v-img src="/src/assets/image-1.png" class="h-100 w-100 waves z-100"></v-img>
-                </v-col>
-            </v-row>
-        </v-container>
-        <!-- <h1 class="display-2 white--text animate-title title-big">Blast Commander</h1>
-                <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" color="primary" x-large>Start
-                    Game</v-btn>
-                <h2 class="white--text mt-4">BLAST TO THE RESCUE: LET'S SAVE THE WORLD!</h2> -->
-
-        <!--    High light-->
-        <v-container class="stats-section text-center my-12 text-xl">
-            <v-row align="center" justify="center">
-                <v-col cols="12">
-                    <v-card class="stats-card pa-6">
-                        <h1 class="mb-6">Project Statistics</h1>
-                        <v-row dense>
-                            <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="300"
-                                    data-aos-easing="ease-in-sine">
-                                    <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
-                                    <h2 class="stat-value">{{ usersCount }}</h2>
-                                    <h3 class="stat-label">Total Users</h3>
-                                </v-card>
-                            </v-col>
-
-                            <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="300"
-                                    data-aos-easing="ease-in-sine">
-                                    <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
-                                    <h2 class="stat-value">{{ nftsMinted }}</h2>
-                                    <h3 class="stat-label">NFTs Minted</h3>
-                                </v-card>
-                            </v-col>
-
-                            <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="300"
-                                    data-aos-easing="ease-in-sine">
-                                    <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
-                                    <h2 class="stat-value">{{ transactionsCount }}</h2>
-                                    <h3 class="stat-label">Transactions</h3>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-card>
                 </v-col>
             </v-row>
         </v-container>
@@ -111,34 +66,98 @@
             <!-- About Section -->
             <v-container>
                 <v-row class="d-flex justify-end align-center">
-                    <v-col cols="6" data-aos="fade-left" data-aos-offset="500" data-aos-easing="ease-in-sine">
+                    <v-col cols="6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
                         <v-img src="/src/assets/item/Plane.png" class="h-100 w-100 night-image"></v-img>
                     </v-col>
                     <v-col cols="6">
-                        <h1>About Blast Commander</h1>
-                        <div :style="{ fontSize: '24px' }">Dive into an exhilarating battle adventure where intense
+                        <h1 class="parallax-shadow">About Blast Commander</h1>
+                        <div :style="{ fontSize: '24px' }" class="parallax-shadow">Dive into an exhilarating battle
+                            adventure where intense
                             action, immersive exploration, and exclusive NFT-based rewards converge to deliver a gaming
                             experience like no other. Prepare for an unforgettable journey filled with excitement,
                             strategy, and endless possibilities!</div>
                     </v-col>
                 </v-row>
             </v-container>
+        </v-container>
 
-            <!-- Features Section -->
-            <!-- <v-container>
-                <v-row>
-                    <v-col v-for="feature in features" :key="feature.title" cols="12" md="4">
-                        <v-card outlined class="feature-card min-h-full">
-                            <v-card-title>{{ feature.title }}</v-card-title>
-                            <v-card-text>{{ feature.description }}</v-card-text>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-container> -->
+        <v-container class="stats-section text-center my-15 text-xl pb-8">
+            <v-row align="center" justify="center">
+                <v-col cols="12" sm="6">
+                    <v-card class="wh-box pa-4" outlined data-aos="fade-up-right" data-aos-offset="300">
+                        <!-- <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon> -->
+                        <!-- <h1 class="gradient-text">NFT</h1> -->
+                        <div class="pa-4">
+                            <h2>Acquire NFTs to enhance your strength!!</h2>
+                            <v-img src="/src/assets/image-4.png" class="gift-box"></v-img>
+                            <swiper :centeredSlides="true" :autoplay="{
+                                delay: 4000,
+                                disableOnInteraction: true,
+                            }" :pagination="{
+                                clickable: true,
+                            }" :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" class="mySwiper mt-8">
+                                <swiper-slide v-for="(image, index) in imageUrls" :key="index">
+                                    <img :src="image.src" alt="Image" />
+                                </swiper-slide>
+                            </swiper>
+                        </div>
+                    </v-card>
+                </v-col>
+
+                <v-col cols="12" sm="6">
+                    <v-card class="wh-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="300"
+                        data-aos-easing="ease-in-sine">
+                        <h2>Trailer</h2>
+                        <div class="trailer">
+                            <video autoplay loop muted playsinline src="/src/assets/trailer.mp4"
+                                style="background: transparent; width: 400px; transform: rotate(90deg);">
+                            </video>
+                        </div>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+
+        <v-container class="stats-section text-center my-12 text-xl">
+            <v-row align="center" justify="center">
+                <v-col cols="12">
+                    <v-card class="stats-card pa-6">
+                        <h1 class="mb-6">Project Statistics</h1>
+                        <v-row dense>
+                            <v-col cols="12" sm="4">
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="300"
+                                    data-aos-easing="ease-in-sine">
+                                    <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
+                                    <h2 class="">{{ usersCount }}</h2>
+                                    <h3 class="stat-label">Total Users</h3>
+                                </v-card>
+                            </v-col>
+
+                            <v-col cols="12" sm="4">
+                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="300"
+                                    data-aos-easing="ease-in-sine">
+                                    <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
+                                    <h2 class="">{{ nftsMinted }}</h2>
+                                    <h3 class="stat-label">NFTs Minted</h3>
+                                </v-card>
+                            </v-col>
+
+                            <v-col cols="12" sm="4">
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="300"
+                                    data-aos-easing="ease-in-sine">
+                                    <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
+                                    <h2 class="">{{ transactionsCount }}</h2>
+                                    <h3 class="stat-label">Transactions</h3>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-col>
+            </v-row>
         </v-container>
 
         <!-- Roadmap Section -->
-        <v-container class="roadmap-section">
+        <!-- <v-container class="roadmap-section">
             <div class="container-plane">
                 <div class="view-plane">
                     <div class="plane main">
@@ -157,54 +176,55 @@
                 <v-timeline-item>
                     <template v-slot:opposite>
                     </template>
-                    <div data-aos="flip-right">
-                        <div class="roadmap-text-1">Phase 1: Gameplay Enhancements</div>
-                        <div class="roadmap-text-2 cl-ffcc00">Boss Battles and World Exploration</div>
-                        <ul>
-                            <li>Elevate the gameplay experience with the introduction of boss battle modes and immersive
-                                exploration
-                                mechanics.</li>
-                            <li>Allow players to delve deeper into the Blast Commander universe, uncovering challenges
-                                and rewards along
-                                the way.</li>
-                        </ul>
-                    </div>
-                </v-timeline-item>
+<div data-aos="flip-right">
+    <div class="roadmap-text-1">Phase 1: Gameplay Enhancements</div>
+    <div class="roadmap-text-2 cl-ffcc00">Boss Battles and World Exploration</div>
+    <ul>
+        <li>Elevate the gameplay experience with the introduction of boss battle modes and immersive
+            exploration
+            mechanics.</li>
+        <li>Allow players to delve deeper into the Blast Commander universe, uncovering challenges
+            and rewards along
+            the way.</li>
+    </ul>
+</div>
+</v-timeline-item>
 
-                <v-timeline-item>
-                    <template v-slot:opposite>
+<v-timeline-item>
+    <template v-slot:opposite>
                     </template>
-                    <div data-aos="flip-left">
-                        <div class="roadmap-text-1">Phase 2: NFT Box Opening</div>
-                        <div class="roadmap-text-2 cl-ffcc00">Discover Unique Items and Build Powerful Combos</div>
-                        <ul>
-                            <li>Open NFT boxes to acquire rare and unique items.</li>
-                            <li>Combine these items strategically to create powerful combos, enhancing your in-game
-                                abilities and
-                                overall strategy.</li>
-                        </ul>
-                    </div>
-                </v-timeline-item>
+    <div data-aos="flip-left">
+        <div class="roadmap-text-1">Phase 2: NFT Box Opening</div>
+        <div class="roadmap-text-2 cl-ffcc00">Discover Unique Items and Build Powerful Combos</div>
+        <ul>
+            <li>Open NFT boxes to acquire rare and unique items.</li>
+            <li>Combine these items strategically to create powerful combos, enhancing your in-game
+                abilities and
+                overall strategy.</li>
+        </ul>
+    </div>
+</v-timeline-item>
 
-                <v-timeline-item>
-                    <template v-slot:opposite>
+<v-timeline-item>
+    <template v-slot:opposite>
                     </template>
-                    <div data-aos="flip-right">
-                        <div class="roadmap-text-1">Phase 3: Community Building</div>
-                        <div class="roadmap-text-2 cl-ffcc00">Fostering a Sustainable Ecosystem</div>
-                        <ul>
-                            <li>Focus on growing the community and establishing a long-term, sustainable ecosystem.</li>
-                            <li>Ensure player engagement and the longevity of Blast Commander by nurturing a vibrant and
-                                active player
-                                base.</li>
-                        </ul>
-                    </div>
-                </v-timeline-item>
-            </v-timeline>
-        </v-container>
+    <div data-aos="flip-right">
+        <div class="roadmap-text-1">Phase 3: Community Building</div>
+        <div class="roadmap-text-2 cl-ffcc00">Fostering a Sustainable Ecosystem</div>
+        <ul>
+            <li>Focus on growing the community and establishing a long-term, sustainable ecosystem.</li>
+            <li>Ensure player engagement and the longevity of Blast Commander by nurturing a vibrant and
+                active player
+                base.</li>
+        </ul>
+    </div>
+</v-timeline-item>
+</v-timeline>
+</v-container> -->
 
+        <v-container class="stats-section text-center my-12 text-xl"></v-container>
         <!-- Footer -->
-        <v-footer class="stats-card" app>
+        <v-footer class="stats-card mt-16" app>
             <v-container>
                 <v-row>
                     <v-col>© Blast Commander {{ year }}</v-col>
@@ -219,9 +239,30 @@
     </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
+const progressCircle = ref<SVGCircleElement | null>(null);
+const progressContent = ref<HTMLElement | null>(null);
+const onAutoplayTimeLeft = (swiper: any, time: number, progress: number) => {
+    if (progressCircle.value && progressContent.value) {
+        progressCircle.value.style.setProperty('--progress', (1 - progress).toString());
+        progressContent.value.textContent = `${Math.ceil(time / 1000)}s`;
+    }
+};
+const modules = [Autoplay, Pagination, Navigation];
+const imageUrls = [
+    { src: "/src/assets/bag/HP.webp" },
+    { src: "/src/assets/bag/Armor.webp" },
+    { src: "/src/assets/bag/nft-1.png" },
+    { src: "/src/assets/bag/nft-2.png" },
+    { src: "/src/assets/bag/nft-3.png" },
+];
 
 const router = useRouter()
 const year = new Date().getFullYear();
@@ -233,18 +274,6 @@ const features = ref([
     { title: 'NFT Gaming', description: 'Experience immersive space combat gameplay brought to life on the blockchain platform. Engage in thrilling battles, unlock exclusive NFT rewards, and conquer challenging levels designed to test your skills and strategy.' },
     { title: 'Community and Ecosystem', description: 'Join a vibrant community of gamers and blockchain enthusiasts, where collaboration and competition drive innovation. With regular updates, exclusive events, and opportunities to trade or showcase NFTs, the ecosystem ensures an engaging and ever-evolving experience.' },
 ],);
-
-const resources = import.meta.glob('@/assets/item/**/*.{png,jpg,jpeg,gif,svg,mp4}', { eager: true });
-const getFileUrl = (filename) => {
-    const filePath = Object.keys(resources).find((path) => path.includes(filename));
-    if (filePath) {
-        return new URL(filePath, import.meta.url).href;
-    } else {
-        console.error(`File not found: ${filename}`);
-        return null;
-    }
-};
-const ship = getFileUrl('5_all.png');
 
 const startGame = () => {
     router.push('/');
@@ -265,7 +294,7 @@ const setRandomCloudSizes = () => {
     // Lấy tất cả các đám mây trong container
     const clouds = document.querySelectorAll('.cloud');
 
-    clouds.forEach(cloud => {
+    clouds.forEach((cloud: any) => {
         // Tạo một kích thước ngẫu nhiên cho mỗi đám mây
         const randomSize = Math.random() * (300 - 100) + 100; // Giới hạn từ 100px đến 300px
         cloud.style.width = `${randomSize}px`;
@@ -274,6 +303,66 @@ const setRandomCloudSizes = () => {
 </script>
 
 <style scoped lang="scss">
+.trailer {
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    video {
+        display: block;
+        pointer-events: none;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.gift-box {
+    margin: 34px 0px;
+    height: 200px;
+    animation: shake 0.5s infinite ease-in-out;
+}
+
+.bgr-gradient {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+
+.mySwiper {
+    height: 100px;
+    padding: 0px;
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.gradient-text {
+    background: linear-gradient(to bottom, #FED84D, #E26130);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .stat-icon {
     font-size: 48px;
 }
@@ -384,6 +473,12 @@ const setRandomCloudSizes = () => {
     font-size: 80px;
     font-weight: 600;
     position: relative;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.parallax-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .roadmap-section {
@@ -420,6 +515,11 @@ h2 {
 
 .stats-card {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.wh-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
 .stat-box,
@@ -666,10 +766,6 @@ $shooting-time: 3000ms;
 }
 
 // Định dạng đám mây ======================================================================
-.sky {
-    background: url("/src/assets/bgr.png") no-repeat center center/cover;
-}
-
 .un-max-width {
     max-width: unset !important;
 }

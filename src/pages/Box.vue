@@ -1,84 +1,70 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col cols="12" md="6" class="bg-mint text-yellow-darken-3">
-        <v-row class="d-flex justify-center" justify="center">
-          <v-col cols="12" md="6" lg="6" class="text-center d-flex ga-4 justify-center">
-            <v-btn color="green-accent-3" @click="$router.push('/equipment')">
-              <v-icon class="mr-2" color="indigo-darken-4">mdi-bag-personal</v-icon>
-              Inventory
-            </v-btn>
-            <v-btn color="primary" @click="$router.push('/test')">
-              <v-icon class="mr-2" color="yellow-darken-2">mdi-play</v-icon>
-              Start Game
-            </v-btn>
-          </v-col>
-          <v-col cols="12" md="6" lg="6" @click="getBalance" class="text-center d-flex ga-4 justify-center">
-            <span class="balance text-amber-accent-4">Balance: {{ balance }} MON</span>
-          </v-col>
-
-        </v-row>
-        <h1 class="text-center pt-4">OPEN BOX NFT EQUIPMENT</h1>
-
-        <!-- Connect Wallet Button -->
-        <div class="text-center" v-if="!connected">
-          <v-btn
-            color="primary"
-            @click="connectWallet"
-            :loading="connecting"
-            large
-          >
-            Connect Wallet
-          </v-btn>
-        </div>
-
-        <!-- Main Content -->
-        <div v-else>
-          <div class="text-center">
-            <p>Connected: {{ account.slice(0, 6) }}...{{ account.slice(-4) }}</p>
-
-            <!-- Box Container -->
-            <div class="box-container">
-              <v-img
-                src="@/assets/image/nft-demo.webp"
-                max-width="300"
-                class="mx-auto mb-4"
-                :class="{ 'shake-animation': opening }"
-              />
-
-              <v-btn
-                class="mint-button"
-                color="yellow-lighten-1"
-                @click="openBox"
-                :loading="opening"
-                large
-                :disabled="opening"
-              >
-                OPEN BOX
+  <div class="bg-mint">
+    <v-container>
+      <v-row justify="center">
+        <v-col cols="12" md="6" class="text-yellow-darken-3">
+          <v-row class="d-flex justify-center" justify="center">
+            <v-col cols="12" md="6" lg="6" class="text-center d-flex ga-4 justify-center">
+              <v-btn color="green-accent-3" @click="$router.push('/equipment')">
+                <v-icon class="mr-2" color="indigo-darken-4">mdi-bag-personal</v-icon>
+                Inventory
               </v-btn>
-            </div>
+              <v-btn color="primary" @click="$router.push('/test')">
+                <v-icon class="mr-2" color="yellow-darken-2">mdi-play</v-icon>
+                Start Game
+              </v-btn>
+            </v-col>
+            <v-col cols="12" md="6" lg="6" @click="getBalance" class="text-center d-flex ga-4 justify-center">
+              <span class="balance text-amber-accent-4">Balance: {{ balance }} MON</span>
+            </v-col>
 
-            <!-- Result -->
-            <v-slide-y-transition>
-              <div v-if="lastResult" class="mt-4">
-                <p class="success-text">Congratulations! You got Token ID: {{ lastResult }}</p>
-              </div>
-            </v-slide-y-transition>
+          </v-row>
+          <h1 class="text-center pt-4">OPEN BOX NFT EQUIPMENT</h1>
+
+          <!-- Connect Wallet Button -->
+          <div class="text-center" v-if="!connected">
+            <v-btn color="primary" @click="connectWallet" :loading="connecting" large>
+              Connect Wallet
+            </v-btn>
           </div>
-        </div>
-      </v-col>
-    </v-row>
 
-    <!--    <WalletItems v-if="connected"-->
-    <!--    :connected-account="account"-->
-    <!--    :contract="contract" />-->
-  </v-container>
+          <!-- Main Content -->
+          <div v-else>
+            <div class="text-center">
+              <p>Connected: {{ account.slice(0, 6) }}...{{ account.slice(-4) }}</p>
 
+              <!-- Box Container -->
+              <div class="box-container">
+                <v-img src="@/assets/image/nft-demo.webp" max-width="300" class="mx-auto mb-4"
+                  :class="{ 'shake-animation': opening }" />
+
+                <v-btn class="mint-button" color="yellow-lighten-1" @click="openBox" :loading="opening" large
+                  :disabled="opening">
+                  OPEN BOX
+                </v-btn>
+              </div>
+
+              <!-- Result -->
+              <v-slide-y-transition>
+                <div v-if="lastResult" class="mt-4">
+                  <p class="success-text">Congratulations! You got Token ID: {{ lastResult }}</p>
+                </div>
+              </v-slide-y-transition>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+
+      <!--    <WalletItems v-if="connected"-->
+      <!--    :connected-account="account"-->
+      <!--    :contract="contract" />-->
+    </v-container>
+  </div>
   <!-- Dialog -->
   <div class="dialog-overlay" v-if="showDialog" @click.self="closeDialog">
     <div class="dialog">
       <h2>{{ mintedItem.itemTypeName }}</h2>
-      <img :src="getItemImage(mintedItem.itemType)" :alt="mintedItem.itemTypeName" class="dialog-image"/>
+      <img :src="getItemImage(mintedItem.itemType)" :alt="mintedItem.itemTypeName" class="dialog-image" />
       <p><strong>Rarity:</strong> {{ mintedItem.rarityName }}</p>
       <p><strong>Stats:</strong> <span class="font-weight-bold text-green-accent-3">{{ mintedItem.stats }}</span></p>
       <p><strong>Token ID:</strong> {{ mintedItem.tokenId }}</p>
@@ -94,7 +80,7 @@
 import Web3 from 'web3'
 import contractABI from '@/assets/abi/RandomBoxNFT.json'
 import WalletItems from "@/components/WalletItems.vue";
-import {store} from "@/store/store";
+import { store } from "@/store/store";
 import MainGunImg from "@/assets/bag/MainGun.webp";
 import WingGunImg from "@/assets/bag/WingGun.webp";
 import SideGunImg from "@/assets/bag/SideGun.webp";
@@ -102,7 +88,7 @@ import HPImg from "@/assets/bag/HP.webp";
 import ArmorImg from "@/assets/bag/Armor.webp";
 
 export default {
-  components: {WalletItems},
+  components: { WalletItems },
   data() {
     return {
       web3: null,
@@ -131,7 +117,7 @@ export default {
       try {
         if (window.ethereum) {
           this.web3 = new Web3(window.ethereum)
-          await window.ethereum.request({method: 'eth_requestAccounts'})
+          await window.ethereum.request({ method: 'eth_requestAccounts' })
           const accounts = await this.web3.eth.getAccounts()
           this.account = accounts[0]
           this.connected = true;
@@ -160,7 +146,7 @@ export default {
       try {
         const result = await this.contract.methods
           .openBox()
-          .send({from: this.account})
+          .send({ from: this.account })
 
         this.lastResult = result.events.BoxOpened.returnValues.tokenId;
 
@@ -264,33 +250,43 @@ export default {
   0% {
     transform: translate(1px, 1px) rotate(0deg);
   }
+
   10% {
     transform: translate(-1px, -2px) rotate(-1deg);
   }
+
   20% {
     transform: translate(-3px, 0px) rotate(1deg);
   }
+
   30% {
     transform: translate(3px, 2px) rotate(0deg);
   }
+
   40% {
     transform: translate(1px, -1px) rotate(1deg);
   }
+
   50% {
     transform: translate(-1px, 2px) rotate(-1deg);
   }
+
   60% {
     transform: translate(-3px, 1px) rotate(0deg);
   }
+
   70% {
     transform: translate(3px, 1px) rotate(-1deg);
   }
+
   80% {
     transform: translate(-1px, -1px) rotate(1deg);
   }
+
   90% {
     transform: translate(1px, 2px) rotate(0deg);
   }
+
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
@@ -302,7 +298,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  background: rgba(0, 0, 0, 0.7);
+  /* Darker overlay */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -312,8 +309,10 @@ export default {
 .dialog {
   border: solid 5px #F57F17;
   border-radius: 16px;
-  background: #1e1e1e; /* Dark theme background */
-  color: #e0e0e0; /* Light text */
+  background: #1e1e1e;
+  /* Dark theme background */
+  color: #e0e0e0;
+  /* Light text */
   padding: 20px;
   width: 300px;
   text-align: center;
@@ -344,7 +343,8 @@ export default {
 .dialog button {
   margin-top: 15px;
   padding: 8px 16px;
-  background-color: #3a5fc6; /* Dark theme button */
+  background-color: #3a5fc6;
+  /* Dark theme button */
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -352,6 +352,7 @@ export default {
 }
 
 .dialog button:hover {
-  background-color: #2a4a9e; /* Darker hover */
+  background-color: #2a4a9e;
+  /* Darker hover */
 }
 </style>
