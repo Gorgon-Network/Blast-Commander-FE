@@ -66,6 +66,10 @@ const handleGameMessage = async (event) => {
     case "mintNFT":
       router.push('/box');
       break;
+    case "Inventory":
+      router.push('/equipment');
+      break;
+
 
     default:
       console.warn("⚠ Sự kiện không xác định:", event.data.type);
