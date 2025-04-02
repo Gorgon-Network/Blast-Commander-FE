@@ -5,15 +5,25 @@
 
         </v-parallax>
     </div>
-    <v-app class="font-fredoka z-2">
+    <v-app class="font-fredoka z-2 sky">
         <!-- Header Section with Start Game Button -->
 
-        <v-container>
+        <v-container class="un-max-width pa-15 py-4">
+            <div class="cloud-container z-1">
+                <img src="/src/assets/cloud-1.png" class="cloud cloud-1 z-1" />
+                <img src="/src/assets/cloud-2.png" class="cloud cloud-2 z-1" />
+                <img src="/src/assets/cloud-3.png" class="cloud cloud-3 z-1" />
+                <img src="/src/assets/cloud-4.png" class="cloud cloud-4 z-1" />
+                <img src="/src/assets/cloud-1.png" class="cloud cloud-5 z-1" />
+                <img src="/src/assets/cloud-2.png" class="cloud cloud-6 z-1" />
+                <img src="/src/assets/cloud-3.png" class="cloud cloud-7 z-1" />
+                <img src="/src/assets/cloud-4.png" class="cloud cloud-8 z-1" />
+            </div>
             <v-row class="px-4 py-4">
                 <v-col cols="2">
-                    <v-img src="/src/assets/logo.png"></v-img>
+                    <v-img src="/src/assets/logo.png" class="z-100"></v-img>
                 </v-col>
-                <v-col cols="10" class="d-flex justify-end align-center">
+                <v-col cols="10" class="d-flex justify-end align-center z-100">
                     <v-icon class="icon-twitter px-2 cursor-pointer" @click="openTwitter" icon="mdi-twitter"></v-icon>
                     <v-btn class="glow-button" @click="navigateTo('box')">Mint Box</v-btn>
                     <v-btn class="glow-button" @click="navigateTo('equipment')">Inventory</v-btn>
@@ -22,12 +32,12 @@
 
             <v-row class="pa-15 px-4">
                 <v-col cols="6">
-                    <div class="parallax-text">BLAST: LET'S SAVE THE WORLD!</div>
-                    <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4" x-large>Start
+                    <div class="parallax-text z-100">BLAST: LET'S SAVE THE WORLD!</div>
+                    <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-4 z-100" x-large>Start
                         Game</v-btn>
                 </v-col>
                 <v-col cols="6">
-                    <v-img src="/src/assets/image-1.png" class="h-100 w-100 waves"></v-img>
+                    <v-img src="/src/assets/image-1.png" class="h-100 w-100 waves z-100"></v-img>
                 </v-col>
             </v-row>
         </v-container>
@@ -210,7 +220,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -245,6 +255,21 @@ function openTwt() {
 }
 const navigateTo = (section) => {
     router.push(`/${section}`);
+};
+
+onMounted(() => {
+    setRandomCloudSizes();
+});
+
+const setRandomCloudSizes = () => {
+    // Lấy tất cả các đám mây trong container
+    const clouds = document.querySelectorAll('.cloud');
+
+    clouds.forEach(cloud => {
+        // Tạo một kích thước ngẫu nhiên cho mỗi đám mây
+        const randomSize = Math.random() * (300 - 100) + 100; // Giới hạn từ 100px đến 300px
+        cloud.style.width = `${randomSize}px`;
+    });
 };
 </script>
 
@@ -358,6 +383,7 @@ const navigateTo = (section) => {
 .parallax-text {
     font-size: 80px;
     font-weight: 600;
+    position: relative;
 }
 
 .roadmap-section {
@@ -403,6 +429,14 @@ h2 {
 
 .z-2 {
     z-index: 2;
+}
+
+.z-100 {
+    z-index: 100;
+}
+
+.z-1 {
+    z-index: 1;
 }
 
 @keyframes fadeIn {
@@ -609,7 +643,6 @@ $shooting-time: 3000ms;
 }
 
 // night ======================================================================
-
 .roadmap-text-1 {
     font-size: 48px;
 }
@@ -629,6 +662,122 @@ $shooting-time: 3000ms;
 
     .night {
         display: none;
+    }
+}
+
+// Định dạng đám mây ======================================================================
+.sky {
+    background: url("/src/assets/bgr.png") no-repeat center center/cover;
+}
+
+.un-max-width {
+    max-width: unset !important;
+}
+
+.cloud-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.cloud {
+    position: absolute;
+    opacity: 0.9;
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.2));
+    /* Bóng mờ mạnh hơn */
+    animation: floating 4s ease-in-out infinite alternate;
+}
+
+/* Các đám mây */
+.cloud-1 {
+    top: 10%;
+    left: -250px;
+    width: 250px;
+    animation: floating 3s ease-in-out infinite alternate, moveClouds 35s linear infinite;
+}
+
+.cloud-2 {
+    top: 30%;
+    left: -300px;
+    width: 180px;
+    animation: floating 4s ease-in-out infinite alternate, moveClouds 40s linear infinite;
+}
+
+.cloud-3 {
+    top: 50%;
+    left: -220px;
+    width: 150px;
+    animation: floating 5s ease-in-out infinite alternate, moveClouds 25s linear infinite;
+}
+
+.cloud-4 {
+    top: 70%;
+    left: -180px;
+    width: 220px;
+    animation: floating 4s ease-in-out infinite alternate, moveClouds 30s linear infinite;
+}
+
+.cloud-5 {
+    top: 20%;
+    left: -300px;
+    width: 280px;
+    animation: floating 4s ease-in-out infinite alternate, moveCloudsReverse 50s linear infinite;
+}
+
+.cloud-6 {
+    top: 40%;
+    left: -350px;
+    width: 130px;
+    animation: floating 3s ease-in-out infinite alternate, moveCloudsReverse 45s linear infinite;
+}
+
+.cloud-7 {
+    top: 60%;
+    left: -200px;
+    width: 100px;
+    animation: floating 5s ease-in-out infinite alternate, moveCloudsReverse 60s linear infinite;
+}
+
+.cloud-8 {
+    top: 80%;
+    left: -250px;
+    width: 230px;
+    animation: floating 4s ease-in-out infinite alternate, moveCloudsReverse 55s linear infinite;
+}
+
+/* Hiệu ứng mây bay ngang từ trái sang phải */
+@keyframes moveClouds {
+    from {
+        left: -300px;
+    }
+
+    to {
+        left: 100vw;
+    }
+}
+
+/* Mây bay ngang từ phải sang trái */
+@keyframes moveCloudsReverse {
+    from {
+        left: 100vw;
+    }
+
+    to {
+        left: -300px;
+    }
+}
+
+/* Hiệu ứng bay lơ lửng */
+@keyframes floating {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(10px);
     }
 }
 
