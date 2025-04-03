@@ -6,7 +6,7 @@
         </v-parallax>
     </div> -->
     <v-app class="font-fredoka z-2 sky-bgr">
-        <v-container class="un-max-width">
+        <v-container class="un-max-width pb-15">
             <div class="cloud-container z-1">
                 <img src="/src/assets/cloud-1.png" class="cloud cloud-1 z-1" />
                 <img src="/src/assets/cloud-2.png" class="cloud cloud-2 z-1" />
@@ -18,11 +18,21 @@
                 <img src="/src/assets/cloud-4.png" class="cloud cloud-8 z-1" />
             </div>
             <v-row class="px-4 py-4">
-                <v-col col="6" md="2">
+                <v-col col="6" md="2" class="pa-0">
                     <v-img src="/src/assets/logo.png" class="z-100 logo"></v-img>
                 </v-col>
                 <v-col col="6" md="10" class="d-flex justify-end align-center z-100">
-                    <v-icon class="icon-twitter px-2 cursor-pointer" @click="openTwitter" icon="mdi-twitter"></v-icon>
+                    <!-- <v-icon icon="mdi-twitter"></v-icon> -->
+                    <div class="icon-twitter cursor-pointer" @click="openTwt">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"
+                            class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-1nao33i r-16y2uox r-8kz0gk">
+                            <g>
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
                     <v-btn class="glow-button" @click="navigateTo('box')">Mint Box</v-btn>
                     <v-btn class="glow-button" @click="navigateTo('equipment')">Inventory</v-btn>
                 </v-col>
@@ -40,7 +50,7 @@
             </v-row>
         </v-container>
 
-        <div class="my-12">
+        <div class="my-0 my-md-15 position-relative pt-15">
             <div class="night">
                 <div class="shooting_star"></div>
                 <div class="shooting_star"></div>
@@ -64,9 +74,10 @@
                 <div class="shooting_star"></div>
             </div>
             <!-- About Section -->
-            <v-container>
+            <v-container class="un-max-width">
                 <v-row class="d-flex justify-end align-center">
-                    <v-col col="6" md="6" sm="4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <v-col col="6" md="6" sm="4" data-aos="fade-left" data-aos-offset="300"
+                        data-aos-easing="ease-in-sine">
                         <v-img src="/src/assets/item/Plane.png" class="h-100 w-100 night-image"></v-img>
                     </v-col>
                     <v-col col="6" md="6" sm="8">
@@ -82,13 +93,11 @@
         </div>
 
         <v-container class="stats-section text-center my-15 text-xl pb-8">
-            <v-row align="center" justify="center">
-                <v-col cols="12" sm="6">
+            <v-row align="top" justify="center">
+                <v-col cols="12" sm="6" order="2" order-md="1">
                     <v-card class="wh-box pa-4" outlined data-aos="fade-up-right" data-aos-offset="300">
-                        <!-- <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon> -->
-                        <!-- <h1 class="gradient-text">NFT</h1> -->
                         <div class="pa-4">
-                            <h2>Acquire NFTs to enhance your strength!!</h2>
+                            <h2>Acquire NFTs to obtain exclusive Equipment!!</h2>
                             <v-img src="/src/assets/image-4.png" class="gift-box"></v-img>
                             <swiper :centeredSlides="true" :autoplay="{
                                 delay: 4000,
@@ -102,18 +111,29 @@
                             </swiper>
                         </div>
                     </v-card>
-                </v-col>
+                    <v-card class="wh-box pa-4 mt-6" outlined data-aos="fade-up-right" data-aos-offset="300">
+                        <div class="pa-4">
+                            <h2>Active & Passive Boost System</h2>
 
-                <v-col cols="12" sm="6">
-                    <v-card class="wh-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="300"
-                        data-aos-easing="ease-in-sine">
-                        <h2>Trailer</h2>
-                        <div class="trailer">
-                            <video autoplay loop muted playsinline src="/src/assets/trailer.mp4"
-                                style="background: transparent; width: 400px; transform: rotate(90deg);">
-                            </video>
+                            <swiper :centeredSlides="true" :autoplay="{
+                                delay: 2000,
+                                disableOnInteraction: true,
+                            }" :pagination="{
+                                clickable: true,
+                            }" :modules="modules" @autoplayTimeLeft="onAutoplayTimeLeft" class="mySwiper mt-8">
+                                <swiper-slide v-for="(image, index) in imageUrls2" :key="index">
+                                    <img :src="image.src" alt="Image" />
+                                </swiper-slide>
+                            </swiper>
                         </div>
                     </v-card>
+                </v-col>
+
+                <v-col cols="12" sm="6" order="1" order-md="2">
+                    <div class="trailer" outlined data-aos="fade-up-left" data-aos-offset="300"
+                        data-aos-easing="ease-in-sine">
+                        <video autoplay loop muted playsinline src="/src/assets/trailer-1.mp4"></video>
+                    </div>
                 </v-col>
             </v-row>
         </v-container>
@@ -227,11 +247,20 @@
         <v-footer class="stats-card mt-16" app>
             <v-container>
                 <v-row>
-                    <v-col>© Blast Commander {{ year }}</v-col>
                     <v-col>
-                        <v-icon @click="openTwt">mdi-twitter</v-icon>
-                        <v-icon>mdi-discord</v-icon>
-                        <!-- Add more icons as needed -->
+                        <div class="d-flex align-center h-100">© Blast Commander {{ year }}</div>
+                    </v-col>
+                    <v-col>
+                        <div class="icon-twitter cursor-pointer" @click="openTwt">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"
+                                class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-1nao33i r-16y2uox r-8kz0gk">
+                                <g>
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
                     </v-col>
                 </v-row>
             </v-container>
@@ -264,6 +293,19 @@ const imageUrls = [
     { src: "/src/assets/bag/nft-3.png" },
 ];
 
+const imageUrls2 = [
+    { src: "/src/assets/item/ShopBackground.png" },
+    { src: "/src/assets/item/ShopBackground-2.png" },
+    { src: "/src/assets/item/ShopBackground-3.png" },
+    { src: "/src/assets/item/ShopBackground-4.png" },
+    { src: "/src/assets/item/ShopBackground-5.png" },
+    { src: "/src/assets/item/ShopBackground-6.png" },
+    { src: "/src/assets/item/ShopBackground-7.png" },
+    { src: "/src/assets/item/ShopBackground-8.png" },
+    { src: "/src/assets/item/ShopBackground-9.png" },
+    { src: "/src/assets/item/ShopBackground-10.png" },
+];
+
 const router = useRouter()
 const year = new Date().getFullYear();
 const usersCount = ref(1250);
@@ -280,7 +322,7 @@ const startGame = () => {
 }
 
 function openTwt() {
-    window.open('https://x.com/lineanftSword', '_blank');
+    window.open('https://x.com/GorgonNetwork1?s=21&t=tRdIv6yO9Anvj96R5LwmBw', '_blank');
 }
 const navigateTo = (section) => {
     router.push(`/${section}`);
@@ -303,18 +345,6 @@ const setRandomCloudSizes = () => {
 </script>
 
 <style scoped lang="scss">
-.trailer {
-    height: 400px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-
-    video {
-        display: block;
-        pointer-events: none;
-    }
-}
-
 @keyframes shake {
     0% {
         transform: rotate(0deg);
@@ -350,10 +380,15 @@ const setRandomCloudSizes = () => {
 .mySwiper {
     height: 100px;
     padding: 0px;
+    padding-bottom: 24px;
 
     .swiper-slide {
         display: flex;
         justify-content: center;
+    }
+
+    .swiper-pagination-bullets {
+        bottom: -8px;
     }
 }
 
@@ -434,7 +469,8 @@ const setRandomCloudSizes = () => {
 }
 
 .hero-box {
-    padding: 60px 16px;
+    padding: 16px 60px;
+
     @media (max-width: 600px) {
         padding: 16px;
     }
@@ -459,12 +495,15 @@ const setRandomCloudSizes = () => {
 }
 
 .icon-twitter {
-    color: #ffffff;
-    font-size: 32px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    border: 1px solid #ffffff;
+    border-radius: 8px;
     margin: 0px 8px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
 }
 
 .icon-twitter:hover {
@@ -501,6 +540,7 @@ const setRandomCloudSizes = () => {
 
 .description-text {
     font-size: 24px;
+
     @media (max-width: 600px) {
         font-size: 14px;
     }
@@ -514,7 +554,7 @@ const setRandomCloudSizes = () => {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
     @media (max-width: 600px) {
-        font-size: 24px;
+        font-size: 48px;
     }
 }
 
@@ -556,6 +596,21 @@ h2 {
 
 .stats-card {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.trailer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+
+    video {
+        display: block;
+        pointer-events: none;
+        border-radius: 8px;
+        width: 100%;
+    }
 }
 
 .wh-box {
@@ -680,6 +735,10 @@ $shooting-time: 3000ms;
     height: 100%;
     left: 120px;
     top: 60px;
+
+    @media (max-width: 600px) {
+        left: -120px;
+    }
 }
 
 .shooting_star {
@@ -800,16 +859,12 @@ $shooting-time: 3000ms;
     .roadmap-text-2 {
         font-size: 24px;
     }
-
-    .night {
-        display: none;
-    }
 }
 
 // Định dạng đám mây ======================================================================
 .un-max-width {
     max-width: unset !important;
-    padding: 60px 16px;
+    padding: 16px 60px;
 
     @media (max-width: 600px) {
         padding: 8px;
@@ -884,7 +939,7 @@ $shooting-time: 3000ms;
 }
 
 .cloud-8 {
-    top: 80%;
+    top: 70%;
     left: -250px;
     width: 230px;
     animation: floating 4s ease-in-out infinite alternate, moveCloudsReverse 55s linear infinite;
