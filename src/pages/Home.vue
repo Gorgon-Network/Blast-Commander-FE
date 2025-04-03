@@ -6,7 +6,7 @@
         </v-parallax>
     </div> -->
     <v-app class="font-fredoka z-2 sky-bgr">
-        <v-container class="un-max-width pa-15 py-4">
+        <v-container class="un-max-width">
             <div class="cloud-container z-1">
                 <img src="/src/assets/cloud-1.png" class="cloud cloud-1 z-1" />
                 <img src="/src/assets/cloud-2.png" class="cloud cloud-2 z-1" />
@@ -18,29 +18,29 @@
                 <img src="/src/assets/cloud-4.png" class="cloud cloud-8 z-1" />
             </div>
             <v-row class="px-4 py-4">
-                <v-col cols="2">
-                    <v-img src="/src/assets/logo.png" class="z-100"></v-img>
+                <v-col col="6" md="2">
+                    <v-img src="/src/assets/logo.png" class="z-100 logo"></v-img>
                 </v-col>
-                <v-col cols="10" class="d-flex justify-end align-center z-100">
+                <v-col col="6" md="10" class="d-flex justify-end align-center z-100">
                     <v-icon class="icon-twitter px-2 cursor-pointer" @click="openTwitter" icon="mdi-twitter"></v-icon>
                     <v-btn class="glow-button" @click="navigateTo('box')">Mint Box</v-btn>
                     <v-btn class="glow-button" @click="navigateTo('equipment')">Inventory</v-btn>
                 </v-col>
             </v-row>
 
-            <v-row class="pa-15 px-4">
-                <v-col cols="6">
+            <v-row class="hero-box">
+                <v-col cols="12" md="6" order="2" order-md="1">
                     <div class="parallax-text z-100">LET'S SAVE THE WORLD!</div>
-                    <v-btn @click="startGame" class="start-game-btn cursor-pointer mt-12 z-100" x-large>Start
+                    <v-btn @click="startGame" class="start-game-btn cursor-pointer z-100" x-large>Start
                         Game</v-btn>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="12" md="6" order="1" order-md="2">
                     <v-img src="/src/assets/image-1.png" class="h-100 w-100 waves z-100"></v-img>
                 </v-col>
             </v-row>
         </v-container>
 
-        <v-container class="my-12">
+        <div class="my-12">
             <div class="night">
                 <div class="shooting_star"></div>
                 <div class="shooting_star"></div>
@@ -66,12 +66,12 @@
             <!-- About Section -->
             <v-container>
                 <v-row class="d-flex justify-end align-center">
-                    <v-col cols="6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <v-col col="6" md="6" sm="4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
                         <v-img src="/src/assets/item/Plane.png" class="h-100 w-100 night-image"></v-img>
                     </v-col>
-                    <v-col cols="6">
-                        <h1 class="parallax-shadow">About Blast Commander</h1>
-                        <div :style="{ fontSize: '24px' }" class="parallax-shadow">Dive into an exhilarating battle
+                    <v-col col="6" md="6" sm="8">
+                        <h1 class="parallax-shadow description-title">About Blast Commander</h1>
+                        <div class="parallax-shadow description-text">Dive into an exhilarating battle
                             adventure where intense
                             action, immersive exploration, and exclusive NFT-based rewards converge to deliver a gaming
                             experience like no other. Prepare for an unforgettable journey filled with excitement,
@@ -79,7 +79,7 @@
                     </v-col>
                 </v-row>
             </v-container>
-        </v-container>
+        </div>
 
         <v-container class="stats-section text-center my-15 text-xl pb-8">
             <v-row align="center" justify="center">
@@ -401,6 +401,13 @@ const setRandomCloudSizes = () => {
     cursor: pointer;
 }
 
+.logo {
+    @media (max-width: 600px) {
+        height: 100%;
+        width: 100%;
+    }
+}
+
 .glow-button {
     position: relative;
     padding: 8px 16px;
@@ -413,6 +420,12 @@ const setRandomCloudSizes = () => {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+
+    @media (max-width: 600px) {
+        padding: 4px 8px;
+        font-size: 12px;
+        margin: 0px 4px;
+    }
 }
 
 .glow-button:hover {
@@ -420,8 +433,14 @@ const setRandomCloudSizes = () => {
     box-shadow: 0 6px 25px rgba(255, 65, 108, 0.6);
 }
 
+.hero-box {
+    padding: 60px 16px;
+    @media (max-width: 600px) {
+        padding: 16px;
+    }
+}
+
 .start-game-btn {
-    z-index: 999;
     display: flex;
     align-items: center;
     font-size: clamp(24px, 3vw, 48px);
@@ -432,6 +451,11 @@ const setRandomCloudSizes = () => {
     width: fit-content;
     animation: pulse 1.5s infinite;
     background-color: #FB7939;
+    margin-top: 48px;
+
+    @media (max-width: 600px) {
+        margin-top: 16px;
+    }
 }
 
 .icon-twitter {
@@ -469,12 +493,29 @@ const setRandomCloudSizes = () => {
     width: 100%;
 }
 
+.description-title {
+    @media (max-width: 600px) {
+        font-size: 16px;
+    }
+}
+
+.description-text {
+    font-size: 24px;
+    @media (max-width: 600px) {
+        font-size: 14px;
+    }
+}
+
 .parallax-text {
     font-size: 80px;
     font-weight: 600;
     position: relative;
     color: #FFFFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 600px) {
+        font-size: 24px;
+    }
 }
 
 .parallax-shadow {
@@ -768,6 +809,11 @@ $shooting-time: 3000ms;
 // Định dạng đám mây ======================================================================
 .un-max-width {
     max-width: unset !important;
+    padding: 60px 16px;
+
+    @media (max-width: 600px) {
+        padding: 8px;
+    }
 }
 
 .cloud-container {
