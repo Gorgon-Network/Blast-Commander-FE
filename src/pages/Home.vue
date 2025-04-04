@@ -76,7 +76,7 @@
             <!-- About Section -->
             <v-container class="un-max-width">
                 <v-row class="d-flex justify-end align-center">
-                    <v-col col="6" md="6" sm="4" data-aos="fade-left" data-aos-offset="300"
+                    <v-col col="6" md="6" sm="4" data-aos="zoom-in-left" data-aos-offset="300"
                         data-aos-easing="ease-in-sine">
                         <v-img src="/src/assets/item/Plane.png" class="h-100 w-100 night-image"></v-img>
                     </v-col>
@@ -95,7 +95,7 @@
         <v-container class="stats-section text-center my-15 text-xl pb-8">
             <v-row align="top" justify="center">
                 <v-col cols="12" sm="6" order="2" order-md="1">
-                    <v-card class="wh-box pa-4" outlined data-aos="fade-up-right" data-aos-offset="300">
+                    <v-card class="wh-box pa-4" outlined data-aos="zoom-out-right" data-aos-offset="1000">
                         <div class="pa-4">
                             <h2>Acquire NFTs to obtain exclusive Equipment!!</h2>
                             <v-img src="/src/assets/image-4.png" class="gift-box"></v-img>
@@ -111,7 +111,7 @@
                             </swiper>
                         </div>
                     </v-card>
-                    <v-card class="wh-box pa-4 mt-6" outlined data-aos="fade-up-right" data-aos-offset="300">
+                    <v-card class="wh-box pa-4 mt-6" outlined data-aos="zoom-out-right" data-aos-offset="1000">
                         <div class="pa-4">
                             <h2>Active & Passive Boost System</h2>
 
@@ -129,14 +129,38 @@
                     </v-card>
                 </v-col>
 
-                <v-col cols="12" sm="6" order="1" order-md="2">
-                    <div class="trailer" outlined data-aos="fade-up-left" data-aos-offset="300"
+                <v-col cols="12" sm="6" order="1" order-md="2" class="d-flex align-center">
+                    <div class="trailer" outlined data-aos="zoom-out-left" data-aos-offset="1000"
                         data-aos-easing="ease-in-sine">
                         <video autoplay loop muted playsinline src="/src/assets/trailer-1.mp4"></video>
                     </div>
                 </v-col>
             </v-row>
         </v-container>
+
+        <div class="my-12">
+            <v-container class="stats-section text-center my-8 text-xl stats-card v-card">
+                <div class="slider-wrapper">
+                    <!-- Nhóm chạy bình thường -->
+                    <div class="slider normal">
+                        <div class="slide" v-for="(item, i) in repeatedItems" :key="'normal' + i">
+                            <v-img :src="item.src" height="150" width="150" class="radius-8 mx-3"></v-img>
+                        </div>
+                    </div>
+                </div>
+            </v-container>
+
+            <v-container class="stats-section text-center my-8 text-xl stats-card v-card">
+                <div class="slider-wrapper">
+                    <!-- Nhóm chạy ngược lại -->
+                    <div class="slider reverse">
+                        <div class="slide" v-for="(item, i) in repeatedItems2" :key="'reverse' + i">
+                            <v-img :src="item.src" height="150" width="250"></v-img>
+                        </div>
+                    </div>
+                </div>
+            </v-container>
+        </div>
 
         <v-container class="stats-section text-center my-12 text-xl">
             <v-row align="center" justify="center">
@@ -145,16 +169,16 @@
                         <h1 class="mb-6">Project Statistics</h1>
                         <v-row dense>
                             <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="300"
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="1000"
                                     data-aos-easing="ease-in-sine">
                                     <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
                                     <h2 class="">{{ usersCount }}</h2>
-                                    <h3 class="stat-label">Total Users</h3>
+                                    <h3 class="stat-label">Followers</h3>
                                 </v-card>
                             </v-col>
 
                             <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="300"
+                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="1000"
                                     data-aos-easing="ease-in-sine">
                                     <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
                                     <h2 class="">{{ nftsMinted }}</h2>
@@ -163,7 +187,7 @@
                             </v-col>
 
                             <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="300"
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="1000"
                                     data-aos-easing="ease-in-sine">
                                     <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
                                     <h2 class="">{{ transactionsCount }}</h2>
@@ -276,6 +300,8 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
+import { computed } from "vue";
+
 const progressCircle = ref<SVGCircleElement | null>(null);
 const progressContent = ref<HTMLElement | null>(null);
 const onAutoplayTimeLeft = (swiper: any, time: number, progress: number) => {
@@ -306,11 +332,43 @@ const imageUrls2 = [
     { src: "/src/assets/item/ShopBackground-10.png" },
 ];
 
+const items = [
+    { src: "/src/assets/slides/a1.jpeg" },
+    { src: "/src/assets/slides/a2.jpeg" },
+    { src: "/src/assets/slides/a3.jpeg" },
+    { src: "/src/assets/slides/a4.jpeg" },
+    { src: "/src/assets/slides/a5.jpeg" },
+    { src: "/src/assets/slides/a6.jpeg" },
+    { src: "/src/assets/slides/a7.jpeg" },
+    { src: "/src/assets/slides/a8.jpeg" },
+    { src: "/src/assets/slides/a9.jpeg" },
+    { src: "/src/assets/slides/a10.jpeg" },
+    { src: "/src/assets/slides/a11.jpeg" },
+    // { src: "/src/assets/slides/bgr-1.jpeg" },
+    // { src: "/src/assets/slides/bgr-2.jpeg" },
+];
+
+const items2 = [
+    { src: "/src/assets/slides/Enemies.png" },
+    { src: "/src/assets/slides/gun-1.png" },
+    { src: "/src/assets/slides/gun-2.png" },
+    { src: "/src/assets/slides/gun-3.png" },
+    { src: "/src/assets/slides/Plane-2.png" },
+    { src: "/src/assets/slides/Plane-3.png" },
+    { src: "/src/assets/slides/Plane-4.png" },
+    { src: "/src/assets/slides/Plane-5.png" },
+    { src: "/src/assets/slides/Plane.png" },
+    { src: "/src/assets/slides/PlaneShadow.png" }
+];
+
+const repeatedItems = computed(() => [...items, ...items]);
+const repeatedItems2 = computed(() => [...items2, ...items2]);
+
 const router = useRouter()
 const year = new Date().getFullYear();
-const usersCount = ref(1250);
-const nftsMinted = ref(3400);
-const transactionsCount = ref(12000);
+const usersCount = ref('2000+');
+const nftsMinted = ref('3000+');
+const transactionsCount = ref('12000+');
 const features = ref([
     { title: 'Blockchain-Based', description: 'Built on the robust foundation of the Linea zkEVM network, this platform leverages the power of web3 dApps, delivering rapid processing speeds and minimal transaction fees. It’s a seamless blend of efficiency and innovation, making it the perfect choice for blockchain gaming.' },
     { title: 'NFT Gaming', description: 'Experience immersive space combat gameplay brought to life on the blockchain platform. Engage in thrilling battles, unlock exclusive NFT rewards, and conquer challenging levels designed to test your skills and strategy.' },
@@ -345,6 +403,63 @@ const setRandomCloudSizes = () => {
 </script>
 
 <style scoped lang="scss">
+/* Bọc ngoài slider */
+.slider-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Dòng trượt */
+.slider {
+    display: flex;
+    width: max-content;
+    /* Đảm bảo nội dung không bị ngắt dòng */
+}
+
+/* Mỗi phần tử slide */
+.slide {
+    flex: 0 0 auto;
+    margin-right: 10px;
+}
+
+/* Slide chạy bình thường (trái -> phải) */
+.normal {
+    animation: scroll-left 50s linear infinite;
+}
+
+/* Slide chạy ngược lại (phải -> trái) */
+.reverse {
+    animation: scroll-right 50s linear infinite;
+}
+
+/* Trượt từ trái sang phải */
+@keyframes scroll-left {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Trượt từ phải sang trái */
+@keyframes scroll-right {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+/* Dừng khi hover */
+.slider-wrapper:hover .slider {
+    animation-play-state: paused;
+}
+
 @keyframes shake {
     0% {
         transform: rotate(0deg);
@@ -600,10 +715,10 @@ h2 {
 
 .trailer {
     width: 100%;
+    max-height: 755px;
     position: relative;
     display: flex;
     justify-content: center;
-    border-radius: 8px;
 
     video {
         display: block;
@@ -615,6 +730,10 @@ h2 {
 
 .wh-box {
     background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.radius-8 {
     border-radius: 8px;
 }
 
