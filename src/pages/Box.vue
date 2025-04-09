@@ -120,9 +120,18 @@ export default {
       try {
         if (window.ethereum) {
           this.web3 = new Web3(window.ethereum)
-          await window.ethereum.request({ method: 'eth_requestAccounts' })
-          const accounts = await this.web3.eth.getAccounts()
-          this.account = accounts[0]
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+          // const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+          // const MONAD_CHAIN_ID = '0x279f';
+          // if (chainId !== MONAD_CHAIN_ID) {
+          //   alert('You are using the wrong network. Please switch to the Monad network.');
+          //   this.connecting = false;
+          //   return;
+          // }
+
+          const accounts = await this.web3.eth.getAccounts();
+          this.account = accounts[0];
           this.connected = true;
           this.getBalance();
 
@@ -144,6 +153,14 @@ export default {
         alert('Please connect wallet first!')
         return
       }
+
+      // const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      // const MONAD_CHAIN_ID = '0x279f';
+      // if (chainId !== MONAD_CHAIN_ID) {
+      //   alert('You are using the wrong network. Please switch to the Monad network.');
+      //   this.connecting = false;
+      //   return;
+      // }
 
       this.opening = true
       try {
