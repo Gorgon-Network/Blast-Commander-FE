@@ -3,7 +3,8 @@
     <div class="position-relative w-100 h-100">
       <div class="title-item text-yellow-darken-4">Item Equipped</div>
       <!-- Top Left (MainGun) -->
-      <div class="item-slot top-left" @mouseover="showTooltip(mainGun)" @mouseleave="hideTooltip" @click="openDialog(mainGun)">
+      <div class="item-slot top-left" @mouseover="showTooltip(mainGun)" @mouseleave="hideTooltip"
+        @click="openDialog(mainGun)">
         <div class="item" :class="getRarityClass(mainGun?.rarity)" v-if="mainGun">
           <img :src="getItemImage(mainGun.itemType)" alt="MainGun" />
         </div>
@@ -17,7 +18,8 @@
       </div>
 
       <!-- Top Right (WingGun) -->
-      <div class="item-slot top-right" @mouseover="showTooltip(wingGun)" @mouseleave="hideTooltip" @click="openDialog(wingGun)">
+      <div class="item-slot top-right" @mouseover="showTooltip(wingGun)" @mouseleave="hideTooltip"
+        @click="openDialog(wingGun)">
         <div class="item" :class="getRarityClass(wingGun?.rarity)" v-if="wingGun">
           <img :src="getItemImage(wingGun.itemType)" alt="WingGun" />
         </div>
@@ -36,16 +38,17 @@
           <img :src="getItemImage(hp.itemType)" alt="HP" />
         </div>
         <div class="item empty" v-else></div>
-        <div class="tooltip" v-if="hoveredItem === hp && hp">
-          <h3>{{ hp.itemTypeName }}</h3>
-          <p>Rarity: {{ hp.rarityName }}</p>
-          <p>Stats: <span class="text-green-accent-3">{{ hp.stats }}</span></p>
-          <p>Token ID: {{ hp.tokenId }}</p>
-        </div>
+      </div>
+      <div class="tooltip tooltip-hp" v-if="hoveredItem === hp && hp">
+        <h3>{{ hp.itemTypeName }}</h3>
+        <p>Rarity: {{ hp.rarityName }}</p>
+        <p>Stats: <span class="text-green-accent-3">{{ hp.stats }}</span></p>
+        <p>Token ID: {{ hp.tokenId }}</p>
       </div>
 
       <!-- Bottom Left (SideGun) -->
-      <div class="item-slot bottom-left" @mouseover="showTooltip(sideGun)" @mouseleave="hideTooltip" @click="openDialog(sideGun)">
+      <div class="item-slot bottom-left" @mouseover="showTooltip(sideGun)" @mouseleave="hideTooltip"
+        @click="openDialog(sideGun)">
         <div class="item" :class="getRarityClass(sideGun?.rarity)" v-if="sideGun">
           <img :src="getItemImage(sideGun.itemType)" alt="SideGun" />
         </div>
@@ -59,7 +62,8 @@
       </div>
 
       <!-- Bottom Right (Armor) -->
-      <div class="item-slot bottom-right" @mouseover="showTooltip(armor)" @mouseleave="hideTooltip" @click="openDialog(armor)">
+      <div class="item-slot bottom-right" @mouseover="showTooltip(armor)" @mouseleave="hideTooltip"
+        @click="openDialog(armor)">
         <div class="item" :class="getRarityClass(armor?.rarity)" v-if="armor">
           <img :src="getItemImage(armor.itemType)" alt="Armor" />
         </div>
@@ -79,7 +83,8 @@
         <h2>{{ selectedItem.itemTypeName }}</h2>
         <img :src="getItemImage(selectedItem.itemType)" :alt="selectedItem.itemTypeName" class="dialog-image" />
         <p><strong>Rarity:</strong> {{ selectedItem.rarityName }}</p>
-        <p><strong>Stats:</strong> <span class="font-weight-bold text-green-accent-3">{{ selectedItem.stats }}</span></p>
+        <p><strong>Stats:</strong> <span class="font-weight-bold text-green-accent-3">{{ selectedItem.stats }}</span>
+        </p>
         <p><strong>Token ID:</strong> {{ selectedItem.tokenId }}</p>
         <p><strong>Stats:</strong> {{ selectedItem.tokenId }}</p>
         <div class="d-flex ga-4 justify-center">
@@ -137,7 +142,7 @@ export default {
       this.hoveredItem = null
     },
     getRarityClass(rarity) {
-      switch(rarity) {
+      switch (rarity) {
         case 0: return 'common'
         case 1: return 'uncommon'
         default: return 'common'
@@ -214,7 +219,8 @@ export default {
 }
 
 .empty {
-  background-color: #2a2a2a; /* Dark theme empty slot */
+  background-color: #2a2a2a;
+  /* Dark theme empty slot */
   border: 2px dashed #555;
 }
 
@@ -264,6 +270,13 @@ export default {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 100;
+}
+
+.tooltip-hp {
+  top: 40%;
+  left: 40%;
+  transform: translateX(50%);
 }
 
 .tooltip h3 {
@@ -280,7 +293,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  background: rgba(0, 0, 0, 0.7);
+  /* Darker overlay */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -290,8 +304,10 @@ export default {
 .dialog {
   border: solid 5px #F57F17;
   border-radius: 16px;
-  background: #1e1e1e; /* Dark theme background */
-  color: #e0e0e0; /* Light text */
+  background: #1e1e1e;
+  /* Dark theme background */
+  color: #e0e0e0;
+  /* Light text */
   padding: 20px;
   width: 300px;
   text-align: center;
@@ -322,7 +338,8 @@ export default {
 .dialog button {
   margin-top: 15px;
   padding: 8px 16px;
-  background-color: #3a5fc6; /* Dark theme button */
+  background-color: #3a5fc6;
+  /* Dark theme button */
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -330,6 +347,7 @@ export default {
 }
 
 .dialog button:hover {
-  background-color: #2a4a9e; /* Darker hover */
+  background-color: #2a4a9e;
+  /* Darker hover */
 }
 </style>

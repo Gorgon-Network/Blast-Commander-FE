@@ -1,6 +1,10 @@
 <template>
   <v-container fluid class="bg-item-equipped">
     <v-row class="pa-4 d-flex justify-center ga-4" justify="center">
+      <v-btn color="amber-lighten-2" @click="$router.push('/')">
+        <v-icon style="font-size: 32px" class="text-red-darken-4">mdi-home</v-icon>
+      </v-btn>
+      
       <v-btn color="amber-lighten-2" @click="$router.push('/box')">
         <v-icon class="mr-2" color="red-darken-4">mdi-gift-open</v-icon>
         <span class="text-red-darken-4">Open Box</span>
@@ -30,26 +34,27 @@
     <!-- Danh sách NFT sở hữu -->
     <v-row>
       <v-col>
-        <h3>List of NFTs owned</h3>
+        <h2 class="mb-4 text-center">List of NFTs owned</h2>
         <v-sheet
           v-if="nfts.length > 0"
-          class="scrollable-section"
+          class="scrollable-section wh-box"
           max-height="400px"
           elevation="2"
         >
           <v-row>
             <v-col v-for="(nft, index) in nfts" :key="index" cols="6" sm="3" md="2">
               <v-card :class="getRarityBorderClass(nft.rarity)" class="nft-card">
-                <v-img :src="getItemImage(nft.itemType)" height="120px" class="nft-image"></v-img>
-                <v-card-title>Token ID: {{ nft.tokenId }}</v-card-title>
+                <v-img :src="getItemImage(nft.itemType)" height="120px" class="ma-4"></v-img>
+                <v-card-title class="bd-top text-red-darken-4">ID: {{ nft.tokenId }}</v-card-title>
                 <v-card-text>
-                  <p><strong>Type:</strong> {{ itemTypeToString(nft.itemType) }}</p>
-                  <p><strong>Rarity:</strong> {{ rarityToString(nft.rarity) }}</p>
+                  <p class="text-red-darken-4"><strong>Type:</strong> {{ itemTypeToString(nft.itemType) }}</p>
+                  <p class="text-red-darken-4"><strong>Rarity:</strong> {{ rarityToString(nft.rarity) }}</p>
                   <v-btn
                     @click="equipItem(nft.tokenId)"
                     color="primary"
                     :disabled="isEquipped(nft.tokenId) || isTypeEquipped(nft.itemType)"
                     small
+                    class="mt-4 w-100"
                   >
                     Equip
                   </v-btn>
@@ -223,12 +228,15 @@ export default {
 .nft-card {
   margin-bottom: 16px;
   transition: transform 0.2s;
+  border-radius: 8px;
+  background-color: #FFD54F;
 }
 .nft-card:hover {
   transform: scale(1.05);
 }
-.nft-image {
-  border-bottom: 1px solid #e0e0e0;
+.bd-top {
+  border-top: 1px solid #e0e0e0;
+  font-size: 18px;
 }
 .scrollable-section {
   overflow-y: auto;
@@ -248,5 +256,8 @@ export default {
 }
 .legendary-border {
   border: 3px solid #ff9800; /* Cam cho Legendary */
+}
+.bgr-FFD54F {
+  background-color: #FFD54F;
 }
 </style>

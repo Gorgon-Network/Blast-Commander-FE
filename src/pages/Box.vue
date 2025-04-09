@@ -2,9 +2,12 @@
   <div class="bg-mint">
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" md="6" class="text-yellow-darken-3">
+        <v-col cols="12" md="8" class="text-yellow-darken-3">
           <v-row class="d-flex justify-center" justify="center">
-            <v-col cols="12" md="6" lg="6" class="text-center d-flex ga-4 justify-center">
+            <v-col cols="12" class="d-flex ga-4 justify-center">
+              <v-btn color="amber-lighten-2" @click="$router.push('/')">
+                <v-icon style="font-size: 32px" class="text-red-darken-4">mdi-home</v-icon>
+              </v-btn>
               <v-btn color="green-accent-3" @click="$router.push('/equipment')">
                 <v-icon class="mr-2" color="indigo-darken-4">mdi-bag-personal</v-icon>
                 Inventory
@@ -14,12 +17,12 @@
                 Start Game
               </v-btn>
             </v-col>
-            <v-col cols="12" md="6" lg="6" @click="getBalance" class="text-center d-flex ga-4 justify-center">
-              <span class="balance text-amber-accent-4">Balance: {{ balance }} MON</span>
+            <v-col cols="12" @click="getBalance" class="text-center d-flex ga-4 justify-center">
+              <span class="balance text-amber-accent-4" style="font-size: 24px">Balance: {{ balance }} MON</span>
             </v-col>
 
           </v-row>
-          <h1 class="text-center pt-4">OPEN BOX NFT EQUIPMENT</h1>
+          <h1 class="text-center pt-4 parallax-shadow">OPEN BOX NFT EQUIPMENT</h1>
 
           <!-- Connect Wallet Button -->
           <div class="text-center" v-if="!connected">
@@ -227,8 +230,8 @@ export default {
 
   .mint-button {
     position: absolute;
-    top: 251px;
-    left: calc(50% - 50px);
+    top: 245px;
+    left: calc(50% - 70px);
     border: solid 4px #827717;
     border-radius: 16px;
     font-size: 16px;
@@ -241,7 +244,7 @@ export default {
 }
 
 .success-text {
-  color: #4CAF50;
+  color: #FFFFFF;
   font-weight: bold;
   text-align: center;
 }

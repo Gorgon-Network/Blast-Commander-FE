@@ -95,7 +95,7 @@
         <v-container class="stats-section text-center my-15 text-xl pb-8">
             <v-row align="top" justify="center">
                 <v-col cols="12" sm="6" order="2" order-md="1">
-                    <v-card class="wh-box pa-4" outlined data-aos="zoom-out-right" data-aos-offset="1000">
+                    <v-card class="wh-box pa-4" outlined data-aos="zoom-out-right" data-aos-offset="300">
                         <div class="pa-4">
                             <h2>Acquire NFTs to obtain exclusive Equipment!!</h2>
                             <v-img src="/src/assets/image-4.png" class="gift-box"></v-img>
@@ -111,7 +111,7 @@
                             </swiper>
                         </div>
                     </v-card>
-                    <v-card class="wh-box pa-4 mt-6" outlined data-aos="zoom-out-right" data-aos-offset="1000">
+                    <v-card class="wh-box pa-4 mt-6" outlined data-aos="zoom-out-right" data-aos-offset="300">
                         <div class="pa-4">
                             <h2>Active & Passive Boost System</h2>
 
@@ -130,7 +130,7 @@
                 </v-col>
 
                 <v-col cols="12" sm="6" order="1" order-md="2" class="d-flex align-center">
-                    <div class="trailer" outlined data-aos="zoom-out-left" data-aos-offset="1000"
+                    <div class="trailer" outlined data-aos="zoom-out-left" data-aos-offset="300"
                         data-aos-easing="ease-in-sine">
                         <video autoplay loop muted playsinline src="/src/assets/trailer-1.mp4"></video>
                     </div>
@@ -169,7 +169,7 @@
                         <h1 class="mb-6">Project Statistics</h1>
                         <v-row dense>
                             <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="1000"
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-down-right" data-aos-offset="200"
                                     data-aos-easing="ease-in-sine">
                                     <v-icon class="stat-icon mb-2" color="blue">mdi-account-multiple</v-icon>
                                     <h2 class="">{{ usersCount }}</h2>
@@ -178,7 +178,7 @@
                             </v-col>
 
                             <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="1000"
+                                <v-card class="stat-box pa-4" outlined data-aos="flip-up" data-aos-offset="200"
                                     data-aos-easing="ease-in-sine">
                                     <v-icon class="stat-icon mb-2" color="purple">mdi-cube-outline</v-icon>
                                     <h2 class="">{{ nftsMinted }}</h2>
@@ -187,7 +187,7 @@
                             </v-col>
 
                             <v-col cols="12" sm="4">
-                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="1000"
+                                <v-card class="stat-box pa-4" outlined data-aos="fade-up-left" data-aos-offset="200"
                                     data-aos-easing="ease-in-sine">
                                     <v-icon class="stat-icon mb-2" color="green">mdi-swap-horizontal</v-icon>
                                     <h2 class="">{{ transactionsCount }}</h2>
@@ -376,7 +376,7 @@ const features = ref([
 ],);
 
 const startGame = () => {
-    router.push('/');
+    router.push('/game');
 }
 
 function openTwt() {
@@ -673,10 +673,6 @@ const setRandomCloudSizes = () => {
     }
 }
 
-.parallax-shadow {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
 .roadmap-section {
     background-color: rgba(33, 33, 33, 0.5);
     color: #fff;
@@ -726,11 +722,6 @@ h2 {
         border-radius: 8px;
         width: 100%;
     }
-}
-
-.wh-box {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
 }
 
 .radius-8 {
