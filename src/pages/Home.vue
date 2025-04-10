@@ -301,6 +301,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { onMounted, ref } from "vue";
 import { useRouter } from 'vue-router';
 import { computed } from "vue";
+import { bagList , shopBackground, itemsList, itemsList2 } from '@/data/imageList';
 
 const progressCircle = ref<SVGCircleElement | null>(null);
 const progressContent = ref<HTMLElement | null>(null);
@@ -311,55 +312,13 @@ const onAutoplayTimeLeft = (swiper: any, time: number, progress: number) => {
     }
 };
 const modules = [Autoplay, Pagination, Navigation];
-const imageUrls = [
-    { src: "/src/assets/bag/HP.webp" },
-    { src: "/src/assets/bag/Armor.webp" },
-    { src: "/src/assets/bag/nft-1.png" },
-    { src: "/src/assets/bag/nft-2.png" },
-    { src: "/src/assets/bag/nft-3.png" },
-];
+const imageUrls = bagList;
 
-const imageUrls2 = [
-    { src: "/src/assets/item/ShopBackground.png" },
-    { src: "/src/assets/item/ShopBackground-2.png" },
-    { src: "/src/assets/item/ShopBackground-3.png" },
-    { src: "/src/assets/item/ShopBackground-4.png" },
-    { src: "/src/assets/item/ShopBackground-5.png" },
-    { src: "/src/assets/item/ShopBackground-6.png" },
-    { src: "/src/assets/item/ShopBackground-7.png" },
-    { src: "/src/assets/item/ShopBackground-8.png" },
-    { src: "/src/assets/item/ShopBackground-9.png" },
-    { src: "/src/assets/item/ShopBackground-10.png" },
-];
+const imageUrls2 = shopBackground;
 
-const items = [
-    { src: "/src/assets/slides/a1.jpeg" },
-    { src: "/src/assets/slides/a2.jpeg" },
-    { src: "/src/assets/slides/a3.jpeg" },
-    { src: "/src/assets/slides/a4.jpeg" },
-    { src: "/src/assets/slides/a5.jpeg" },
-    { src: "/src/assets/slides/a6.jpeg" },
-    { src: "/src/assets/slides/a7.jpeg" },
-    { src: "/src/assets/slides/a8.jpeg" },
-    { src: "/src/assets/slides/a9.jpeg" },
-    { src: "/src/assets/slides/a10.jpeg" },
-    { src: "/src/assets/slides/a11.jpeg" },
-    // { src: "/src/assets/slides/bgr-1.jpeg" },
-    // { src: "/src/assets/slides/bgr-2.jpeg" },
-];
+const items = itemsList;
 
-const items2 = [
-    { src: "/src/assets/slides/Enemies.png" },
-    { src: "/src/assets/slides/gun-1.png" },
-    { src: "/src/assets/slides/gun-2.png" },
-    { src: "/src/assets/slides/gun-3.png" },
-    { src: "/src/assets/slides/Plane-2.png" },
-    { src: "/src/assets/slides/Plane-3.png" },
-    { src: "/src/assets/slides/Plane-4.png" },
-    { src: "/src/assets/slides/Plane-5.png" },
-    { src: "/src/assets/slides/Plane.png" },
-    { src: "/src/assets/slides/PlaneShadow.png" }
-];
+const items2 = itemsList2;
 
 const repeatedItems = computed(() => [...items, ...items]);
 const repeatedItems2 = computed(() => [...items2, ...items2]);
