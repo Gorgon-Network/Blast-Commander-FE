@@ -87,7 +87,6 @@ import {_connectWallet} from "@/store/ultil";
 export default {
   components: {ItemEquipped},
   data() {
-    console.log(11, store.state);
     return {
       walletAddress: "" || "", // Lấy walletAddress từ store
       nfts: [],
@@ -120,7 +119,7 @@ export default {
     },
     async fetchData() {
       if (!this.walletAddress) {
-        alert("Không có địa chỉ ví để lấy dữ liệu!"); // Thay $toast bằng alert
+        alert("No wallet address to retrieve data!"); // Thay $toast bằng alert
         return;
       }
       this.loading = true;
@@ -142,7 +141,7 @@ export default {
         this.equippedItems = data.equippedItems || [];
       } catch (error) {
         console.error(error);
-        alert("Có lỗi xảy ra khi lấy dữ liệu!"); // Thay $toast bằng alert
+        alert("An error occurred while retrieving data!"); // Thay $toast bằng alert
       } finally {
         this.loading = false;
       }
@@ -163,7 +162,7 @@ export default {
         }
       } catch (error) {
         console.error(error);
-        alert("Lỗi khi trang bị item!"); // Thay $toast.error bằng alert
+        alert("Error equipping item!"); // Thay $toast.error bằng alert
       }
     },
     async unequipItem(itemType) {
@@ -182,7 +181,7 @@ export default {
         }
       } catch (error) {
         console.error(error);
-        alert("Lỗi khi tháo item!"); // Thay $toast.error bằng alert
+        alert("Error removing item!"); // Thay $toast.error bằng alert
       }
     },
     itemTypeToString(itemType) {
@@ -229,7 +228,7 @@ export default {
   margin-bottom: 16px;
   transition: transform 0.2s;
   border-radius: 8px;
-  background-color: #FFD54F;
+  background-color: rgba(255, 213, 79, 0.65);
 }
 .nft-card:hover {
   transform: scale(1.05);
@@ -243,19 +242,19 @@ export default {
   padding: 16px;
 }
 .common-border {
-  border: 3px solid #757575; /* Xám cho Common */
+  border: 5px solid #757575; /* Xám cho Common */
 }
 .uncommon-border {
-  border: 3px solid #4caf50; /* Xanh lá cho Uncommon */
+  border: 5px solid #4caf50; /* Xanh lá cho Uncommon */
 }
 .rare-border {
-  border: 3px solid #2196f3; /* Xanh dương cho Rare */
+  border: 5px solid #2196f3; /* Xanh dương cho Rare */
 }
 .epic-border {
-  border: 3px solid #9c27b0; /* Tím cho Epic */
+  border: 5px solid #9c27b0; /* Tím cho Epic */
 }
 .legendary-border {
-  border: 3px solid #ff9800; /* Cam cho Legendary */
+  border: 5px solid #ff9800; /* Cam cho Legendary */
 }
 .bgr-FFD54F {
   background-color: #FFD54F;

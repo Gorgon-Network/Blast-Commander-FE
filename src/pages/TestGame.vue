@@ -11,14 +11,22 @@
         <canvas id="unity-canvas-blurred"></canvas>
       </div>
     </v-row>
+
+    <!-- Overlay loading -->
+    <v-overlay v-model="isLoading" z-index="100" class="overlay-loading-game">
+      <v-progress-circular indeterminate size="64" color="primary"></v-progress-circular>
+      <p class="mt-4">Loading game, please wait..</p>
+    </v-overlay>
   </v-container>
 </template>
 <script setup>
-import { nextTick, onMounted, onUnmounted } from "vue";
+import { ref, nextTick, onMounted, onUnmounted } from "vue";
 import { _connectWallet, _disconnectWallet } from "@/store/ultil";
 import * as _ from "lodash";
 import { useRouter } from "vue-router";
 let unityInstance = null; // Biến toàn cục lưu instance của Unity
+const isLoading = ref(true); // Trạng thái loading
+
 const router = useRouter();
 // 🔹 Khởi tạo Unity WebGL
 function setUpGame() {
@@ -32,11 +40,13 @@ function setUpGame() {
       loaderUrl: "/my-unity-game/Build/mygame.loader.js",
     })
       .then((instance) => {
+       isLoading.value = false;
         unityInstance = instance; // Lưu lại để dùng sau
         console.log("✅ Unity WebGL đã tải thành công!");
         nextTick(() => cloneCanvas());
       })
       .catch((error) => {
+        isLoading.value = false;
         console.error("❌ Lỗi tải Unity:", error);
       });
   };
@@ -170,5 +180,10 @@ onUnmounted(() => {
   .v-container {
     padding: 8px 0px !important; /* 16px đều các cạnh cho desktop */
   }
+}
+.overlay-loading-game {
+  left: 50%;
+  top: 50%;
+  text-align: center;
 }
 </style>
