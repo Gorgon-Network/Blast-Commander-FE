@@ -4,7 +4,7 @@
       <v-btn color="amber-lighten-2" @click="$router.push('/')">
         <v-icon style="font-size: 32px" class="text-red-darken-4">mdi-home</v-icon>
       </v-btn>
-      
+
       <v-btn color="amber-lighten-2" @click="$router.push('/box')">
         <v-icon class="mr-2" color="red-darken-4">mdi-gift-open</v-icon>
         <span class="text-red-darken-4">Open Box</span>
@@ -94,7 +94,7 @@ export default {
       equippedItems: [],
       loading: false,
       contractAddress: store.state.contractAddress, // Địa chỉ contract
-      apiBaseUrl: "http://localhost:3000/api/item", // URL của API
+      apiBaseUrl: "https://api.blast-commander.xyz/api/item", // URL của API
       itemImages: {
         0: MainGunImg,
         1: WingGunImg,
