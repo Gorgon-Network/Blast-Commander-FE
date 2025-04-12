@@ -9,7 +9,7 @@
         <v-icon class="mr-2" color="red-darken-4">mdi-gift-open</v-icon>
         <span class="text-red-darken-4">Open Box</span>
       </v-btn>
-      <v-btn color="primary" @click="$router.push('/test')">
+      <v-btn color="primary" @click="$router.push('/game')">
         <v-icon class="mr-2" color="yellow-darken-2">mdi-play</v-icon>
         Play Game
       </v-btn>

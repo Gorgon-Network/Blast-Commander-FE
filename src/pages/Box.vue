@@ -12,7 +12,7 @@
                 <v-icon class="mr-2" color="indigo-darken-4">mdi-bag-personal</v-icon>
                 Inventory
               </v-btn>
-              <v-btn color="primary" @click="$router.push('/test')">
+              <v-btn color="primary" @click="$router.push('/game')">
                 <v-icon class="mr-2" color="yellow-darken-2">mdi-play</v-icon>
                 Start Game
               </v-btn>
