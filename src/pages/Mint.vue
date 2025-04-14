@@ -37,7 +37,6 @@ async function getNftList() {
 
 async function mintNft() {
   const res = await _mintAircraft();
-  console.log(22, res);
 }
 
 onMounted(() => {

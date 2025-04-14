@@ -34,7 +34,7 @@
 
     <v-row v-else>
       <v-col>
-        <v-alert type="info">Không tìm thấy NFT nào cho địa chỉ này.</v-alert>
+        <v-alert type="info">No NFTs found for this address.</v-alert>
       </v-col>
     </v-row>
   </v-container>

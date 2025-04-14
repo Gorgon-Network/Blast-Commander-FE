@@ -21,7 +21,7 @@ async function connectWallet() {
 
     return { provider, signer };
   } else {
-    console.error("MetaMask chưa được cài đặt!");
+
   }
 }
 
@@ -120,15 +120,14 @@ export async function _disconnectWallet() {
     if (typeof window.ethereum !== 'undefined' && store.state.address) {
       // Reset địa chỉ ví trong store
       store.commit('setWallet', null);
-      addNotification("Đã ngắt kết nối ví trong ứng dụng!");
+      addNotification("Disconnected in-app wallet!");
       return true;
     } else {
-      addNotification("Không có ví nào đang được kết nối!");
+      addNotification("No wallets are connected!");
       return false;
     }
   } catch (error) {
-    console.error("Ngắt kết nối ví thất bại:", error);
-    addNotification("Ngắt kết nối ví thất bại!");
+    addNotification("Wallet disconnection failed!");
     throw error;
   }
 }

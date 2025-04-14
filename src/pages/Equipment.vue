@@ -64,7 +64,7 @@
           </v-row>
         </v-sheet>
         <v-alert v-else-if="!loading && walletAddress" type="info">
-          Không tìm thấy NFT nào cho địa chỉ này.
+          No NFTs found for this address.
         </v-alert>
       </v-col>
     </v-row>
@@ -155,14 +155,14 @@ export default {
         });
         const data = await response.json();
         if (response.ok) {
-          alert(data.message); // Thay $toast.success bằng alert
+          alert(data.message);
           await this.fetchData();
         } else {
-          alert(data.error); // Thay $toast.error bằng alert
+          alert(data.error);
         }
       } catch (error) {
         console.error(error);
-        alert("Error equipping item!"); // Thay $toast.error bằng alert
+        alert("Error equipping item!");
       }
     },
     async unequipItem(itemType) {

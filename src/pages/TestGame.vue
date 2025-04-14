@@ -42,12 +42,10 @@ function setUpGame() {
       .then((instance) => {
        isLoading.value = false;
         unityInstance = instance; // Lưu lại để dùng sau
-        console.log("✅ Unity WebGL đã tải thành công!");
         nextTick(() => cloneCanvas());
       })
       .catch((error) => {
         isLoading.value = false;
-        console.error("❌ Lỗi tải Unity:", error);
       });
   };
   document.body.appendChild(script);
@@ -56,21 +54,18 @@ function setUpGame() {
 // 🔹 Xử lý sự kiện từ Vue gửi đến Unity
 const handleGameMessage = async (event) => {
   if (!unityInstance) {
-    console.warn("⏳ Unity chưa sẵn sàng! Chờ khởi tạo...");
     return;
   }
 
   switch (event.data.type) {
     case "connectWallet":
-      console.log("🔗 Đang gửi sự kiện connectWallet đến Unity...");
       const { signer } = await _connectWallet();
-      console.log(111, signer);
       unityInstance.SendMessage("WebGLEvents", "SetConnectedWallet", signer.address);
       break;
 
     case "disconnectWallet":
       await _disconnectWallet();
-      unityInstance.SendMessage("WebGLEvents", "OnWalletDisconnected", "Ví đã được ngắt kết nối");
+      unityInstance.SendMessage("WebGLEvents", "OnWalletDisconnected", "wallet disconnected");
       break;
 
     case "mintNFT":
@@ -82,7 +77,6 @@ const handleGameMessage = async (event) => {
 
 
     default:
-      console.warn("⚠ Sự kiện không xác định:", event.data.type);
       break;
   }
 };
@@ -111,10 +105,10 @@ function cleanupUnity() {
   if (unityInstance) {
     unityInstance.Quit() // Tắt instance Unity nếu được hỗ trợ
       .then(() => {
-        console.log("✅ Unity instance đã được tắt.");
+
       })
       .catch((error) => {
-        console.error("❌ Lỗi khi tắt Unity instance:", error);
+
       });
     unityInstance = null; // Đặt lại biến toàn cục
   }
@@ -128,8 +122,6 @@ function cleanupUnity() {
   // Xóa script Unity loader nếu cần
   const unityScript = document.querySelector('script[src="/my-unity-game/Build/mygame.loader.js"]');
   if (unityScript) unityScript.remove();
-
-  console.log("🧹 Đã dọn dẹp Unity canvas và tài nguyên.");
 }
 
 // 🔹 Gắn và gỡ bỏ sự kiện khi component mount/unmount
