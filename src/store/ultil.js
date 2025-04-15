@@ -5,23 +5,78 @@ import {aircraftNFTAbi} from "@/assets/abi";
 import {useNotificationService} from "./api";
 
 const { addNotification } = useNotificationService();
+const MONAD_CHAIN_ID = '0x279f';
+const MONAD_CHAIN_CONFIG = {
+  chainId: MONAD_CHAIN_ID,
+  chainName: 'Monad Testnet',
+  nativeCurrency: {
+    name: 'Monad',
+    symbol: 'MON',
+    decimals: 18,
+  },
+  rpcUrls: ['https://testnet-rpc.monad.xyz/'], // Thay bằng RPC URL thực
+  blockExplorerUrls: ['https://testnet.monadexplorer.com/'], // Thay bằng explorer thực
+};
+
 async function connectWallet() {
-  // Kiểm tra xem người dùng có MetaMask không
-  if (typeof window.ethereum !== 'undefined') {
-    // Yêu cầu MetaMask cấp quyền truy cập vào tài khoản
+  try {
+    // Kiểm tra MetaMask
+    if (typeof window.ethereum === 'undefined') {
+      throw new Error('MetaMask is not installed. Please install it to proceed.');
+    }
+
+    // Yêu cầu truy cập tài khoản
     await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-    // Khởi tạo provider từ MetaMask
+    // Khởi tạo provider
     const provider = new ethers.BrowserProvider(window.ethereum);
 
-    // Lấy signer để thực hiện các giao dịch
+    // Kiểm tra chain hiện tại
+    const network = await provider.getNetwork();
+    const currentChainId = `0x${network.chainId.toString(16)}`;
+    console.log('Current chainId:', currentChainId, 'Expected:', MONAD_CHAIN_ID); // Debug log
+
+    if (currentChainId !== MONAD_CHAIN_ID) {
+      // Yêu cầu xác nhận từ người dùng trước khi chuyển mạng
+      const userConfirmed = window.confirm(
+        'This application requires the Monad network. Would you like to switch to the Monad network now?'
+      );
+
+      if (!userConfirmed) {
+        throw new Error('User declined to switch to the Monad network.');
+      }
+
+      try {
+        // Yêu cầu chuyển sang Monad
+        console.log('Requesting switch to Monad chain ID:', MONAD_CHAIN_ID); // Debug log
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: MONAD_CHAIN_ID }],
+        });
+      } catch (switchError) {
+        // Nếu chuỗi chưa được thêm (lỗi 4902), thêm chuỗi Monad
+        if (switchError.code === 4902) {
+          console.log('Adding Monad chain:', MONAD_CHAIN_CONFIG); // Debug log
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [MONAD_CHAIN_CONFIG],
+          });
+        } else {
+          throw switchError;
+        }
+      }
+    }
+
+    // Lấy signer và địa chỉ
     const signer = await provider.getSigner();
+    const address = await signer.getAddress();
 
-    console.log("Connected wallet:", await signer.getAddress());
+    console.log('Connected wallet:', address, 'on Monad chain (ID: 10143)');
 
-    return { provider, signer };
-  } else {
-
+    return { provider, signer, address };
+  } catch (error) {
+    console.error('Wallet connection failed:', error.message);
+    throw error;
   }
 }
 
