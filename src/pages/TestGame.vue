@@ -31,13 +31,13 @@ const router = useRouter();
 // 🔹 Khởi tạo Unity WebGL
 function setUpGame() {
   const script = document.createElement("script");
-  script.src = "/my-unity-game/Build/mygame.loader.js";
+  script.src = "/mygame/Build/mygame.loader.js";
   script.onload = () => {
     createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "/my-unity-game/Build/mygame.data",
-      frameworkUrl: "/my-unity-game/Build/mygame.framework.js",
-      codeUrl: "/my-unity-game/Build/mygame.wasm",
-      loaderUrl: "/my-unity-game/Build/mygame.loader.js",
+      dataUrl: "/mygame/Build/mygame.data",
+      frameworkUrl: "/mygame/Build/mygame.framework.js",
+      codeUrl: "/mygame/Build/mygame.wasm",
+      loaderUrl: "/mygame/Build/mygame.loader.js",
     })
       .then((instance) => {
        isLoading.value = false;
