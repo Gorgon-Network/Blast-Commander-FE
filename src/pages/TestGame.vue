@@ -59,6 +59,7 @@ const handleGameMessage = async (event) => {
 
   switch (event.data.type) {
     case "connectWallet":
+      console.log("Connect Wallet");
       const { signer } = await _connectWallet();
       unityInstance.SendMessage("WebGLEvents", "SetConnectedWallet", signer.address);
       break;
