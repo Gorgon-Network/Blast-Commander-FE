@@ -4,6 +4,9 @@
       <v-col cols="12" class="pa-0 ma-0 fisrt-container">
         <!-- Game nền mờ (bản sao) -->
         <div id="unity-container" style="width: 360px; height: 523px;">
+          <div class="banner-mainnet">
+            <img src="@/assets/Sale/banner-mainet.webp" class="sparkle" alt="">
+          </div>
           <canvas id="unity-canvas" style="width: 360px; height: 523px;"></canvas>
           <div class="bottom-navigate">
             <div class="item-navigate" v-ripple @click="router.push('equipment')">
@@ -19,7 +22,7 @@
                        icon="mdi-gift"></v-icon>
               <p>Mint Item</p>
             </div>
-            <img src="@/assets/Sale/ship-2.webp" alt="Buy Ship" class="ship-button" />
+            <img src="@/assets/Sale/ship-2.webp" alt="Buy Ship" class="ship-button sparkle" />
             <div class="sale-text">Coming Soon</div>
           </div>
         </div>
@@ -188,7 +191,7 @@ onUnmounted(() => {
 
 @media (max-width: 660px) {
   .v-container {
-    padding: 8px 0px !important; /* 16px đều các cạnh cho desktop */
+    padding: 8px 0px !important;
   }
 }
 .overlay-loading-game {
@@ -259,6 +262,19 @@ onUnmounted(() => {
   }
 }
 
+.banner-mainnet {
+  cursor: pointer;
+  img {
+    width: 360px;
+  }
+}
 
+.sparkle {
+  animation: sparkle 1.2s infinite ease-in-out;
+}
 
+@keyframes sparkle {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(2.2) contrast(1.4); }
+}
 </style>
