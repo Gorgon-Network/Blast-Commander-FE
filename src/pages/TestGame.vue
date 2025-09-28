@@ -5,6 +5,23 @@
         <!-- Game nền mờ (bản sao) -->
         <div id="unity-container" style="width: 360px; height: 523px;">
           <canvas id="unity-canvas" style="width: 360px; height: 523px;"></canvas>
+          <div class="bottom-navigate">
+            <div class="item-navigate" v-ripple @click="router.push('equipment')">
+              <v-icon  color="green-darken-4"
+                       size="large"
+                       icon="mdi-bag-personal-outline"></v-icon>
+              <p>Inventory</p>
+            </div>
+
+            <div class="item-navigate" v-ripple @click="router.push('box')">
+              <v-icon  color="yellow-darken-3"
+                       size="large"
+                       icon="mdi-gift"></v-icon>
+              <p>Mint Item</p>
+            </div>
+            <img src="@/assets/Sale/ship-2.webp" alt="Buy Ship" class="ship-button" />
+            <div class="sale-text">Coming Soon</div>
+          </div>
         </div>
       </v-col>
       <div id="unity-container-blurred" class="blurred">
@@ -179,4 +196,69 @@ onUnmounted(() => {
   top: 50%;
   text-align: center;
 }
+.bottom-navigate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  position: relative;
+
+  .item-navigate {
+    background: #E0E0E0;
+    border: solid 1px #757575;
+    border-radius: 8px;
+    text-align: center;
+    padding: 8px;
+    color: #424242;
+    cursor: pointer;
+  }
+
+  /* ship as button */
+  .ship-button {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+  }
+
+  /* hover effect */
+  .ship-button:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 8px 22px rgba(56,183,255,0.55);
+  }
+
+  /* engine glow */
+  .ship-button::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 12px;
+    background: radial-gradient(circle, rgba(56,183,255,0.6), transparent 70%);
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* glow visible when hover */
+  .ship-button:hover::after {
+    opacity: 1;
+  }
+
+  .sale-text {
+    position: absolute;
+    right: 0;
+    color: red;
+    bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+
+
 </style>
