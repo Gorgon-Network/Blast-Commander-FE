@@ -5,17 +5,17 @@ import {aircraftNFTAbi} from "@/assets/abi";
 import {useNotificationService} from "./api";
 
 const { addNotification } = useNotificationService();
-const MONAD_CHAIN_ID = '0x279f';
-const MONAD_CHAIN_CONFIG = {
-  chainId: MONAD_CHAIN_ID,
-  chainName: 'Monad Testnet',
+const Base_CHAIN_ID = '0x14a34';
+const Base_CHAIN_CONFIG = {
+  chainId: Base_CHAIN_ID,
+  chainName: 'Base Sepolia Testnet',
   nativeCurrency: {
-    name: 'Monad',
-    symbol: 'MON',
+    name: 'ETH',
+    symbol: 'ETH',
     decimals: 18,
   },
-  rpcUrls: ['https://testnet-rpc.monad.xyz/'], // Thay bằng RPC URL thực
-  blockExplorerUrls: ['https://testnet.monadexplorer.com/'], // Thay bằng explorer thực
+  rpcUrls: ['https://sepolia.base.org'], // Thay bằng RPC URL thực
+  blockExplorerUrls: ['https://sepolia-explorer.base.org'], // Thay bằng explorer thực
 };
 
 async function connectWallet() {
@@ -34,9 +34,9 @@ async function connectWallet() {
     // Kiểm tra chain hiện tại
     const network = await provider.getNetwork();
     const currentChainId = `0x${network.chainId.toString(16)}`;
-    console.log('Current chainId:', currentChainId, 'Expected:', MONAD_CHAIN_ID); // Debug log
+    console.log('Current chainId:', currentChainId, 'Expected:', Base_CHAIN_ID); // Debug log
 
-    if (currentChainId !== MONAD_CHAIN_ID) {
+    if (currentChainId !== Base_CHAIN_ID) {
       // Yêu cầu xác nhận từ người dùng trước khi chuyển mạng
       const userConfirmed = window.confirm(
         'This application requires the Monad network. Would you like to switch to the Monad network now?'
@@ -48,18 +48,18 @@ async function connectWallet() {
 
       try {
         // Yêu cầu chuyển sang Monad
-        console.log('Requesting switch to Monad chain ID:', MONAD_CHAIN_ID); // Debug log
+        console.log('Requesting switch to Monad chain ID:', Base_CHAIN_ID); // Debug log
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: MONAD_CHAIN_ID }],
+          params: [{ chainId: Base_CHAIN_ID }],
         });
       } catch (switchError) {
         // Nếu chuỗi chưa được thêm (lỗi 4902), thêm chuỗi Monad
         if (switchError.code === 4902) {
-          console.log('Adding Monad chain:', MONAD_CHAIN_CONFIG); // Debug log
+          console.log('Adding Monad chain:', Base_CHAIN_CONFIG); // Debug log
           await window.ethereum.request({
             method: 'wallet_addEthereumChain',
-            params: [MONAD_CHAIN_CONFIG],
+            params: [Base_CHAIN_CONFIG],
           });
         } else {
           throw switchError;

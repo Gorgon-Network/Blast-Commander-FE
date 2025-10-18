@@ -136,7 +136,7 @@ export default {
           rarity: items[index].rarity,
         }));
 
-        const response = await fetch(`${this.apiBaseUrl}/details/${this.walletAddress}`);
+        const response = await fetch(`${this.apiBaseUrl}/details/base/${this.walletAddress}`);
         const data = await response.json();
         this.equippedItems = data.equippedItems || [];
       } catch (error) {
@@ -148,7 +148,7 @@ export default {
     },
     async equipItem(tokenId) {
       try {
-        const response = await fetch(`${this.apiBaseUrl}/equip`, {
+        const response = await fetch(`${this.apiBaseUrl}/equip-base`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ walletAddress: this.walletAddress, tokenId }),
@@ -167,7 +167,7 @@ export default {
     },
     async unequipItem(itemType) {
       try {
-        const response = await fetch(`${this.apiBaseUrl}/unequip`, {
+        const response = await fetch(`${this.apiBaseUrl}/unequip-base`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ walletAddress: this.walletAddress, itemType }),

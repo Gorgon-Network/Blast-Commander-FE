@@ -170,7 +170,6 @@ export default {
 
         this.lastResult = result.events.BoxOpened.returnValues.tokenId;
 
-        console.log(111, result.events.BoxOpened.returnValues);
         this.mintedItem = result.events.BoxOpened.returnValues;
         this.showDialog = true;
 

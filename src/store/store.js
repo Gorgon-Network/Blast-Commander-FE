@@ -7,7 +7,7 @@ export const store = createStore({
       count: 0,
       eventData: null, // State lưu trữ dữ liệu sự kiện
       listNFT: [],
-      contractAddress: "0x679D0424363fd9c3831b11Ef206e30aB6236fD16"
+      contractAddress: "0x1aaB50198ac653FF190eBb8A8b5d0f7DE17c5dBe"
     }
   },
   mutations: {
