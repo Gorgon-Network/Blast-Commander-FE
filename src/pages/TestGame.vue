@@ -4,9 +4,6 @@
       <v-col cols="12" class="pa-0 ma-0 fisrt-container">
         <!-- Game nền mờ (bản sao) -->
         <div id="unity-container" style="width: 360px; height: 523px;">
-<!--          <div class="banner-mainnet">-->
-<!--            <img src="@/assets/Sale/banner-mainet.webp" class="sparkle" alt="">-->
-<!--          </div>-->
           <canvas id="unity-canvas" style="width: 360px; height: 523px;"></canvas>
           <div class="bottom-navigate">
             <div class="item-navigate" v-ripple @click="router.push('equipment')">
