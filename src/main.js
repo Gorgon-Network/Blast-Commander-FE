@@ -6,7 +6,7 @@
 
 // Plugins
 import { registerPlugins } from '@/plugins'
-import { sdk } from '@farcaster/miniapp-sdk';
+import { initBaseMiniApp } from './plugins/baseMiniAppSdk';
 // Components
 import App from './App.vue'
 
@@ -16,13 +16,13 @@ import { createApp } from 'vue'
 import {store} from './store/store'
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-// Once app is ready to be displayed
-await sdk.actions.ready();
 const app = createApp(App)
 app.use(store)
 
 registerPlugins(app)
 
-app.mount('#app')
+initBaseMiniApp().then(() => {
+  app.mount('#app');
+});
 
 AOS.init();
