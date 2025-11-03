@@ -1,8 +1,8 @@
 {
   "accountAssociation": {
-    "header": "",
-    "payload": "",
-    "signature": ""
+    "header": "eyJmaWQiOjEwNzA0MDUsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhCODdDZGRCOEI4NGQ3YjVlMGQzN0VEQzk3NzFhZjc0MjgzYTQ3ZjUxIn0",
+    "payload": "eyJkb21haW4iOiJ3d3cuYmxhc3QtY29tbWFuZGVyLnh5eiJ9",
+    "signature": "L+QBIrEXwFEUE9vsPG/LcL2MVTaDiO6+Ic2lGzLEwY5KtIICcXCn1XoYYRubpoX9u5Mz5ROGihfprH+Aw/6Z9Rw="
   },
   "baseBuilder": {
     "ownerAddress": "0x65d85c5bF185F3FCe2a9A2745E0b838BD9b87c8c"
@@ -10,9 +10,9 @@
   "miniapp": {
     "version": "1",
     "name": "Example Mini App",
-    "homeUrl": "https://ex.co",
-    "iconUrl": "https://ex.co/i.png",
-    "splashImageUrl": "https://ex.co/l.png",
+    "homeUrl": "https://www.blast-commander.xyz/",
+    "iconUrl": "https://www.blast-commander.xyz/assets/logo-B2KGGyyY.png",
+    "splashImageUrl": "https://www.blast-commander.xyz/assets/logo-B2KGGyyY.png",
     "splashBackgroundColor": "#000000",
     "webhookUrl": "https://ex.co/api/webhook",
     "subtitle": "Fast, fun, social",
@@ -23,7 +23,7 @@
       "https://ex.co/s3.png"
     ],
     "primaryCategory": "social",
-    "tags": ["example", "miniapp", "baseapp"],
+    "tags": ["game", "baseapp", "2d"],
     "heroImageUrl": "https://ex.co/og.png",
     "tagline": "Play instantly",
     "ogTitle": "Example Mini App",
